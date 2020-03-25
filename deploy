@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# deploy
+# temp/alpha version
+
+ln -s "$(pwd)/config/nvim" ~/.config/
