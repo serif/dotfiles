@@ -1,0 +1,20 @@
+# The following lines were added by compinstall
+
+zstyle ':completion:*' expand prefix
+zstyle ':completion:*' format '[%d]'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' 'm:{[:lower:]}={[:upper:]} r:|[._-/]=** r:|=** l:|=*'
+zstyle ':completion:*' preserve-prefix '//[^/]##/'
+zstyle :compinstall filename '/home/a/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.config/zsh/histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt appendhistory autocd extendedglob nomatch
+unsetopt beep
+bindkey -e
+# End of lines configured by zsh-newuser-install
