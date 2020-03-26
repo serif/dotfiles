@@ -3,4 +3,7 @@
 # deploy
 # temp/alpha version
 
+# Neovim
 ln -s "$(pwd)/config/nvim" ~/.config/
+sudo pip3 install jedi neovim
+nvim +PlugInstall +UpdateRemotePlugins +qall
