@@ -1,5 +1,6 @@
 
-
+### zsh ###
+config/zsh/histfile
 
 ### Vim ###
 # Swap
