@@ -10,7 +10,7 @@ nvim +PlugInstall +UpdateRemotePlugins +qall
 
 # zsh
 ln -s "$(pwd)/config/zsh" ~/.config/
-echo 'source ~/.config/zsh/zshrc' > ~/.zshrc
+echo "source $HOME/.config/zsh/zshrc" > ~/.zshrc
 git clone https://github.com/zdharma/zinit.git config/zsh/zinit/bin
 zsh -c "source $(pwd)/config/zsh/zinit/bin/zinit.zsh && zinit update"
 # zsh set as default shell
