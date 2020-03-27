@@ -8,6 +8,11 @@ ln -s "$(pwd)/config/nvim" ~/.config/
 sudo pip3 install jedi neovim
 nvim +PlugInstall +UpdateRemotePlugins +qall
 
+# zsh
+ln -s "$(pwd)/config/zsh" ~/.config/
+echo 'source ~/.config/zsh/zshrc' > ~/.zshrc
+
+
 # TODO: make pbcopy/pbpaste like MacOS using xclip
 # echo "test" | tr -d '\n' | xclip -sel clip
 # this trims all \n ^^^^^... should trim only final \n
