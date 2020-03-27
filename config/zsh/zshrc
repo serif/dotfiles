@@ -7,6 +7,7 @@ export ZSH=~/.config/zsh/
 export ADOTDIR=~/.config/zsh/plugins/
 export HISTFILE=~/.config/zsh/histfile
 export EDITOR=vim
+export NVIM_TUI_ENABLE_TRUE_COLOR=1
 export HISTSIZE=4000
 export SAVEHIST=4000
 setopt HIST_EXPIRE_DUPS_FIRST

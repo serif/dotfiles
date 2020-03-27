@@ -191,7 +191,11 @@ nmap <Leader> <Plug>(easymotion-prefix)
 "
 syntax enable
 set background=dark
+let g:gruvbox_italic=1
 "colorscheme gruvbox
+if (has("termguicolors"))
+  set termguicolors
+endif
 "[xterm-256color reference](https://jonasjacek.github.io/colors/)
 "0 and 16 look good
 highlight colorcolumn guibg=grey11 ctermbg=235
