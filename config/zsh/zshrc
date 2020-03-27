@@ -1,0 +1,85 @@
+
+#zmodload zsh/zprof
+
+#export PATH=/usr/local/bin /usr/bin /bin /usr/sbin /sbin ~/Library/Python/3.7/bin /opt/X11/bin /usr/local/opt/curl/bin
+export PATH=~/Library/Python/3.7/bin:$PATH
+export ZSH=~/.config/zsh/
+export ADOTDIR=~/.config/zsh/plugins/
+export HISTFILE=~/.config/zsh/histfile
+export EDITOR=vim
+export HISTSIZE=10000
+export SAVEHIST=10000
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_SAVE_NO_DUPS
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+setopt EXTENDED_HISTORY
+#original colors from OS X
+unset LSCOLORS
+export CLICOLOR=1
+export CLICOLOR_FORCE=1
+
+source ~/.config/zsh/zinit/bin/zinit.zsh
+declare -A ZINIT
+ZINIT[BIN_DIR]=~/.config/zsh/zinit/bin
+ZINIT[HOME_DIR]=~/.config/zsh/zinit
+ZINIT[PLUGINS_DIR]=~/.config/zsh/zinit/plugins
+ZINIT[COMPLETIONS_DIR]=~/.config/zsh/completions
+ZINIT[SNIPPETS_DIR]=~/.config/zsh/snippets
+ZINIT[ZCOMPDUMP_PATH]=~/.config/zsh/zcompdump
+ZINIT[COMPINIT_OPTS]="-C"               # pass -C to speed up loading
+ZINIT[MUTE_WARNINGS]=1                  # mute unimportant warnings
+ZPFX=~/.config/zsh/zinit/polaris        # tmp for plugs with Makefile
+
+# Plugins
+
+#source ~/.config/zsh/plugins/antigen.zsh
+zinit light mafredri/zsh-async
+zinit light chrissicool/zsh-256color
+
+#zinit light zsh-users/zsh-syntax-highlighting
+zinit light zdharma/fast-syntax-highlighting
+zinit light zdharma/history-search-multi-word
+
+zinit ice wait lucid atload'_zsh_autosuggest_start'
+zinit light zsh-users/zsh-autosuggestions
+
+zinit light zsh-users/zsh-history-substring-search
+# https://github.com/unixorn/awesome-zsh-plugins#themes
+# zinit light  sbugzu/gruvbox-zsh
+
+zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
+    zsh-users/zsh-completions
+zmodload zsh/zpty
+
+zinit ice from"gh-r" as"program"
+zinit light junegunn/fzf-bin
+
+# Load the pure theme, with zsh-async library that's bundled with it.
+zinit ice pick"async.zsh" src"pure.zsh"
+zinit light sindresorhus/pure
+
+
+AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=6'
+AUTOSUGGESTION_HIGHLIGHT_CURSOR=0
+export ZSH_AUTOSUGGEST_USE_ASYNC=1
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#555555'
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
+# completions fix
+#fpath=(/usr/local/share/zsh-completions $fpath)
+#autoload -Uz compinit promptinit
+#compinit 
+#promptinit
+
+# completion with an arrow-key driven interface
+zstyle ':completion:*' menu select
+
+# autocompletion of command line switches for aliases
+setopt COMPLETE_ALIASES
+
+# completion for sudo commands
+zstyle ':completion::complete:*' gain-privileges 1
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
