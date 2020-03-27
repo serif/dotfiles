@@ -2,7 +2,7 @@
 #zmodload zsh/zprof
 
 #export PATH=/usr/local/bin /usr/bin /bin /usr/sbin /sbin ~/Library/Python/3.7/bin /opt/X11/bin /usr/local/opt/curl/bin
-export PATH=~/Library/Python/3.7/bin:$PATH
+#export PATH=~/Library/Python/3.7/bin:$PATH
 export ZSH=~/.config/zsh/
 export ADOTDIR=~/.config/zsh/plugins/
 export HISTFILE=~/.config/zsh/histfile
