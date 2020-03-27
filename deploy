@@ -21,6 +21,6 @@ then
 fi
 chsh -s "$(which zsh)"
 
-# TODO: make pbcopy/pbpaste like MacOS using xclip
+# todo: make pbcopy/pbpaste like MacOS using xclip
 # echo "test" | tr -d '\n' | xclip -sel clip
 # this trims all \n ^^^^^... should trim only final \n
