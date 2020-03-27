@@ -7,8 +7,8 @@ export ZSH=~/.config/zsh/
 export ADOTDIR=~/.config/zsh/plugins/
 export HISTFILE=~/.config/zsh/histfile
 export EDITOR=vim
-export HISTSIZE=10000
-export SAVEHIST=10000
+export HISTSIZE=4000
+export SAVEHIST=4000
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_SAVE_NO_DUPS
 setopt APPEND_HISTORY
@@ -80,6 +80,34 @@ setopt COMPLETE_ALIASES
 
 # completion for sudo commands
 zstyle ':completion::complete:*' gain-privileges 1
+
+
+# The following lines were added by compinstall
+zstyle ':completion:*' expand prefix
+zstyle ':completion:*' format '[%d]'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' 'm:{[:lower:]}={[:upper:]} r:|[._-/]=** r:|=** l:|=*'
+zstyle ':completion:*' preserve-prefix '//[^/]##/'
+zstyle :compinstall filename '/home/a/.zshrc'
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.config/zsh/histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt appendhistory autocd extendedglob nomatch
+unsetopt beep
+bindkey -e
+# End of lines configured by zsh-newuser-install
+
+## Share history between zsh processes (tmux)
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+
+## never ever beep ever
+setopt NO_BEEP
+
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
