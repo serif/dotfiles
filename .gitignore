@@ -2,7 +2,7 @@
 ### zsh ###
 config/zsh/histfile
 config/zsh/snippets/*
-# ignore all plugs but 
+config/zsh/zinit/bin
 config/zsh/zinit/plugins/*/
 !config/zsh/zinit/plugins/_local---zinit/*
 

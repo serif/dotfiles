@@ -11,6 +11,7 @@ nvim +PlugInstall +UpdateRemotePlugins +qall
 # zsh
 ln -s "$(pwd)/config/zsh" ~/.config/
 echo 'source ~/.config/zsh/zshrc' > ~/.zshrc
+git clone https://github.com/zdharma/zinit.git config/zsh/zinit/bin
 
 
 # TODO: make pbcopy/pbpaste like MacOS using xclip
