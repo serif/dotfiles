@@ -189,20 +189,20 @@ nmap <Leader> <Plug>(easymotion-prefix)
 "
 "Colors:
 "
-syntax enable
-set background=dark
-let g:gruvbox_italic=1
-"colorscheme gruvbox
 if (has("termguicolors"))
   set termguicolors
 endif
+syntax enable
+set background=dark
+let g:gruvbox_italic=1
+colorscheme gruvbox
+let g:airline_theme='gruvbox'
 "[xterm-256color reference](https://jonasjacek.github.io/colors/)
 "0 and 16 look good
 highlight colorcolumn guibg=grey11 ctermbg=235
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=grey11 ctermbg=234
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=grey11 ctermbg=234
-"let g:airline_theme='gruvbox'
 "python syntax https://github.com/numirias/semshi
 "http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
 "Soften semshi py colors:
