@@ -16,11 +16,15 @@ zsh -c "source $(pwd)/config/zsh/zinit/bin/zinit.zsh && zinit update"
 # zsh set as default shell
 if ! grep -Fxq "$(which zsh)" /etc/shells
 then
-    echo "$(which zsh) not in /etc/shells"
-    echo '$(which zsh)' | sudo tee -a '/etc/shells'
+    echo "Adding $(which zsh) to /etc/shells"
+    echo "$(which zsh)" | sudo tee -a '/etc/shells'
 fi
 chsh -s "$(which zsh)"
 
-# todo: make pbcopy/pbpaste like MacOS using xclip
+# python
+sudo pip3 install bpython
+
+# TODO: make pbcopy/pbpaste like MacOS using xclip
 # echo "test" | tr -d '\n' | xclip -sel clip
 # this trims all \n ^^^^^... should trim only final \n
+
