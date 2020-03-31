@@ -118,6 +118,8 @@ setopt SHARE_HISTORY
 ## never ever beep ever
 setopt NO_BEEP
 
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+alias ls='gls --group-directories-first --color=auto -F'
+alias la='gls --group-directories-first --color=auto -F -a'
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
