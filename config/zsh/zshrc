@@ -120,6 +120,12 @@ setopt NO_BEEP
 
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-alias ls='gls --group-directories-first --color=auto -F'
-alias la='gls --group-directories-first --color=auto -F -a'
+# gls -h = --human-readable = with -l and -s, print sizes like 1K 2M 3G etc
+# gls -X = --sort=extension = sort files by extension
+# gls -F = --classify = append / for dirs, * for executable, etc
+# gls -a = --all = do not ignore entries starting with .
+# gls -A = --almost-all = do not list implied . and ..
+
+alias ls='gls --color --group-directories-first -Xh'
+alias la='gls --color --group-directories-first -XhA'
 
