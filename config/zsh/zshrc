@@ -129,6 +129,12 @@ setopt NO_BEEP
 # gls -a = --all = do not ignore entries starting with .
 # gls -A = --almost-all = do not list implied . and ..
 
-alias ls='gls --color --group-directories-first -Xh'
-alias la='gls --color --group-directories-first -XhA'
+if hash gls 2>/dev/null; then
+    ls_cmd='gls'
+else
+    ls_cmd='ls'
+fi
+alias ls="$ls_cmd --color --group-directories-first -Xh"
+alias la="$ls_cmd --color --group-directories-first -XhA"
+
 

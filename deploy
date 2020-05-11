@@ -5,7 +5,7 @@
 
 # neovim
 ln -s "$(pwd)/config/nvim" ~/.config/
-sudo pip3 install jedi neovim
+sudo pip3 install --user jedi neovim
 nvim +PlugInstall +UpdateRemotePlugins +qall
 
 # zsh
