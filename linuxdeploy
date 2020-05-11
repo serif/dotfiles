@@ -1,5 +1,6 @@
 #!/bin/bash
 
 # sudo dnf in zsh neovim
-sudo cp -n fonts/*.ttf /usr/share/fonts/truetype/
-sudo cp -n fonts/*.otf /usr/share/fonts/opentype/
+#sudo cp -n fonts/*.ttf /usr/share/fonts/truetype/
+#sudo cp -n fonts/*.otf /usr/share/fonts/opentype/
+sudo cp -n fonts/* /usr/share/fonts/
