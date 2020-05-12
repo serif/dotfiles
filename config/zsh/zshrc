@@ -77,7 +77,7 @@ AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=6'
 AUTOSUGGESTION_HIGHLIGHT_CURSOR=0
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#555555'
-ZSH_AUTOSUGGEST_STRATEGY=(completion history)
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # completions fix
 #fpath=(/usr/local/share/zsh-completions $fpath)
