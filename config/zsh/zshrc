@@ -129,6 +129,7 @@ setopt NO_BEEP
 # gls -a = --all = do not ignore entries starting with .
 # gls -A = --almost-all = do not list implied . and ..
 
+# use gnu tools if available
 if hash gls 2>/dev/null; then
     ls_cmd='gls'
 else
@@ -136,5 +137,8 @@ else
 fi
 alias ls="$ls_cmd --color --group-directories-first -Xh"
 alias la="$ls_cmd --color --group-directories-first -XhA"
+
+# make mv prompt before overwriting existing file
+alias mv="mv -i"
 
 
