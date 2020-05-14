@@ -123,6 +123,7 @@ setopt NO_BEEP
 
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# gnu ls parameters
 # gls -h = --human-readable = with -l and -s, print sizes like 1K 2M 3G etc
 # gls -X = --sort=extension = sort files by extension
 # gls -F = --classify = append / for dirs, * for executable, etc
