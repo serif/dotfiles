@@ -123,8 +123,6 @@ setopt NO_BEEP
 
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# This temporary line is just to test git
-
 # gnu ls parameters
 # gls -h = --human-readable = with -l and -s, print sizes like 1K 2M 3G etc
 # gls -X = --sort=extension = sort files by extension
