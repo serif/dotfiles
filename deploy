@@ -3,12 +3,8 @@
 # deploy
 # temp/alpha version
 
-# neovim
-ln -s "$(pwd)/config/nvim" ~/.config/
-pip3 install --user jedi neovim
-nvim +PlugInstall +UpdateRemotePlugins +qall
-
 # zsh
+echo '. ~/.config/zsh/zshenv' > ~/.zshenv
 ln -s "$(pwd)/config/zsh" ~/.config/
 echo "source $HOME/.config/zsh/zshrc" > ~/.zshrc
 git clone https://github.com/zdharma/zinit.git config/zsh/zinit/bin
@@ -21,7 +17,12 @@ then
 fi
 chsh -s "$(which zsh)"
 
-# python
+# neovim
+ln -s "$(pwd)/config/nvim" ~/.config/
+pip3 install --user jedi neovim
+nvim +PlugInstall +UpdateRemotePlugins +qall
+
+# python extras
 pip3 install bpython
 
 # TODO: make pbcopy/pbpaste like MacOS using xclip
