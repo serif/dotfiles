@@ -1,3 +1,10 @@
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export ZSH="$HOME/.config/zsh"
+export ZDOTDIR="$HOME/.config/zsh"
+export ADOTDIR="$HOME/.config/zsh/plugins"
+export HISTFILE="$HOME/.config/zsh/histfile"
 
 # -U: unique, discard duplicates
 typeset -U PATH path

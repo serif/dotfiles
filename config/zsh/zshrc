@@ -3,12 +3,6 @@
 
 #export PATH=/usr/local/bin /usr/bin /bin /usr/sbin /sbin ~/Library/Python/3.7/bin /opt/X11/bin /usr/local/opt/curl/bin
 #export PATH=~/Library/Python/3.7/bin:$PATH
-export XDG_CONFIG_HOME=~/.config
-export XDG_CACHE_HOME=~/.cache
-export XDG_DATA_HOME=~/.local/share
-export ZSH=~/.config/zsh
-export ADOTDIR=~/.config/zsh/plugins
-export HISTFILE=~/.config/zsh/histfile
 export EDITOR=vim
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 export HISTSIZE=4000
@@ -141,5 +135,7 @@ alias la="$ls_cmd --color --group-directories-first -XhA"
 
 # make mv prompt before overwriting existing file
 alias mv="mv -i"
+
+alias grep="grep --color"
 
 

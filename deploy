@@ -5,7 +5,7 @@
 
 # neovim
 ln -s "$(pwd)/config/nvim" ~/.config/
-sudo pip3 install --user jedi neovim
+pip3 install --user jedi neovim
 nvim +PlugInstall +UpdateRemotePlugins +qall
 
 # zsh
@@ -22,7 +22,7 @@ fi
 chsh -s "$(which zsh)"
 
 # python
-sudo pip3 install bpython
+pip3 install bpython
 
 # TODO: make pbcopy/pbpaste like MacOS using xclip
 # echo "test" | tr -d '\n' | xclip -sel clip
