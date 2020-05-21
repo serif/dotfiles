@@ -51,8 +51,11 @@ endif
 "
 let mapleader = " "
 "Escape to normal mode with jk
-inoremap jk <Esc>
-vnoremap jk <Esc>
+"inoremap jk <Esc>
+"vnoremap jk <Esc>
+"Escape to normal mode with jk
+inoremap ., <Esc>
+vnoremap ., <Esc>
 "Faster command entry
 noremap ; :
 noremap : ;
