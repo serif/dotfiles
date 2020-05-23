@@ -48,9 +48,10 @@ if has('persistent_undo')
   set undoreload=128
 endif
 
-"
-"Maps:
-"
+" ============================================================================ "
+" ===                                MAPS                                  === "
+" ============================================================================ "
+
 let mapleader = " "
 "Escape to normal mode with jk
 "inoremap jk <Esc>
@@ -70,9 +71,9 @@ noremap <C-k> <C-b>M
 "Allow move on wrapped lines
 noremap j gj
 noremap k gk
-"New line without insert mode
-noremap <CR> O<Esc>k
-"
+
+" === Colemak === "
+
 "Colemak mnei(hjkl) t(i) <C-n>(n) <C-e>(e)
 " sam217pa.github.io/2016/09/02/how-to-build-your-own-spacemacs/
 noremap m h|        "move Left
@@ -97,10 +98,11 @@ noremap <C-n> <C-f>M| "Page down, center cursor
 noremap <C-e> <C-b>M| "Page up, center cursor
 noremap <C-g> :GrammarousCheck
 noremap <C-G> :GrammarousReset
-" test area (par enth etical) 'single quoted' 1 2 3 4
-"
-"Plugins:
-"
+
+" ============================================================================ "
+" ===                               PLUGINS                                === "
+" ============================================================================ "
+
 call plug#begin(vimpath . '/plug')
 Plug 'vim-airline/vim-airline'          "The one and only
 Plug 'vim-airline/vim-airline-themes'   "Currently unused
@@ -111,30 +113,21 @@ Plug 'luochen1990/rainbow'              "Rainbow highlight brackets
 Plug 'sheerun/vim-polyglot'             "Multi-langsyntax and indent
 Plug 'mhinz/vim-startify'               "Start screen with recent files
 Plug 'ryanoasis/vim-devicons'           "Nerd Font icons
-"Plug 'vim-syntastic/syntastic'          "Syntax checker
 Plug 'rust-lang/rust.vim'               "rust support
 Plug 'rhysd/vim-grammarous'             "English :GrammarousCheck
 Plug 'vim-pandoc/vim-pandoc'            "Pandoc doc converter integration
 Plug 'vim-pandoc/vim-pandoc-syntax'     "Pandoc/.md/LaTeX/etc syntax
 Plug 'tpope/vim-obsession'              "Autosave session (for tmux)
-"Plug 'udalov/kotlin-vim'                "Kotlin stuff
-"Plug 'linduxed/colemak.vim'             "unei (like wasd) for hjkl
+"Plug 'udalov/kotlin-vim'                "Kotlin TODO: find coc lang server
 if has('nvim')
   "denite tui: pip3 install --user pynvim
-  "deoplete autocomplete: pip3 install --user jedi neovim
   Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-  "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  "Plug 'zchee/deoplete-jedi'      "Py autocomplete
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} "py syntax
 else
   Plug 'Shougo/denite.nvim'       "Denite
   Plug 'roxma/nvim-yarp'          "Denite
   Plug 'roxma/vim-hug-neovim-rpc' "Denite
-  "Plug 'Shougo/deoplete.nvim'     "Autocomplete
-  "Plug 'zchee/deoplete-jedi'      "Py autocomplete
-  Plug 'roxma/nvim-yarp'          "for deoplete on vim
-  Plug 'roxma/vim-hug-neovim-rpc' "for deoplete on vim
 endif             "When adding new plugs run :PlugInstall
 call plug#end()   "When adding deoplete in (old)vim run :UpdateRemotePlugins
 
@@ -144,6 +137,7 @@ call plug#end()   "When adding deoplete in (old)vim run :UpdateRemotePlugins
 " ============================================================================ "
 
 " === Airline === "
+
 let g:airline_powerline_fonts = 1
 "Warning for over-long lines and mixed indents but not trailing whitespace
 let g:airline#extensions#whitespace#checks = ['long', 'mixed-indent-file']
@@ -155,7 +149,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:indent_guides_guide_size = 1
 let g:indent_guides_color_change_percent = 3
 let g:indent_guides_enable_on_vim_startup = 1
-let g:deoplete#enable_at_startup = 1
 let g:grammarous#default_comments_only_filetypes = {
     \ '*' : 1, 'help' : 0, 'markdown' : 0, 'org' : 0,
     \ }
@@ -205,9 +198,7 @@ let g:startify_lists = [
 \ ]
 nmap <Leader> <Plug>(easymotion-prefix)
 
-"
-"Denite start
-"
+" === Denite ==="
 
 call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
 
