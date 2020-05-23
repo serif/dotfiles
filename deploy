@@ -9,6 +9,8 @@
 # sudo apt install ripgrep
 # pkg install ripgrep
 # brew install ripgrep
+# pip3 install --user pynvim --upgrade msgpack
+# npm install -g neovim
 
 # zsh
 echo '. ~/.config/zsh/zshenv' > ~/.zshenv

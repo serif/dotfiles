@@ -23,6 +23,7 @@ set shortmess=atI           "Shorten msgs, hide start msg
 set showcmd                 "Display commands during entry
 "set spell spelllang=en_us  "Spellchecking
 set tabstop=4 shiftwidth=4 softtabstop=4 "Consistent tab widths
+set updatetime=300
 set expandtab               "All tabs are spaces
 "set textwidth=80           "Removed because it adds hard breaks
 set whichwrap=<,>,h,l       "Wrap cursor on arrows and h,l
@@ -121,15 +122,16 @@ if has('nvim')
   "denite tui: pip3 install --user pynvim
   "deoplete autocomplete: pip3 install --user jedi neovim
   Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'zchee/deoplete-jedi'      "Py autocomplete
+  "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  "Plug 'zchee/deoplete-jedi'      "Py autocomplete
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} "py syntax
 else
   Plug 'Shougo/denite.nvim'       "Denite
   Plug 'roxma/nvim-yarp'          "Denite
   Plug 'roxma/vim-hug-neovim-rpc' "Denite
-  Plug 'Shougo/deoplete.nvim'     "Autocomplete
-  Plug 'zchee/deoplete-jedi'      "Py autocomplete
+  "Plug 'Shougo/deoplete.nvim'     "Autocomplete
+  "Plug 'zchee/deoplete-jedi'      "Py autocomplete
   Plug 'roxma/nvim-yarp'          "for deoplete on vim
   Plug 'roxma/vim-hug-neovim-rpc' "for deoplete on vim
 endif             "When adding new plugs run :PlugInstall
@@ -252,14 +254,30 @@ function! s:profile(opts) abort
   endfor
 endfunction
 
-call s:profile(s:denite_options)
-catch
-  echo 'Denite not installed. It should work after running :PlugInstall'
-endtry
-
 "
 "Denite end
 "
+
+" === Coc.nvim === "
+" use <tab> for trigger completion and navigate to next complete item
+" https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
+" :CocInstall coc-python coc-tsserver coc-json coc-html coc-css coc-cmake coc-git coc-markdownlint coc-svg coc-vimlsp
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+"Close preview window when completion is done.
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
 
 "
 "Colors:
@@ -307,6 +325,7 @@ augroup user
   autocmd FileType kotlin call SetTabsFourExpand()
   autocmd FileType make   call SetTabsFourNoExpand()
   autocmd FileType vim    call SetTabsTwoExpand()
+  autocmd FileType json syntax match Comment +\/\/.\+$+
   autocmd VimEnter,BufRead,BufNewFile *.kt set filetype=kotlin "Add type
   autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 augroup END
