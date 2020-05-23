@@ -3,6 +3,13 @@
 # deploy
 # temp/alpha version
 
+# ripgrep
+# https://github.com/BurntSushi/ripgrep
+# sudo dnf install ripgrep
+# sudo apt install ripgrep
+# pkg install ripgrep
+# brew install ripgrep
+
 # zsh
 echo '. ~/.config/zsh/zshenv' > ~/.zshenv
 ln -s "$(pwd)/config/zsh" ~/.config/
