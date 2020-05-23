@@ -11,6 +11,7 @@
 # brew install ripgrep
 # pip3 install --user pynvim --upgrade msgpack
 # npm install -g neovim
+# brew install ctags
 
 # zsh
 echo '. ~/.config/zsh/zshenv' > ~/.zshenv

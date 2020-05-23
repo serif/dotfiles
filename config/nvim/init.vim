@@ -47,6 +47,7 @@ if has('persistent_undo')
   set undolevels=512
   set undoreload=128
 endif
+
 "
 "Maps:
 "
@@ -70,7 +71,7 @@ noremap <C-k> <C-b>M
 noremap j gj
 noremap k gk
 "New line without insert mode
-noremap <CR> o<Esc>
+noremap <CR> O<Esc>k
 "
 "Colemak mnei(hjkl) t(i) <C-n>(n) <C-e>(e)
 " sam217pa.github.io/2016/09/02/how-to-build-your-own-spacemacs/
@@ -136,14 +137,21 @@ else
   Plug 'roxma/vim-hug-neovim-rpc' "for deoplete on vim
 endif             "When adding new plugs run :PlugInstall
 call plug#end()   "When adding deoplete in (old)vim run :UpdateRemotePlugins
-"
-"Plugin Settings:
-"
+
+
+" ============================================================================ "
+" ===                           PLUGIN SETUP                               === "
+" ============================================================================ "
+
+" === Airline === "
 let g:airline_powerline_fonts = 1
 "Warning for over-long lines and mixed indents but not trailing whitespace
 let g:airline#extensions#whitespace#checks = ['long', 'mixed-indent-file']
 "Show full filetype label instead of just 2 or 3 characters, eg "python"
 let g:airline_section_x = '%{&filetype}'
+"Display all buffers when there's only one tab open
+let g:airline#extensions#tabline#enabled = 1
+
 let g:indent_guides_guide_size = 1
 let g:indent_guides_color_change_percent = 3
 let g:indent_guides_enable_on_vim_startup = 1
@@ -261,7 +269,7 @@ endfunction
 " === Coc.nvim === "
 " use <tab> for trigger completion and navigate to next complete item
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
-" :CocInstall coc-python coc-tsserver coc-json coc-html coc-css coc-cmake coc-git coc-markdownlint coc-svg coc-vimlsp
+" :CocInstall coc-python coc-tsserver coc-json coc-html coc-css coc-cmake coc-git coc-markdownlint coc-svg coc-vimlsp coc-eslint
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
@@ -277,6 +285,13 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 "Close preview window when completion is done.
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Enable extensions
+"let g:airline_extensions = ['coc']
 
 
 "
