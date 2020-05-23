@@ -118,11 +118,16 @@ Plug 'tpope/vim-obsession'              "Autosave session (for tmux)
 "Plug 'udalov/kotlin-vim'                "Kotlin stuff
 "Plug 'linduxed/colemak.vim'             "unei (like wasd) for hjkl
 if has('nvim')
-  "For deoplete autocomplete : pip3 install jedi neovim
+  "denite tui: pip3 install --user pynvim
+  "deoplete autocomplete: pip3 install --user jedi neovim
+  Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'zchee/deoplete-jedi'      "Py autocomplete
-  Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} "Py syntax
+  Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} "py syntax
 else
+  Plug 'Shougo/denite.nvim'       "Denite
+  Plug 'roxma/nvim-yarp'          "Denite
+  Plug 'roxma/vim-hug-neovim-rpc' "Denite
   Plug 'Shougo/deoplete.nvim'     "Autocomplete
   Plug 'zchee/deoplete-jedi'      "Py autocomplete
   Plug 'roxma/nvim-yarp'          "for deoplete on vim
@@ -189,6 +194,23 @@ let g:startify_lists = [
 \ { 'type': 'commands',  'header': ['   Commands']       },
 \ ]
 nmap <Leader> <Plug>(easymotion-prefix)
+"Denite
+" Define mappings
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+  nnoremap <silent><buffer><expr> <CR>
+  \ denite#do_map('do_action')
+  nnoremap <silent><buffer><expr> d
+  \ denite#do_map('do_action', 'delete')
+  nnoremap <silent><buffer><expr> p
+  \ denite#do_map('do_action', 'preview')
+  nnoremap <silent><buffer><expr> q
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> i
+  \ denite#do_map('open_filter_buffer')
+  nnoremap <silent><buffer><expr> <Space>
+  \ denite#do_map('toggle_select').'j'
+endfunction
 "
 "Colors:
 "

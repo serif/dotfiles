@@ -19,6 +19,7 @@ chsh -s "$(which zsh)"
 
 # neovim
 ln -s "$(pwd)/config/nvim" ~/.config/
+pip3 install --user pynvim
 pip3 install --user jedi neovim
 nvim +PlugInstall +UpdateRemotePlugins +qall
 
