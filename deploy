@@ -37,7 +37,7 @@ nvim +PlugInstall +UpdateRemotePlugins +qall
 pip3 install bpython
 
 # bin/scripts
-ln -s "$(pwd)/bin" ~/bin
+ln -s "$(pwd)/bin" "$HOME/"
 
 # TODO: make pbcopy/pbpaste like MacOS using xclip
 # echo "test" | tr -d '\n' | xclip -sel clip
