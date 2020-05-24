@@ -1,6 +1,8 @@
-"
-"Global Settings:
-"
+
+" ============================================================================ "
+" ===                          GLOBAL OPTIONS                              === "
+" ============================================================================ "
+
 set autoindent              "Enable autoindent for new lines
 set autoread                "Autoload file changes
 set backspace=indent,eol,start "Bksp over indent, eol, start of insert
@@ -25,7 +27,6 @@ set showcmd                 "Display commands during entry
 set tabstop=4 shiftwidth=4 softtabstop=4 "Consistent tab widths
 set updatetime=300
 set expandtab               "All tabs are spaces
-"set textwidth=80           "Removed because it adds hard breaks
 set whichwrap=<,>,h,l       "Wrap cursor on arrows and h,l
 set wildmenu                "Visual command autocomplete
 set wildignore=*.swp,*.bak,*.pyc,*.class,tags
@@ -104,21 +105,21 @@ noremap <C-G> :GrammarousReset
 " ============================================================================ "
 
 call plug#begin(vimpath . '/plug')
-Plug 'vim-airline/vim-airline'          "The one and only
-Plug 'vim-airline/vim-airline-themes'   "Currently unused
-Plug 'easymotion/vim-easymotion'        "Mapped to <space><movement>
-Plug 'nathanaelkane/vim-indent-guides'  "Alternating light/dark indents
-Plug 'chrisbra/Colorizer'               "Show hex code color
-Plug 'luochen1990/rainbow'              "Rainbow highlight brackets
-Plug 'sheerun/vim-polyglot'             "Multi-langsyntax and indent
-Plug 'mhinz/vim-startify'               "Start screen with recent files
-Plug 'ryanoasis/vim-devicons'           "Nerd Font icons
-Plug 'rust-lang/rust.vim'               "rust support
-Plug 'rhysd/vim-grammarous'             "English :GrammarousCheck
-Plug 'vim-pandoc/vim-pandoc'            "Pandoc doc converter integration
-Plug 'vim-pandoc/vim-pandoc-syntax'     "Pandoc/.md/LaTeX/etc syntax
-Plug 'tpope/vim-obsession'              "Autosave session (for tmux)
-"Plug 'udalov/kotlin-vim'                "Kotlin TODO: find coc lang server
+Plug 'vim-airline/vim-airline'          " Airline
+Plug 'vim-airline/vim-airline-themes'   " Airline
+Plug 'easymotion/vim-easymotion'        " Mapped to <space><movement>
+Plug 'nathanaelkane/vim-indent-guides'  " Alternating light/dark indents
+Plug 'chrisbra/Colorizer'               " Show hex code color
+Plug 'luochen1990/rainbow'              " Rainbow highlight brackets
+Plug 'sheerun/vim-polyglot'             " Multi-langsyntax and indent
+Plug 'mhinz/vim-startify'               " Start screen with recent files
+Plug 'ryanoasis/vim-devicons'           " Nerd Font icons
+Plug 'rust-lang/rust.vim'               " rust support
+Plug 'rhysd/vim-grammarous'             " English :GrammarousCheck
+Plug 'vim-pandoc/vim-pandoc'            " Pandoc doc converter integration
+Plug 'vim-pandoc/vim-pandoc-syntax'     " Pandoc/.md/LaTeX/etc syntax
+Plug 'tpope/vim-obsession'              " Autosave session (for tmux)
+"Plug 'udalov/kotlin-vim'                " Kotlin TODO: find coc lang server
 if has('nvim')
   "denite tui: pip3 install --user pynvim
   Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -253,11 +254,8 @@ function! s:profile(opts) abort
   endfor
 endfunction
 
-"
-"Denite end
-"
-
 " === Coc.nvim === "
+
 " use <tab> for trigger completion and navigate to next complete item
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
 " :CocInstall coc-python coc-tsserver coc-json coc-html coc-css coc-cmake coc-git coc-markdownlint coc-svg coc-vimlsp coc-eslint
@@ -284,10 +282,10 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 " Enable extensions
 "let g:airline_extensions = ['coc']
 
+" ============================================================================ "
+" ===                                COLOR                                 === "
+" ============================================================================ "
 
-"
-"Colors:
-"
 if (has("termguicolors"))
   set termguicolors
 endif
@@ -311,9 +309,11 @@ function! SemshiColors()
   hi semshiSelected  ctermfg=223 guifg=#ebdbb2 ctermbg=237 guibg=#3c3836
   hi semshiParameter ctermfg=214 guifg=#ffaf00
 endfunction
-"
-"Functions:
-"
+
+" ============================================================================ "
+" ===                              FUNCTIONS                               === "
+" ============================================================================ "
+
 function! SetTabsTwoExpand()
   set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 endfunction

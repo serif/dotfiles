@@ -9,4 +9,5 @@ export HISTFILE="$HOME/.config/zsh/histfile"
 # -U: keep unique, discard duplicates
 typeset -U PATH path
 path=("$HOME/.local/bin" "$path[@]")
+path=("$HOME/bin" "$path[@]")
 export PATH

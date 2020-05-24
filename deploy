@@ -36,6 +36,9 @@ nvim +PlugInstall +UpdateRemotePlugins +qall
 # python extras
 pip3 install bpython
 
+# bin/scripts
+ln -s "$(pwd)/bin" ~/bin
+
 # TODO: make pbcopy/pbpaste like MacOS using xclip
 # echo "test" | tr -d '\n' | xclip -sel clip
 # this trims all \n ^^^^^... should trim only final \n
