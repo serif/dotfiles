@@ -115,27 +115,4 @@ setopt SHARE_HISTORY
 ## never ever beep ever
 setopt NO_BEEP
 
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# gnu ls parameters
-# gls -h = --human-readable = with -l and -s, print sizes like 1K 2M 3G etc
-# gls -X = --sort=extension = sort files by extension
-# gls -F = --classify = append / for dirs, * for executable, etc
-# gls -a = --all = do not ignore entries starting with .
-# gls -A = --almost-all = do not list implied . and ..
-
-# use gnu tools if available
-if hash gls 2>/dev/null; then
-    ls_cmd='gls'
-else
-    ls_cmd='ls'
-fi
-alias ls="$ls_cmd --color --group-directories-first -Xh"
-alias la="$ls_cmd --color --group-directories-first -XhA"
-
-# make mv prompt before overwriting existing file
-alias mv="mv -i"
-
-alias grep="grep --color"
-
-
+source $ZSH/alias
