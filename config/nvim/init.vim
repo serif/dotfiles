@@ -99,6 +99,8 @@ map <Leader>m <Plug>(easymotion-linebackward)
 map <leader>n <Plug>(easymotion-j)
 map <leader>e <Plug>(easymotion-k)
 map <Leader>i <Plug>(easymotion-lineforward)
+" easymotion 2-char search: s{char}{char}{label}
+nmap s <Plug>(easymotion-overwin-f2)
 
 " ============================================================================ "
 " ===                               PLUGINS                                === "
