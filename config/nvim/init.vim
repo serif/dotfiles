@@ -99,8 +99,10 @@ noremap <C-n> <C-f>M| "Page down, center cursor
 noremap <C-e> <C-b>M| "Page up, center cursor
 noremap <C-g> :GrammarousCheck
 noremap <C-G> :GrammarousReset
+map <Leader>m <Plug>(easymotion-linebackward)
 map <leader>n <Plug>(easymotion-j)
 map <leader>e <Plug>(easymotion-k)
+map <Leader>i <Plug>(easymotion-lineforward)
 
 " ============================================================================ "
 " ===                               PLUGINS                                === "
