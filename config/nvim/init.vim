@@ -53,13 +53,8 @@ endif
 " ===                                MAPS                                  === "
 " ============================================================================ "
 
+" <leader> is <space>
 let mapleader = " "
-"Escape to normal mode with jk
-"inoremap jk <Esc>
-"vnoremap jk <Esc>
-"Escape to normal mode with jk
-inoremap ., <Esc>
-vnoremap ., <Esc>
 "Faster command entry
 noremap ; :
 noremap : ;
@@ -83,6 +78,7 @@ noremap e gk|       "move Up
 noremap i l|        "move Right
 noremap <C-m> m|    "(C-m)ark           replaces (m)ark
 noremap h n|    		"(C-n)ext / result  replaces (n)ext
+noremap k N|    		"(C-n)ext / result  replaces (N) prev
 noremap <C-e> e|    "(C-e)nd-of-word    replaces (e)nd
 noremap t i|        "insert (t)ext      replaces (i)nsert
 inoremap ,n <Esc>|  "return to (n)ormal
