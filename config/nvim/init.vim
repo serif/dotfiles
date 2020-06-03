@@ -116,7 +116,7 @@ Plug 'luochen1990/rainbow'              " Rainbow highlight brackets
 Plug 'sheerun/vim-polyglot'             " Multi-langsyntax and indent
 Plug 'mhinz/vim-startify'               " Start screen with recent files
 Plug 'ryanoasis/vim-devicons'           " Nerd Font icons
-Plug 'rust-lang/rust.vim'               " rust support
+"Plug 'rust-lang/rust.vim'               " rust support
 Plug 'rhysd/vim-grammarous'             " English :GrammarousCheck
 Plug 'vim-pandoc/vim-pandoc'            " Pandoc doc converter integration
 Plug 'vim-pandoc/vim-pandoc-syntax'     " Pandoc/.md/LaTeX/etc syntax
