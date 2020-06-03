@@ -81,6 +81,7 @@ noremap h n|    		"(C-n)ext / result  replaces (n)ext
 noremap k N|    		"(C-n)ext / result  replaces (N) prev
 noremap <C-e> e|    "(C-e)nd-of-word    replaces (e)nd
 noremap t i|        "insert (t)ext      replaces (i)nsert
+noremap t I|        "insert (T) at bol  replaces (I)nsert
 inoremap ,n <Esc>|  "return to (n)ormal
 vnoremap ,n <Esc>|  "return to (n)ormal
 nnoremap ci ci|     "restore (i)nner combinations for Colemak
