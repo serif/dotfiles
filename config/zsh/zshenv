@@ -6,6 +6,10 @@ export ZDOTDIR="$HOME/.config/zsh"
 export ADOTDIR="$HOME/.config/zsh/plugins"
 export HISTFILE="$HOME/.config/zsh/histfile"
 
+#export GUILE_LOAD_PATH="/usr/local/share/guile/site/3.0"
+#export GUILE_LOAD_COMPILED_PATH="/usr/local/lib/guile/3.0/site-ccache"
+
+
 # -U: keep unique, discard duplicates
 typeset -U PATH path
 path=("$HOME/.local/bin" "$path[@]")
