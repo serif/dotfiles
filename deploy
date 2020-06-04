@@ -27,10 +27,30 @@ then
 fi
 chsh -s "$(which zsh)"
 
-# neovim
+# ================================= neovim =================================== #
+
 ln -s "$(pwd)/config/nvim" ~/.config/
-pip3 install --user pynvim
-pip3 install --user jedi neovim
+pip3 install --user neovim pynvim
+
+# Python autocomplete and linting
+# https://github.com/palantir/python-language-server
+pip3 install --user jedi python-language-server
+# py completions and renaming
+pip3 install --user rope
+# py complexity checking
+pip3 install --user mccabe
+# py error checking
+pip3 install --user pyflakes
+# py pep 8 linting
+pip3 install --user pycodestyle
+# py import sorting and formatting
+pip3 install --user pyls-isort
+# py code formatting using Black
+# https://github.com/ambv/black
+pip3 install --user pyls-black
+# py type checking
+pip3 install --user pyls-mypy
+
 nvim +PlugInstall +UpdateRemotePlugins +qall
 
 # python extras

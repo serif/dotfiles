@@ -259,9 +259,10 @@ endfunction
 
 " === Coc.nvim === "
 
-" use <tab> for trigger completion and navigate to next complete item
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
 " :CocInstall coc-python coc-tsserver coc-json coc-html coc-css coc-cmake coc-git coc-markdownlint coc-svg coc-vimlsp coc-eslint
+
+" <tab> to complete and toggle through completions
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
