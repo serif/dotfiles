@@ -12,7 +12,6 @@ setopt HIST_SAVE_NO_DUPS
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY
-#original colors from OS X
 unset LSCOLORS
 export CLICOLOR=1
 export CLICOLOR_FORCE=1
