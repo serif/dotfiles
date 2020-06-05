@@ -41,6 +41,9 @@ zinit light zdharma/history-search-multi-word
 zinit ice wait lucid atload'_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
 
+# autocomplete super broken with p10k
+# zinit light marlonrichert/zsh-autocomplete
+
 zinit light zsh-users/zsh-history-substring-search
 # https://github.com/unixorn/awesome-zsh-plugins#themes
 # zinit light  sbugzu/gruvbox-zsh
