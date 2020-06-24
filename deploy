@@ -3,6 +3,7 @@
 # deploy
 # temp/alpha version
 
+# brew install python3 node
 # ripgrep
 # https://github.com/BurntSushi/ripgrep
 # sudo dnf install ripgrep
