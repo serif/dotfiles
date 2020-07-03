@@ -108,8 +108,11 @@ nmap s <Plug>(easymotion-overwin-f2)
 " ============================================================================ "
 
 call plug#begin(vimpath . '/plug')
-Plug 'vim-airline/vim-airline'          " Airline
+"Plug 'vim-airline/vim-airline'          " Airline
 Plug 'vim-airline/vim-airline-themes'   " Airline
+Plug 'itchyny/lightline.vim'            " Lightline
+Plug 'tpope/vim-fugitive'               " Git stuff
+Plug 'morhetz/gruvbox'                  " Gruvbox
 Plug 'easymotion/vim-easymotion'        " Mapped to <space><movement>
 Plug 'nathanaelkane/vim-indent-guides'  " Alternating light/dark indents
 Plug 'chrisbra/Colorizer'               " Show hex code color
@@ -141,7 +144,6 @@ call plug#end()   "When adding deoplete in (old)vim run :UpdateRemotePlugins
 " ============================================================================ "
 
 " === Airline === "
-
 let g:airline_powerline_fonts = 1
 "Warning for over-long lines and mixed indents but not trailing whitespace
 let g:airline#extensions#whitespace#checks = ['long', 'mixed-indent-file']
@@ -149,6 +151,39 @@ let g:airline#extensions#whitespace#checks = ['long', 'mixed-indent-file']
 let g:airline_section_x = '%{&filetype}'
 "Display all buffers when there's only one tab open
 let g:airline#extensions#tabline#enabled = 1
+
+" === Lightline === "
+let g:lightline = {
+  \   'colorscheme': 'seoul256',
+  \   'active': {
+  \     'left':[ [ 'mode' ],
+  \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
+  \     ]
+  \   },
+	\   'component': {
+	\     'lineinfo': ' %3l:%-2v',
+	\   },
+  \   'component_function': {
+  \     'gitbranch': 'fugitive#status',
+  \   }
+  \ }
+let g:lightline.separator = {
+	\   'left': '', 'right': ''
+  \}
+let g:lightline.subseparator = {
+	\   'left': '', 'right': '' 
+  \}
+"	\   'left': '', 'right': '' 
+
+let g:lightline.tabline = {
+  \   'left': [ ['tabs'] ],
+  \   'right': [ [] ]
+  \ }
+"set showtabline=2  " Show tabline
+set showtabline=0  " Show tabline
+set guioptions-=e  " Don't use GUI tabline
+
+
 
 let g:indent_guides_guide_size = 1
 let g:indent_guides_color_change_percent = 3
