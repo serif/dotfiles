@@ -65,8 +65,11 @@ update() {
     rm -f ~/.zcompdump; compinit
 }
 
-
-alias cckill="sudo pkill '[Aa]dobe|AGM|CCLib|Core Sync|Creative Cloud'"
+cckill() {
+    sudo rm /Library/LaunchAgents/com.adobe.*
+    sudo rm /Library/LaunchDaemons/com.adobe.*
+    sudo pkill '[Aa]dobe|AGM|CCLib|Core Sync|Creative Cloud'
+}
 
 # scratch area
 #
