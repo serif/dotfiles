@@ -66,6 +66,8 @@ update() {
 }
 
 
+alias cckill="sudo pkill '[Aa]dobe|AGM|CCLib|Core Sync|Creative Cloud'"
+
 # scratch area
 #
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
