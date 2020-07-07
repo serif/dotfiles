@@ -66,8 +66,8 @@ update() {
 }
 
 cckill() {
-    sudo rm /Library/LaunchAgents/com.adobe.*
-    sudo rm /Library/LaunchDaemons/com.adobe.*
+    sudo find /Library/LaunchAgents/ -type f -name 'com.adobe.*' -delete
+    sudo find /Library/LaunchDaemons/ -type f -name 'com.adobe.*' -delete
     sudo pkill '[Aa]dobe|AGM|CCLib|Core Sync|Creative Cloud'
 }
 
