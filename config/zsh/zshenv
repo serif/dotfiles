@@ -5,7 +5,7 @@ export ZSH="$HOME/.config/zsh"
 export ZDOTDIR="$HOME/.config/zsh"
 export ADOTDIR="$HOME/.config/zsh/plugins"
 export HISTFILE="$HOME/.config/zsh/histfile"
-
+export MANPAGER=nvim -c "set ft=man" -
 #export GUILE_LOAD_PATH="/usr/local/share/guile/site/3.0"
 #export GUILE_LOAD_COMPILED_PATH="/usr/local/lib/guile/3.0/site-ccache"
 
