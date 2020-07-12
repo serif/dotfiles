@@ -25,6 +25,7 @@ set shortmess=atI           "Shorten msgs, hide start msg
 set showcmd                 "Display commands during entry
 "set spell spelllang=en_us  "Spellchecking
 set tabstop=4 shiftwidth=4 softtabstop=4 "Consistent tab widths
+set tags=tags               "Use ctags (brew install ctags)
 set updatetime=300
 set expandtab               "All tabs are spaces
 set whichwrap=<,>,h,l       "Wrap cursor on arrows and h,l
