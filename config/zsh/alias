@@ -65,6 +65,12 @@ update() {
     rm -f ~/.zcompdump; compinit
 }
 
+# ctags for vim/nvim
+# after brew install ctags
+if hash brew 2>/dev/null; then
+    alias ctags="`brew --prefix`/bin/ctags"
+fi
+
 cckill() {
     sudo find /Library/LaunchAgents/ -type f -name 'com.adobe.*' -delete
     sudo find /Library/LaunchDaemons/ -type f -name 'com.adobe.*' -delete
