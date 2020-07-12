@@ -68,6 +68,7 @@ noremap <C-k> <C-b>M
 "Allow move on wrapped lines
 noremap j gj
 noremap k gk
+nnoremap ` :TagbarToggle<CR>
 
 " === Colemak === "
 
@@ -78,8 +79,8 @@ noremap n gj|       "move Down
 noremap e gk|       "move Up
 noremap i l|        "move Right
 noremap <C-m> m|    "(C-m)ark           replaces (m)ark
-noremap h n|    		"(C-n)ext / result  replaces (n)ext
-noremap k N|    		"(C-n)ext / result  replaces (N) prev
+noremap h n|    	"(C-n)ext / result  replaces (n)ext
+noremap k N|    	"(C-n)ext / result  replaces (N) prev
 noremap <C-e> e|    "(C-e)nd-of-word    replaces (e)nd
 noremap t i|        "insert (t)ext      replaces (i)nsert
 noremap T I|        "insert (T) at bol  replaces (I)nsert
@@ -115,6 +116,7 @@ Plug 'itchyny/lightline.vim'            " Lightline
 Plug 'tpope/vim-fugitive'               " Git stuff
 Plug 'morhetz/gruvbox'                  " Gruvbox
 Plug 'easymotion/vim-easymotion'        " Mapped to <space><movement>
+Plug 'majutsushi/tagbar'                " Visualize ctags
 Plug 'nathanaelkane/vim-indent-guides'  " Alternating light/dark indents
 Plug 'chrisbra/Colorizer'               " Show hex code color
 Plug 'luochen1990/rainbow'              " Rainbow highlight brackets
