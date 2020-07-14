@@ -72,9 +72,9 @@ if hash brew 2>/dev/null; then
 fi
 
 cckill() {
+    sudo pkill '[Aa]dobe|AGM|CCLib|Core Sync|Creative Cloud'
     sudo find /Library/LaunchAgents/ -type f -name 'com.adobe.*' -delete
     sudo find /Library/LaunchDaemons/ -type f -name 'com.adobe.*' -delete
-    sudo pkill '[Aa]dobe|AGM|CCLib|Core Sync|Creative Cloud'
 }
 
 # scratch area
