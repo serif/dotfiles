@@ -39,16 +39,14 @@ alias grep="grep --color"
 # ———————————————————————————————————————————————————————————————————————————— #
 
 got() {
-    case $# in
-        1)
-            git add *
-            git commit -m "$1"
-            git push origin master
-            return
-            ;;
-    esac
-
-    echo "  usage: got 'commit message'"
+    if [[ $# -eq 1 ]]
+    then
+        git add *
+        git commit -m "$1"
+        git push origin master
+    else
+        echo "  usage: got 'commit message'"
+    fi
 }
 
 update() {
@@ -76,6 +74,7 @@ cckill() {
     sudo find /Library/LaunchAgents/ -type f -name 'com.adobe.*' -delete
     sudo find /Library/LaunchDaemons/ -type f -name 'com.adobe.*' -delete
 }
+
 
 # scratch area
 #
