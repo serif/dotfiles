@@ -68,7 +68,7 @@ noremap <C-k> <C-b>M
 "Allow move on wrapped lines
 noremap j gj
 noremap k gk
-nnoremap ` :TagbarToggle<CR>
+nnoremap \ :TagbarToggle<CR>
 
 " === Colemak === "
 
