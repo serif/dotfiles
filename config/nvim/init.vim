@@ -4,6 +4,8 @@
 " ============================================================================ "
 
 set autoindent              "Enable autoindent for new lines
+set smartindent             "Smart indent using language syntax
+set smarttab                "Smart indent and delete at bol
 set autoread                "Autoload file changes
 set backspace=indent,eol,start "Bksp over indent, eol, start of insert
 set clipboard=unnamedplus   "Use system clipboard
