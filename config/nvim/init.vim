@@ -71,41 +71,42 @@ noremap <C-k> <C-b>M
 noremap j gj
 noremap k gk
 nnoremap \ :TagbarToggle<CR>
+noremap <C-o> <Esc>| "return to [n]ormal
 
 " === Colemak === "
 
-"Colemak mnei(hjkl) t(i) <C-n>(n) <C-e>(e)
+"Colemak mnei(hjkl) t(i) <C-n>(f) <C-e>(e)
 " sam217pa.github.io/2016/09/02/how-to-build-your-own-spacemacs/
 noremap m h|        "move Left
 noremap n gj|       "move Down
 noremap e gk|       "move Up
 noremap i l|        "move Right
-noremap <C-m> m|    "(C-m)ark           replaces (m)ark
-noremap h n|    	"(C-n)ext / result  replaces (n)ext
-noremap k N|    	"(C-n)ext / result  replaces (N) prev
-noremap <C-e> e|    "(C-e)nd-of-word    replaces (e)nd
-noremap t i|        "insert (t)ext      replaces (i)nsert
-noremap T I|        "insert (T) at bol  replaces (I)nsert
-inoremap ,n <Esc>|  "return to (n)ormal
-vnoremap ,n <Esc>|  "return to (n)ormal
-nnoremap ci ci|     "restore (i)nner combinations for Colemak
-nnoremap di di|     "restore (i)nner combinations for Colemak
-nnoremap vi vi|     "restore (i)nner combinations for Colemak
-nnoremap yi yi|     "restore (i)nner combinations for Colemak
-nnoremap ct ct|     "restore un(t)ill combinations for Colemak
-nnoremap dt dt|     "restore un(t)ill combinations for Colemak
-nnoremap vt vt|     "restore un(t)ill combinations for Colemak
-nnoremap yt yt|     "restore un(t)ill combinations for Colemak
+noremap t i|        "(t)ype           replaces (i)nsert
+noremap T I|        "(T)ype at bol    replaces (I)nsert
+noremap E e|        "end of word      replaces (e)nd
+noremap h n|        "next match       replaces (n)ext
+noremap k N|        "previous match   replaces (N) prev
+noremap <C-m> m|    "mark             replaces (m)ark
 noremap <C-n> <C-f>M| "Page down, center cursor
 noremap <C-e> <C-b>M| "Page up, center cursor
-noremap <C-g> :GrammarousCheck
-noremap <C-G> :GrammarousReset
 map <Leader>m <Plug>(easymotion-linebackward)
 map <leader>n <Plug>(easymotion-j)
 map <leader>e <Plug>(easymotion-k)
 map <Leader>i <Plug>(easymotion-lineforward)
 " easymotion 2-char search: s{char}{char}{label}
 nmap s <Plug>(easymotion-overwin-f2)
+" fix (i)nner and (t)ill, e.g. (c)hange (i)n (w)ord
+nnoremap ci ci|
+nnoremap di di|
+nnoremap vi vi|
+nnoremap yi yi|
+nnoremap ct ct|
+nnoremap dt dt|
+nnoremap vt vt|
+nnoremap yt yt|
+
+noremap <C-g> :GrammarousCheck
+noremap <C-G> :GrammarousReset
 
 " ============================================================================ "
 " ===                               PLUGINS                                === "
