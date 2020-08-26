@@ -118,6 +118,7 @@ Plug 'vim-airline/vim-airline-themes'   " Airline
 Plug 'itchyny/lightline.vim'            " Lightline
 Plug 'tpope/vim-fugitive'               " Git stuff
 Plug 'morhetz/gruvbox'                  " Gruvbox
+Plug 'YorickPeterse/vim-paper'          " Paper theme
 Plug 'easymotion/vim-easymotion'        " Mapped to <space><movement>
 Plug 'majutsushi/tagbar'                " Visualize ctags
 Plug 'nathanaelkane/vim-indent-guides'  " Alternating light/dark indents
@@ -166,24 +167,24 @@ let g:lightline = {
   \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
   \     ]
   \   },
-	\   'component': {
-	\     'lineinfo': ' %3l:%-2v',
-	\   },
+  \   'component': {
+  \     'lineinfo': ' %3l:%-2v',
+  \   },
   \   'component_function': {
   \     'gitbranch': 'fugitive#status',
   \   }
   \ }
 let g:lightline.separator = {
-	\   'left': '', 'right': ''
+  \ 'left': '', 'right': ''
   \}
 let g:lightline.subseparator = {
-	\   'left': '', 'right': '' 
+  \ 'left': '', 'right': '' 
   \}
-"	\   'left': '', 'right': '' 
+"	\ 'left': '', 'right': '' 
 
 let g:lightline.tabline = {
-  \   'left': [ ['tabs'] ],
-  \   'right': [ [] ]
+  \ 'left': [ ['tabs'] ],
+  \ 'right': [ [] ]
   \ }
 "set showtabline=2  " Show tabline
 set showtabline=0  " Show tabline
@@ -195,8 +196,8 @@ let g:indent_guides_guide_size = 1
 let g:indent_guides_color_change_percent = 3
 let g:indent_guides_enable_on_vim_startup = 1
 let g:grammarous#default_comments_only_filetypes = {
-    \ '*' : 1, 'help' : 0, 'markdown' : 0, 'org' : 0,
-    \ }
+  \ '*' : 1, 'help' : 0, 'markdown' : 0, 'org' : 0,
+  \ }
 let g:semshi#simplify_markup = v:false
 let g:semshi#error_sign = v:false
 let g:semshi#update_delay_factor = 0.0005
@@ -204,43 +205,45 @@ let g:rustfmt_autosave = 1 "autorun :RustFmt on save
 let g:rainbow_active = 1 "Or 0 to :RainbowToggle later
 " Markdown: Inline/fenced code block syntax
 let g:markdown_fenced_languages = [
-      \'bash=sh',
-      \'coffee',
-      \'css',
-      \'erb=eruby',
-      \'html',
-      \'javascript',
-      \'js=javascript', 
-      \'json=javascript',
-      \'kotlin',
-      \'python',
-      \'ruby',
-      \'sass',
-      \'sh',
-      \'xml']
+  \'bash=sh',
+  \'coffee',
+  \'css',
+  \'erb=eruby',
+  \'html',
+  \'javascript',
+  \'js=javascript', 
+  \'json=javascript',
+  \'kotlin',
+  \'python',
+  \'ruby',
+  \'sass',
+  \'sh',
+  \'xml'
+  \]
 let g:pandoc#syntax#codeblocks#embeds#langs = [
-      \'bash=sh',
-      \'coffee',
-      \'css',
-      \'erb=eruby',
-      \'html',
-      \'javascript',
-      \'js=javascript', 
-      \'json=javascript',
-      \'kotlin',
-      \'python',
-      \'ruby',
-      \'sass',
-      \'sh',
-      \'xml']
+  \'bash=sh',
+  \'coffee',
+  \'css',
+  \'erb=eruby',
+  \'html',
+  \'javascript',
+  \'js=javascript', 
+  \'json=javascript',
+  \'kotlin',
+  \'python',
+  \'ruby',
+  \'sass',
+  \'sh',
+  \'xml'
+  \]
 let g:startify_custom_header = []
 let g:startify_lists = [
-\ { 'type': 'files',     'header': ['   MRU']            },
-\ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-\ { 'type': 'sessions',  'header': ['   Sessions']       },
-\ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-\ { 'type': 'commands',  'header': ['   Commands']       },
-\ ]
+  \ { 'type': 'files',     'header': ['   MRU']            },
+  \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+  \ { 'type': 'sessions',  'header': ['   Sessions']       },
+  \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+  \ { 'type': 'commands',  'header': ['   Commands']       },
+  \]
 nmap <Leader> <Plug>(easymotion-prefix)
 
 " === Denite ==="
