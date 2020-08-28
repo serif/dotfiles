@@ -117,8 +117,10 @@ call plug#begin(vimpath . '/plug')
 Plug 'vim-airline/vim-airline-themes'   " Airline
 Plug 'itchyny/lightline.vim'            " Lightline
 Plug 'tpope/vim-fugitive'               " Git stuff
-Plug 'morhetz/gruvbox'                  " Gruvbox
-Plug 'YorickPeterse/vim-paper'          " Paper theme
+Plug 'morhetz/gruvbox'                  " Gruvbox colorscheme
+Plug 'chriskempson/base16-vim'          " Base-16 colorscheme
+Plug 'jeffkreeftmeijer/vim-dim'         " Dim colorscheme
+Plug 'YorickPeterse/vim-paper'          " Paper colorscheme
 Plug 'easymotion/vim-easymotion'        " Mapped to <space><movement>
 Plug 'majutsushi/tagbar'                " Visualize ctags
 Plug 'nathanaelkane/vim-indent-guides'  " Alternating light/dark indents
@@ -339,9 +341,16 @@ if (has("termguicolors"))
 endif
 syntax enable
 set background=dark
-let g:gruvbox_italic=1
+"let g:gruvbox_italic=1
 colorscheme gruvbox
-let g:airline_theme='gruvbox'
+"colorscheme base16-default-dark
+"let g:airline_theme='gruvbox'
+"Base-16
+"https://browntreelabs.com/base-16-shell-and-why-its-so-awsome/
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
 "[xterm-256color reference](https://jonasjacek.github.io/colors/)
 "0 and 16 look good
 highlight colorcolumn guibg=grey11 ctermbg=235
