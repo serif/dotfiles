@@ -121,6 +121,7 @@ Plug 'morhetz/gruvbox'                  " Gruvbox colorscheme
 Plug 'chriskempson/base16-vim'          " Base-16 colorscheme
 Plug 'jeffkreeftmeijer/vim-dim'         " Dim colorscheme
 Plug 'YorickPeterse/vim-paper'          " Paper colorscheme
+Plug 'noahfrederick/vim-noctu'          " Noctu colorscheme
 Plug 'easymotion/vim-easymotion'        " Mapped to <space><movement>
 Plug 'majutsushi/tagbar'                " Visualize ctags
 Plug 'nathanaelkane/vim-indent-guides'  " Alternating light/dark indents
@@ -341,8 +342,10 @@ if (has("termguicolors"))
 endif
 syntax enable
 set background=dark
-"let g:gruvbox_italic=1
+let g:gruvbox_italic=1
 colorscheme gruvbox
+
+"colorscheme noctu
 "colorscheme base16-default-dark
 "let g:airline_theme='gruvbox'
 "Base-16
