@@ -8,7 +8,7 @@ export HISTFILE="$HOME/.config/zsh/histfile"
 export MANPAGER="nvim -c 'set ft=man' -"
 #export GUILE_LOAD_PATH="/usr/local/share/guile/site/3.0"
 #export GUILE_LOAD_COMPILED_PATH="/usr/local/lib/guile/3.0/site-ccache"
-
+export WEECHAT_HOME="$XDG_CONFIG_HOME/weechat"
 
 # -U: keep unique, discard duplicates
 typeset -U PATH path

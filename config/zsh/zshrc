@@ -63,6 +63,12 @@ zinit light junegunn/fzf-bin
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 typeset -g POWERLEVEL9K_DIR_FOREGROUND=04
 
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"
+
 # LS_COLORS
 # Set di(rectory) to ANSI 4 (blue) and ex(ecutable) to ANSI 9 (bright-red)
 # http://linux-sxs.org/housekeeping/lscolors.html

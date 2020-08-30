@@ -71,41 +71,42 @@ noremap <C-k> <C-b>M
 noremap j gj
 noremap k gk
 nnoremap \ :TagbarToggle<CR>
+noremap <C-o> <Esc>| "return to [n]ormal
 
 " === Colemak === "
 
-"Colemak mnei(hjkl) t(i) <C-n>(n) <C-e>(e)
+"Colemak mnei(hjkl) t(i) <C-n>(f) <C-e>(e)
 " sam217pa.github.io/2016/09/02/how-to-build-your-own-spacemacs/
 noremap m h|        "move Left
 noremap n gj|       "move Down
 noremap e gk|       "move Up
 noremap i l|        "move Right
-noremap <C-m> m|    "(C-m)ark           replaces (m)ark
-noremap h n|    	"(C-n)ext / result  replaces (n)ext
-noremap k N|    	"(C-n)ext / result  replaces (N) prev
-noremap <C-e> e|    "(C-e)nd-of-word    replaces (e)nd
-noremap t i|        "insert (t)ext      replaces (i)nsert
-noremap T I|        "insert (T) at bol  replaces (I)nsert
-inoremap ,n <Esc>|  "return to (n)ormal
-vnoremap ,n <Esc>|  "return to (n)ormal
-nnoremap ci ci|     "restore (i)nner combinations for Colemak
-nnoremap di di|     "restore (i)nner combinations for Colemak
-nnoremap vi vi|     "restore (i)nner combinations for Colemak
-nnoremap yi yi|     "restore (i)nner combinations for Colemak
-nnoremap ct ct|     "restore un(t)ill combinations for Colemak
-nnoremap dt dt|     "restore un(t)ill combinations for Colemak
-nnoremap vt vt|     "restore un(t)ill combinations for Colemak
-nnoremap yt yt|     "restore un(t)ill combinations for Colemak
+noremap t i|        "(t)ype           replaces (i)nsert
+noremap T I|        "(T)ype at bol    replaces (I)nsert
+noremap E e|        "end of word      replaces (e)nd
+noremap h n|        "next match       replaces (n)ext
+noremap k N|        "previous match   replaces (N) prev
+noremap <C-m> m|    "mark             replaces (m)ark
 noremap <C-n> <C-f>M| "Page down, center cursor
 noremap <C-e> <C-b>M| "Page up, center cursor
-noremap <C-g> :GrammarousCheck
-noremap <C-G> :GrammarousReset
 map <Leader>m <Plug>(easymotion-linebackward)
 map <leader>n <Plug>(easymotion-j)
 map <leader>e <Plug>(easymotion-k)
 map <Leader>i <Plug>(easymotion-lineforward)
 " easymotion 2-char search: s{char}{char}{label}
 nmap s <Plug>(easymotion-overwin-f2)
+" fix (i)nner and (t)ill, e.g. (c)hange (i)n (w)ord
+nnoremap ci ci|
+nnoremap di di|
+nnoremap vi vi|
+nnoremap yi yi|
+nnoremap ct ct|
+nnoremap dt dt|
+nnoremap vt vt|
+nnoremap yt yt|
+
+noremap <C-g> :GrammarousCheck
+noremap <C-G> :GrammarousReset
 
 " ============================================================================ "
 " ===                               PLUGINS                                === "
@@ -116,7 +117,11 @@ call plug#begin(vimpath . '/plug')
 Plug 'vim-airline/vim-airline-themes'   " Airline
 Plug 'itchyny/lightline.vim'            " Lightline
 Plug 'tpope/vim-fugitive'               " Git stuff
-Plug 'morhetz/gruvbox'                  " Gruvbox
+Plug 'morhetz/gruvbox'                  " Gruvbox colorscheme
+Plug 'chriskempson/base16-vim'          " Base-16 colorscheme
+Plug 'jeffkreeftmeijer/vim-dim'         " Dim colorscheme
+Plug 'YorickPeterse/vim-paper'          " Paper colorscheme
+Plug 'noahfrederick/vim-noctu'          " Noctu colorscheme
 Plug 'easymotion/vim-easymotion'        " Mapped to <space><movement>
 Plug 'majutsushi/tagbar'                " Visualize ctags
 Plug 'nathanaelkane/vim-indent-guides'  " Alternating light/dark indents
@@ -165,24 +170,24 @@ let g:lightline = {
   \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
   \     ]
   \   },
-	\   'component': {
-	\     'lineinfo': ' %3l:%-2v',
-	\   },
+  \   'component': {
+  \     'lineinfo': ' %3l:%-2v',
+  \   },
   \   'component_function': {
   \     'gitbranch': 'fugitive#status',
   \   }
   \ }
 let g:lightline.separator = {
-	\   'left': '', 'right': ''
+  \ 'left': '', 'right': ''
   \}
 let g:lightline.subseparator = {
-	\   'left': '', 'right': '' 
+  \ 'left': '', 'right': '' 
   \}
-"	\   'left': '', 'right': '' 
+"	\ 'left': '', 'right': '' 
 
 let g:lightline.tabline = {
-  \   'left': [ ['tabs'] ],
-  \   'right': [ [] ]
+  \ 'left': [ ['tabs'] ],
+  \ 'right': [ [] ]
   \ }
 "set showtabline=2  " Show tabline
 set showtabline=0  " Show tabline
@@ -194,8 +199,8 @@ let g:indent_guides_guide_size = 1
 let g:indent_guides_color_change_percent = 3
 let g:indent_guides_enable_on_vim_startup = 1
 let g:grammarous#default_comments_only_filetypes = {
-    \ '*' : 1, 'help' : 0, 'markdown' : 0, 'org' : 0,
-    \ }
+  \ '*' : 1, 'help' : 0, 'markdown' : 0, 'org' : 0,
+  \ }
 let g:semshi#simplify_markup = v:false
 let g:semshi#error_sign = v:false
 let g:semshi#update_delay_factor = 0.0005
@@ -203,43 +208,45 @@ let g:rustfmt_autosave = 1 "autorun :RustFmt on save
 let g:rainbow_active = 1 "Or 0 to :RainbowToggle later
 " Markdown: Inline/fenced code block syntax
 let g:markdown_fenced_languages = [
-      \'bash=sh',
-      \'coffee',
-      \'css',
-      \'erb=eruby',
-      \'html',
-      \'javascript',
-      \'js=javascript', 
-      \'json=javascript',
-      \'kotlin',
-      \'python',
-      \'ruby',
-      \'sass',
-      \'sh',
-      \'xml']
+  \'bash=sh',
+  \'coffee',
+  \'css',
+  \'erb=eruby',
+  \'html',
+  \'javascript',
+  \'js=javascript', 
+  \'json=javascript',
+  \'kotlin',
+  \'python',
+  \'ruby',
+  \'sass',
+  \'sh',
+  \'xml'
+  \]
 let g:pandoc#syntax#codeblocks#embeds#langs = [
-      \'bash=sh',
-      \'coffee',
-      \'css',
-      \'erb=eruby',
-      \'html',
-      \'javascript',
-      \'js=javascript', 
-      \'json=javascript',
-      \'kotlin',
-      \'python',
-      \'ruby',
-      \'sass',
-      \'sh',
-      \'xml']
+  \'bash=sh',
+  \'coffee',
+  \'css',
+  \'erb=eruby',
+  \'html',
+  \'javascript',
+  \'js=javascript', 
+  \'json=javascript',
+  \'kotlin',
+  \'python',
+  \'ruby',
+  \'sass',
+  \'sh',
+  \'xml'
+  \]
 let g:startify_custom_header = []
 let g:startify_lists = [
-\ { 'type': 'files',     'header': ['   MRU']            },
-\ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-\ { 'type': 'sessions',  'header': ['   Sessions']       },
-\ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-\ { 'type': 'commands',  'header': ['   Commands']       },
-\ ]
+  \ { 'type': 'files',     'header': ['   MRU']            },
+  \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+  \ { 'type': 'sessions',  'header': ['   Sessions']       },
+  \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+  \ { 'type': 'commands',  'header': ['   Commands']       },
+  \]
 nmap <Leader> <Plug>(easymotion-prefix)
 
 " === Denite ==="
@@ -337,7 +344,16 @@ syntax enable
 set background=dark
 let g:gruvbox_italic=1
 colorscheme gruvbox
-let g:airline_theme='gruvbox'
+
+"colorscheme noctu
+"colorscheme base16-default-dark
+"let g:airline_theme='gruvbox'
+"Base-16
+"https://browntreelabs.com/base-16-shell-and-why-its-so-awsome/
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
 "[xterm-256color reference](https://jonasjacek.github.io/colors/)
 "0 and 16 look good
 highlight colorcolumn guibg=grey11 ctermbg=235

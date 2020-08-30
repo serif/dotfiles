@@ -32,5 +32,9 @@ config/nvim/undo/*
 # Plugins
 config/nvim/plug/*
 
+# WeeChat
+config/weechat/logs/*
+config/weechat/weechat.log
+
 # Reference
 # https://www.gitignore.io
