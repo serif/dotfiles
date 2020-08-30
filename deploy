@@ -14,7 +14,8 @@
 # npm install -g neovim
 # brew install ctags
 
-# zsh
+# ================================== zsh ===================================== #
+
 echo '. ~/.config/zsh/zshenv' > ~/.zshenv
 ln -s "$(pwd)/config/zsh" ~/.config/
 echo "source $HOME/.config/zsh/zshrc" > ~/.zshrc
@@ -53,6 +54,12 @@ pip3 install --user black pyls-black
 pip3 install --user pyls-mypy
 
 nvim +PlugInstall +UpdateRemotePlugins +qall
+
+# ================================ weechat =================================== #
+
+ln -s "$(pwd)/config/weechat" ~/.config/
+
+# ================================== etc ===================================== #
 
 # python extras
 pip3 install bpython
