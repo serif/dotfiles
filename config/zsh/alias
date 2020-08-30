@@ -49,6 +49,10 @@ got() {
     fi
 }
 
+# ———————————————————————————————————————————————————————————————————————————— #
+#                                    Misc                                      #
+# ———————————————————————————————————————————————————————————————————————————— #
+
 update() {
     zinit update --all
     nvim +PlugInstall +PlugUpdate +UpdateRemotePlugins +qall
@@ -61,6 +65,16 @@ update() {
     pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip3 install -U
     # rebuild zsh completions
     rm -f ~/.zcompdump; compinit
+}
+
+radio() {
+    if [ "$1" = "tilde" ]; then
+        mpv https://radio.tildeverse.org/radio/8000/radio.ogg
+    elif [ "$1" = "anon" ]; then
+        mpv http://anonradio.net:8000/anonradio
+    else
+        echo "options: tilde|anon"
+    fi
 }
 
 # ctags for vim/nvim
