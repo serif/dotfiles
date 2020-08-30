@@ -59,6 +59,10 @@ nvim +PlugInstall +UpdateRemotePlugins +qall
 
 ln -s "$(pwd)/config/weechat" ~/.config/
 
+# ================================= tmux ===================================== #
+
+ln -s "$(pwd)/config/tmux" ~/.config/
+
 # ================================== etc ===================================== #
 
 # python extras
