@@ -21,7 +21,8 @@ zref() {
 # gls -A = --almost-all = do not list implied . and ..
 
 # use gnu tools if available
-if hash gls 2>/dev/null; then
+#if hash gls 2>/dev/null; then
+if which gls &> /dev/null; then
     ls_cmd='gls'
 else
     ls_cmd='ls'
