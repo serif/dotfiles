@@ -1,0 +1,10 @@
+#!/usr/local/bin/fish
+set foo (basename $argv[1])
+if test "$foo" = "avx"
+    set foo "~"
+end
+set bar $argv[2]
+if test "$bar" = "fish"
+    set bar "_"
+end
+printf '%s>%s' $foo $bar
