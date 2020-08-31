@@ -62,6 +62,7 @@ ln -s "$(pwd)/config/weechat" ~/.config/
 # ================================= tmux ===================================== #
 
 ln -s "$(pwd)/config/tmux" ~/.config/
+#git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 
 # ================================== etc ===================================== #
 
