@@ -67,7 +67,7 @@ ln -s "$(pwd)/config/tmux" ~/.config/
 # ================================== etc ===================================== #
 
 # python extras
-pip3 install bpython
+#pip3 install bpython
 
 # bin/scripts
 ln -s "$(pwd)/bin" "$HOME/"

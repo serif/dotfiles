@@ -54,6 +54,12 @@ got() {
 #                                    Misc                                      #
 # ———————————————————————————————————————————————————————————————————————————— #
 
+# neovim aliases
+if hash nvim 2>/dev/null; then
+    alias vim="nvim"
+    alias n="nvim"
+fi
+
 update() {
     zinit update --all
     nvim +PlugInstall +PlugUpdate +UpdateRemotePlugins +qall
