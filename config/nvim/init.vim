@@ -114,10 +114,11 @@ noremap <C-G> :GrammarousReset
 
 call plug#begin(vimpath . '/plug')
 "Plug 'vim-airline/vim-airline'          " Airline
-Plug 'vim-airline/vim-airline-themes'   " Airline
+"Plug 'vim-airline/vim-airline-themes'   " Airline themes
 Plug 'itchyny/lightline.vim'            " Lightline
 Plug 'tpope/vim-fugitive'               " Git stuff
 Plug 'morhetz/gruvbox'                  " Gruvbox colorscheme
+Plug 'doums/darcula'                    " Darcula colorscheme
 Plug 'chriskempson/base16-vim'          " Base-16 colorscheme
 Plug 'jeffkreeftmeijer/vim-dim'         " Dim colorscheme
 Plug 'YorickPeterse/vim-paper'          " Paper colorscheme
@@ -130,11 +131,11 @@ Plug 'luochen1990/rainbow'              " Rainbow highlight brackets
 Plug 'sheerun/vim-polyglot'             " Multi-langsyntax and indent
 Plug 'mhinz/vim-startify'               " Start screen with recent files
 Plug 'ryanoasis/vim-devicons'           " Nerd Font icons
-"Plug 'rust-lang/rust.vim'               " rust support
 Plug 'rhysd/vim-grammarous'             " English :GrammarousCheck
 Plug 'vim-pandoc/vim-pandoc'            " Pandoc doc converter integration
 Plug 'vim-pandoc/vim-pandoc-syntax'     " Pandoc/.md/LaTeX/etc syntax
 Plug 'tpope/vim-obsession'              " Autosave session (for tmux)
+"Plug 'rust-lang/rust.vim'               " rust support
 "Plug 'udalov/kotlin-vim'                " Kotlin TODO: find coc lang server
 if has('nvim')
   "denite tui: pip3 install --user pynvim
@@ -162,9 +163,14 @@ let g:airline_section_x = '%{&filetype}'
 "Display all buffers when there's only one tab open
 let g:airline#extensions#tabline#enabled = 1
 
+
+
+
+
 " === Lightline === "
+" former scheme: 'seoul256' }
 let g:lightline = {
-  \   'colorscheme': 'seoul256',
+  \   'colorscheme': 'darculaOriginal',
   \   'active': {
   \     'left':[ [ 'mode' ],
   \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
@@ -342,26 +348,27 @@ if (has("termguicolors"))
 endif
 syntax enable
 set background=dark
-let g:gruvbox_italic=1
-colorscheme gruvbox
-
+"colorscheme gruvbox
+"let g:airline_theme='gruvbox'
+"let g:gruvbox_italic=1
+colorscheme darcula
 "colorscheme noctu
 "colorscheme base16-default-dark
-"let g:airline_theme='gruvbox'
 "Base-16
 "https://browntreelabs.com/base-16-shell-and-why-its-so-awsome/
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
 endif
-"[xterm-256color reference](https://jonasjacek.github.io/colors/)
-"0 and 16 look good
-highlight colorcolumn guibg=grey11 ctermbg=235
+"Color overrides
+"[xterm-256color reference](https://jonasjacek.github.io/colors)
 let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=grey11 ctermbg=234
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=grey11 ctermbg=234
+autocmd VimEnter,Colorscheme * :hi Normal           guibg=grey11 ctermbg=234
+autocmd VimEnter,Colorscheme * :hi ColorColumn      guibg=grey7  ctermbg=233
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=grey15 ctermbg=235
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=grey15 ctermbg=235
+autocmd VimEnter,Colorscheme * :hi Comment          gui=italic   cterm=italic
 "python syntax https://github.com/numirias/semshi
-"http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
 "Soften semshi py colors:
 function! SemshiColors()
   hi semshiBuiltin   ctermfg=209 guifg=#ff875f
@@ -391,6 +398,7 @@ augroup user
   autocmd FileType kotlin call SetTabsFourExpand()
   autocmd FileType make   call SetTabsFourNoExpand()
   autocmd FileType vim    call SetTabsTwoExpand()
+  autocmd FileType css    call SetTabsTwoExpand()
   autocmd FileType json syntax match Comment +\/\/.\+$+
   autocmd VimEnter,BufRead,BufNewFile *.kt set filetype=kotlin "Add type
   autocmd BufNewFile,BufReadPost *.md set filetype=markdown
