@@ -5,7 +5,13 @@ config/zsh/snippets/*
 config/zsh/zinit/bin
 config/zsh/zcompdump
 config/zsh/zinit/plugins/*/
-!config/zsh/zinit/plugins/_local---zinit/*
+config/zsh/zinit/plugins/_local---zinit/*
+config/zsh/.zinit/*
+config/zsh/zinit/*
+config/zsh/.zcompdump
+config/zsh/.zcompcache
+config/zsh/.zcompcache/*
+config/zsh/.zcompcache/brew_formulae
 
 ### Vim ###
 # Swap
