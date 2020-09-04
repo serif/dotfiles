@@ -45,3 +45,4 @@ config/tmux/plugins/*
 
 # Reference
 # https://www.gitignore.io
+config/tmux/dsave.dat
