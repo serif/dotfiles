@@ -54,11 +54,13 @@ got() {
 #                                    Misc                                      #
 # ———————————————————————————————————————————————————————————————————————————— #
 
-# neovim aliases
+# neovim
 if hash nvim 2>/dev/null; then
     alias vim="nvim"
     alias n="nvim"
 fi
+
+alias ssh='TERM=xterm-256color ssh'
 
 update() {
     zinit update --all
