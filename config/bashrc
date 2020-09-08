@@ -14,16 +14,15 @@ Purple='\[\033[0;35m\]'
 LtGray='\[\033[0;37m\]'
 
 # ANSI Colors 8-15
-     DkGray='\[\033[1;30m\]'
-      LtRed='\[\033[1;31m\]'
- LightGreen='\[\033[1;32m\]'
-     Yellow='\[\033[1;33m\]'
-  LightBlue='\[\033[1;34m\]'
-LightPurple='\[\033[1;35m\]'
-  LightCyan='\[\033[1;36m\]'
-      White='\[\033[1;37m\]'
-    NoColor='\[\033[0m\]'
-
+  DkGray='\[\033[1;30m\]'
+   LtRed='\[\033[1;31m\]'
+ LtGreen='\[\033[1;32m\]'
+  Yellow='\[\033[1;33m\]'
+  LtBlue='\[\033[1;34m\]'
+LtPurple='\[\033[1;35m\]'
+  LtCyan='\[\033[1;36m\]'
+   White='\[\033[1;37m\]'
+ NoColor='\[\033[0m\]'
 
 # Bash Prompt
-export PS1="\n${Blue}\w    ${Orange}\u@\h \n${Yellow}> ${NoColor}"
+export PS1="\n${Blue}\w    ${DkGray}\u@\h \n${Yellow}❯ ${NoColor}"
