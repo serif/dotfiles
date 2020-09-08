@@ -1,0 +1,26 @@
+# Import zsh config, ignoring errors
+source ~/.config/zsh/zshenv &> /dev/null
+source ~/.config/zsh/alias &> /dev/null
+
+# ANSI Colors 0-7
+Black='\[\033[0;30\]'
+Red='\[\033[0;31\]'
+Green='\[\033[0;32\]'
+Orange='\[\033[0;33\]'
+Blue='\[\033[0;34\]'
+Purple='\[\033[0;35\]'
+Cyan='\[\033[0;36\]'
+LtGray='\[\033[0;37\]'
+
+# ANSI Colors 8-15
+DkGray='\[\033[1;30\]'
+LtRed='\[\033[1;31\]'
+LightGreen='\[\033[1;32\]'
+Yellow='\[\033[1;33\]'
+LightBlue='\[\033[1;34\]'
+LightPurple='\[\033[1;35\]'
+LightCyan='\[\033[1;36\]'
+White='\[\033[1;37\]'
+
+# Bash Prompt
+export PS1="\n${LtBlue}\w    ${Blue}\u@\h \n${Yellow}❯ ${NoColor}"
