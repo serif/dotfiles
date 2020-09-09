@@ -34,6 +34,10 @@ if which gsed &> /dev/null; then
     alias sed='gsed'
 fi
 
+if which gcp &> /dev/null; then
+    alias cp='gcp'
+fi
+
 # make mv prompt before overwriting existing file
 alias mv="mv -i"
 
