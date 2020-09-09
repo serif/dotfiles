@@ -30,6 +30,10 @@ fi
 alias ls="$ls_cmd --color --group-directories-first -Xh"
 alias la="$ls_cmd --color --group-directories-first -XhA"
 
+if which gsed &> /dev/null; then
+    alias sed='gsed'
+fi
+
 # make mv prompt before overwriting existing file
 alias mv="mv -i"
 
