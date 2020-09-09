@@ -60,6 +60,17 @@ if hash nvim 2>/dev/null; then
     alias n="nvim"
 fi
 
+# thefuck
+eval $(thefuck --alias fuck)
+eval $(thefuck --alias FUCK)
+
+# post file
+postfile() {
+    curl -F"file=@$1" https://ttm.sh
+}
+
+# reset TERM on ssh
+# useful when using 'tmux-256color-italic' locally
 alias ssh='TERM=xterm-256color ssh'
 
 update() {
