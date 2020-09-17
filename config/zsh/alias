@@ -78,7 +78,7 @@ postfile() {
 }
 
 # shorten url
-miniurl() {
+shorten() {
     curl -F'shorten=$1' https://ttm.sh
 }
 
