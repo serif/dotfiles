@@ -116,6 +116,7 @@ call plug#begin(vimpath . '/plug')
 "Plug 'vim-airline/vim-airline'          " Airline
 "Plug 'vim-airline/vim-airline-themes'   " Airline themes
 Plug 'itchyny/lightline.vim'            " Lightline
+Plug 'tpope/vim-commentary'             " (un)Comment lines
 Plug 'tpope/vim-fugitive'               " Git stuff
 Plug 'morhetz/gruvbox'                  " Gruvbox colorscheme
 Plug 'doums/darcula'                    " Darcula colorscheme
@@ -189,7 +190,7 @@ let g:lightline.separator = {
 let g:lightline.subseparator = {
   \ 'left': '', 'right': '' 
   \}
-"	\ 'left': '', 'right': '' 
+"	default: \ 'left': '', 'right': '' 
 
 let g:lightline.tabline = {
   \ 'left': [ ['tabs'] ],
@@ -200,7 +201,10 @@ set showtabline=0  " Show tabline
 set guioptions-=e  " Don't use GUI tabline
 
 
+" === Misc === "
 
+" Plug 'tpope/vim-commentary'
+noremap <leader>/ :Commentary<cr>
 let g:indent_guides_guide_size = 1
 let g:indent_guides_color_change_percent = 3
 let g:indent_guides_enable_on_vim_startup = 1
