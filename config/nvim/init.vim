@@ -58,7 +58,7 @@ endif
 
 " <leader> is <space>
 let mapleader = " "
-"Faster command entry
+"Command with ; rather than shift+;
 noremap ; :
 noremap : ;
 "Tab controls
@@ -71,7 +71,13 @@ noremap <C-k> <C-b>M
 noremap j gj
 noremap k gk
 nnoremap \ :TagbarToggle<CR>
-noremap <C-o> <Esc>| "return to [n]ormal
+"return to [n]ormal
+inoremap ,n <Esc> 
+"[o]ut to normal
+inoremap <C-o> <Esc> 
+nnoremap <C-s> :w<CR>
+nnoremap <C-c> :q<CR>
+
 
 " === Colemak === "
 
@@ -422,6 +428,7 @@ augroup user
   autocmd FileType kotlin call SetTabsFourExpand()
   autocmd FileType make   call SetTabsFourNoExpand()
   autocmd FileType vim    call SetTabsTwoExpand()
+  autocmd FileType html   call SetTabsTwoExpand()
   autocmd FileType css    call SetTabsTwoExpand()
   autocmd FileType json syntax match Comment +\/\/.\+$+
   autocmd VimEnter,BufRead,BufNewFile *.kt set filetype=kotlin "Add type
