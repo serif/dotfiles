@@ -79,7 +79,7 @@ postfile() {
 
 # shorten url
 shorten() {
-    curl -F'shorten=$1' https://ttm.sh
+    curl -F"shorten=$1" https://ttm.sh
 }
 
 # reset TERM on ssh
@@ -87,14 +87,18 @@ shorten() {
 alias ssh='TERM=xterm-256color ssh'
 
 update() {
-    zinit update --all
+    # zsh
+    zinit self-update
+    zinit update -p --all
+    # neovim
     nvim +PlugInstall +PlugUpdate +UpdateRemotePlugins +qall
-    # use gnu tools if available
+    # mac brew
     if hash brew 2>/dev/null; then
         brew update
         brew upgrade
         brew cleanup
     fi
+    # python
     pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip3 install -U
     # rebuild zsh completions
     rm -f ~/.zcompdump; compinit
