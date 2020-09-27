@@ -122,6 +122,7 @@ call plug#begin(vimpath . '/plug')
 "Plug 'vim-airline/vim-airline'          " Airline
 "Plug 'vim-airline/vim-airline-themes'   " Airline themes
 Plug 'itchyny/lightline.vim'            " Lightline
+Plug 'wfxr/minimap.vim'                 " Minimap
 Plug 'tpope/vim-commentary'             " (un)Comment lines
 Plug 'tpope/vim-fugitive'               " Git stuff
 Plug 'morhetz/gruvbox'                  " Gruvbox colorscheme
@@ -209,6 +210,11 @@ set guioptions-=e  " Don't use GUI tabline
 
 " === Misc === "
 
+" Minimap
+let g:minimap_width	= 3
+let g:minimap_auto_start = 0
+nnoremap <C-\> :MinimapToggle<cr>
+
 " Plug 'tpope/vim-commentary'
 noremap <leader>/ :Commentary<cr>
 let g:indent_guides_guide_size = 1
@@ -265,7 +271,7 @@ let g:startify_lists = [
   \]
 nmap <Leader> <Plug>(easymotion-prefix)
 
-" === Denite ==="
+" === Denite ===
 
 call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
 
