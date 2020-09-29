@@ -124,6 +124,7 @@ call plug#begin(vimpath . '/plug')
 Plug 'itchyny/lightline.vim'            " Lightline
 Plug 'wfxr/minimap.vim'                 " Minimap
 Plug 'tpope/vim-commentary'             " (un)Comment lines
+Plug 'machakann/vim-highlightedyank'    " Highlighted Yank
 Plug 'tpope/vim-fugitive'               " Git stuff
 Plug 'morhetz/gruvbox'                  " Gruvbox colorscheme
 Plug 'doums/darcula'                    " Darcula colorscheme
