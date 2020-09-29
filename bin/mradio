@@ -1,0 +1,33 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+my $mplayer_cmd = 'mplayer -nocache -afm ffmpeg ';
+my @streams     = (
+    'https://radio.tildeverse.org/radio/8000/radio.ogg',
+    'http://anonradio.net:8000/anonradio',
+    'http://ice2.somafm.com/defcon-128-aac',
+    'http://ice2.somafm.com/groovesalad-128-aac',
+    'http://ice2.somafm.com/7soul-128-aac',
+    'http://ice2.somafm.com/indiepop-128-aac',
+);
+
+print "Pick a stream!\n\n";
+for ( my $index = 0 ; $index < scalar @streams ; $index++ ) {
+    my $printed_index = $index + 1;
+    print "\t$printed_index: $streams[$index]\n";
+}
+print "\n";
+my $input = '';
+until (  length $input > 0
+      && $input =~ m/^\d+$/
+      && int($input) > 0
+      && int($input) <= scalar @streams )
+{
+    print('> ');
+    $input = <>;
+    chomp $input;
+}
+$input--;
+print "\nPlaying $streams[$input]...\n\n";
+system( $mplayer_cmd . $streams[$input] );
