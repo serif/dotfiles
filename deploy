@@ -76,6 +76,9 @@ ln -s "$(pwd)/config/tmux" ~/.config/
 # bin/scripts
 ln -s "$(pwd)/bin" "$HOME/"
 
+# Idea Vim key repeat in MacOS
+defaults write com.jetbrains.intellij.ce ApplePressAndHoldEnabled -bool false
+
 # TODO: make pbcopy/pbpaste like MacOS using xclip
 # echo "test" | tr -d '\n' | xclip -sel clip
 # this trims all \n ^^^^^... should trim only final \n
