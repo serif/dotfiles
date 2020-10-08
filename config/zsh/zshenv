@@ -25,4 +25,5 @@ path=("$HOME/.local/bin" "$path[@]")
 path=("$HOME/bin" "$path[@]")
 path=("/usr/local/sbin" "$path[@]")
 path=("/usr/local/opt/ruby/bin" "$path[@]")
+path=("/Users/avx/Library/Python/3.8/bin" "$path[@]")
 export PATH
