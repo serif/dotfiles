@@ -56,8 +56,6 @@ endif
 " ===                                MAPS                                  === "
 " ============================================================================ "
 
-" <leader> is <space>
-let mapleader = " "
 "Command with ; rather than shift+;
 noremap ; :
 noremap : ;
@@ -79,10 +77,19 @@ nnoremap <C-s> :w<CR>
 nnoremap <C-c> :q<CR>
 
 
-" === Colemak === "
+" === EasyMotion ===
+
+" <leader> is <space>
+let mapleader = " "
+" normal easymotion commands e.g., <leader>w ...{label}
+nmap <Leader> <Plug>(easymotion-prefix)
+" easymotion 2-char search: s{char}{char} ...{label}
+nmap s <Plug>(easymotion-overwin-f2)
+
+
+" === Colemak Mod-DHM ===
 
 "Colemak mnei(hjkl) t(i) <C-n>(f) <C-e>(e)
-" sam217pa.github.io/2016/09/02/how-to-build-your-own-spacemacs/
 noremap m h|        "move Left
 noremap n gj|       "move Down
 noremap e gk|       "move Up
@@ -93,14 +100,17 @@ noremap E e|        "end of word      replaces (e)nd
 noremap h n|        "next match       replaces (n)ext
 noremap k N|        "previous match   replaces (N) prev
 noremap <C-m> m|    "mark             replaces (m)ark
-noremap <C-n> <C-f>M| "Page down, center cursor
-noremap <C-e> <C-b>M| "Page up, center cursor
+
+noremap <C-n> <C-f>| "Page down
+noremap <C-e> <C-b>H| "Page up, cursor up
+
+" make easymotion match the new mnei(hjkl) motions
 map <Leader>m <Plug>(easymotion-linebackward)
 map <leader>n <Plug>(easymotion-j)
 map <leader>e <Plug>(easymotion-k)
 map <Leader>i <Plug>(easymotion-lineforward)
-" easymotion 2-char search: s{char}{char}{label}
-nmap s <Plug>(easymotion-overwin-f2)
+
+" below: not remapping, just fixing sequences:
 " fix (i)nner and (t)ill, e.g. (c)hange (i)n (w)ord
 nnoremap ci ci|
 nnoremap di di|
@@ -111,8 +121,8 @@ nnoremap dt dt|
 nnoremap vt vt|
 nnoremap yt yt|
 
-noremap <C-g> :GrammarousCheck
-noremap <C-G> :GrammarousReset
+
+" sam217pa.github.io/2016/09/02/how-to-build-your-own-spacemacs/
 
 " ============================================================================ "
 " ===                               PLUGINS                                === "
