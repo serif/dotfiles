@@ -59,6 +59,11 @@ pip3 install --user pyls-mypy
 
 nvim +PlugInstall +UpdateRemotePlugins +qall
 
+
+# ================================ ideavim =================================== #
+
+ln -s "$(pwd)/config/ideavim" ~/.config/
+
 # ================================ weechat =================================== #
 
 ln -s "$(pwd)/config/weechat" ~/.config/

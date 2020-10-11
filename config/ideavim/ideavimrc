@@ -1,0 +1,19 @@
+source ~/.config/nvim/init.vim
+
+" IdeaVim specific
+" https://github.com/JetBrains/ideavim/blob/master/doc/emulated-plugins.md
+
+set highlightedyank
+let g:highlightedyank_highlight_duration = "1000"
+let g:highlightedyank_highlight_color = "rgba(64, 96, 64, 155)"
+
+set argtextobj
+let g:argtextobj_pairs="(:),{:},<:>"
+
+set commentary
+map <leader>/ gcc
+
+set surround
+
+" install vim-easymotion and AceJump
+set easymotion
