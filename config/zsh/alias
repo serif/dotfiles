@@ -14,34 +14,32 @@ zref() {
 # ———————————————————————————————————————————————————————————————————————————— #
 
 # gnu ls parameters
-# gls -h = --human-readable = with -l and -s, print sizes like 1K 2M 3G etc
-# gls -X = --sort=extension = sort files by extension
-# gls -F = --classify = append / for dirs, * for executable, etc
-# gls -a = --all = do not ignore entries starting with .
-# gls -A = --almost-all = do not list implied . and ..
+# -h = --human-readable = with -l and -s, print sizes like 1K 2M 3G etc
+# -X = --sort=extension = sort files by extension
+# -F = --classify = append / for dirs, * for executable, etc
+# -a = --all = do not ignore entries starting with .
+# -A = --almost-all = do not list implied . and ..
 
-# use gnu tools if available
-#if hash gls 2>/dev/null; then
-if which gls &> /dev/null; then
-    ls_cmd='gls'
-else
-    ls_cmd='ls'
-fi
+# use gnu tools if available (for mac brew, still nix compatible)
+command -v gls &>/dev/null && ls_cmd='gls' || ls_cmd='ls'
+command -v gmv &>/dev/null && mv_cmd='gmv' || mv_cmd='mv'
+command -v gcp &>/dev/null && cp_cmd='gcp' || cp_cmd='cp'
+command -v gsed &>/dev/null && cp_cmd='gsed' || sed_cmd='sed'
+command -v ggrep &>/dev/null && grep_cmd='ggrep' || grep_cmd='grep'
+command -v gegrep &>/dev/null && egrep_cmd='gegrep' || egrep_cmd='egrep'
+command -v gmkdir &>/dev/null && mkdir_cmd='gmkdir' || mkdir_cmd='mkdir'
+
+# not bsd compatible
 alias ls="$ls_cmd --color --group-directories-first -Xh"
 alias la="$ls_cmd --color --group-directories-first -XhA"
-
-if which gsed &> /dev/null; then
-    alias sed='gsed'
-fi
-
-if which gcp &> /dev/null; then
-    alias cp='gcp'
-fi
-
-# make mv prompt before overwriting existing file
-alias mv="mv -i"
-
-alias grep="grep --color"
+alias mv="$mv_cmd -iv"
+alias cp="$cp_cmd -riv"
+alias sed="$sed_cmd"
+alias grep="$grep_cmd --color"
+alias egrep="$egrep_cmd --color"
+alias ="$_cmd"
+alias mkdir="$mkdir_cmd -vp"
+#command -v gsed &>/dev/null && alias sed='gsed'
 
 # ———————————————————————————————————————————————————————————————————————————— #
 #                                     GIT                                      #
