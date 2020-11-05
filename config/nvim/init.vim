@@ -136,6 +136,7 @@ Plug 'wfxr/minimap.vim'                 " Minimap
 Plug 'tpope/vim-commentary'             " (un)Comment lines
 Plug 'machakann/vim-highlightedyank'    " Highlighted Yank
 Plug 'tpope/vim-fugitive'               " Git stuff
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'morhetz/gruvbox'                  " Gruvbox colorscheme
 Plug 'doums/darcula'                    " Darcula colorscheme
 Plug 'chriskempson/base16-vim'          " Base-16 colorscheme
