@@ -21,9 +21,13 @@ setopt HIST_IGNORE_SPACE
 
 # -U: keep unique, discard duplicates
 typeset -U PATH path
+# MacPorts
+path=("/opt/local/bin" "$path[@]")
+path=("${HOME}/z88dk/bin" "$path[@]")
+export ZCCCFG=${HOME}/z88dk/lib/config
 path=("$HOME/.local/bin" "$path[@]")
 path=("$HOME/bin" "$path[@]")
 path=("/usr/local/sbin" "$path[@]")
 path=("/usr/local/opt/ruby/bin" "$path[@]")
-path=("/Users/avx/Library/Python/3.8/bin" "$path[@]")
+path=("/Users/avx/Library/Python/3.9/bin" "$path[@]")
 export PATH
