@@ -37,7 +37,6 @@ alias cp="$cp_cmd -riv"
 alias sed="$sed_cmd"
 alias grep="$grep_cmd --color"
 alias egrep="$egrep_cmd --color"
-alias ="$_cmd"
 alias mkdir="$mkdir_cmd -vp"
 #command -v gsed &>/dev/null && alias sed='gsed'
 
