@@ -39,6 +39,7 @@ config/nvim/plug/*
 ### WeeChat ###
 config/weechat/logs/*
 config/weechat/weechat.log
+config/weechat/sec.conf
 
 ### tmux ###
 config/tmux/plugins/*
