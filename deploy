@@ -19,7 +19,7 @@
 echo '. ~/.config/zsh/zshenv' > ~/.zshenv
 ln -s "$(pwd)/config/zsh" ~/.config/
 echo "source $HOME/.config/zsh/zshrc" > ~/.zshrc
-git clone https://github.com/zdharma/zinit.git ~/.config/zsh/zinit/bin
+git clone https://github.com/zdharma-continuum/zinit.git ~/.config/zsh/zinit/bin
 zsh -c "source $(pwd)/config/zsh/zinit/bin/zinit.zsh && zinit update"
 # zsh set as default shell
 if ! grep -Fxq "$(which zsh)" /etc/shells
