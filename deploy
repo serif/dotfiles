@@ -59,6 +59,11 @@ pip3 install --user pyls-mypy
 
 nvim +PlugInstall +UpdateRemotePlugins +qall
 
+
+# ================================ ideavim =================================== #
+
+ln -s "$(pwd)/config/ideavim" ~/.config/
+
 # ================================ weechat =================================== #
 
 ln -s "$(pwd)/config/weechat" ~/.config/
@@ -75,6 +80,9 @@ ln -s "$(pwd)/config/tmux" ~/.config/
 
 # bin/scripts
 ln -s "$(pwd)/bin" "$HOME/"
+
+# Idea Vim key repeat in MacOS
+defaults write com.jetbrains.intellij.ce ApplePressAndHoldEnabled -bool false
 
 # TODO: make pbcopy/pbpaste like MacOS using xclip
 # echo "test" | tr -d '\n' | xclip -sel clip
