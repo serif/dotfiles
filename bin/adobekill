@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+pkill Adobe
+pkill Core\ Sync
+pkill Core\ Sync\ Helper
+pkill Creative\ Cloud\ Helper
+pkill CCX

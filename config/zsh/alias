@@ -12,6 +12,11 @@ zref() {
 # ———————————————————————————————————————————————————————————————————————————— #
 #                                  GNU TOOLS                                   #
 # ———————————————————————————————————————————————————————————————————————————— #
+#
+# TODO:
+# Update this section to remove the g-prefixed versions since g-prefix was
+# the Homebrew way, and MacPorts instead has the same filenames in a different
+# folder which I added to $PATH in zshenv
 
 # gnu ls parameters
 # gls -h = --human-readable = with -l and -s, print sizes like 1K 2M 3G etc
@@ -29,6 +34,8 @@ else
 fi
 alias ls="$ls_cmd --color --group-directories-first -Xh"
 alias la="$ls_cmd --color --group-directories-first -XhA"
+# common typo fix
+alias s="$ls_cmd --color --group-directories-first -Xh"
 
 if which gsed &> /dev/null; then
     alias sed='gsed'
@@ -62,6 +69,9 @@ got() {
 #                                    Misc                                      #
 # ———————————————————————————————————————————————————————————————————————————— #
 
+# python
+alias py="/usr/bin/env python3"
+
 # neovim
 if hash nvim 2>/dev/null; then
     alias vim="nvim"
@@ -69,8 +79,11 @@ if hash nvim 2>/dev/null; then
 fi
 
 # thefuck
-eval $(thefuck --alias fuck)
-eval $(thefuck --alias FUCK)
+# eval $(thefuck --alias fuck)
+# eval $(thefuck --alias FUCK)
+
+# fucking
+alias fucking="sudo"
 
 # post file
 postfile() {
@@ -114,16 +127,23 @@ radio() {
     fi
 }
 
-# ctags for vim/nvim
-# after brew install ctags
-if hash brew 2>/dev/null; then
-    alias ctags="`brew --prefix`/bin/ctags"
-fi
-
 cckill() {
-    sudo pkill '[Aa]dobe|AGM|CCLib|Core Sync|Creative Cloud'
-    sudo find /Library/LaunchAgents/ -type f -name 'com.adobe.*' -delete
-    sudo find /Library/LaunchDaemons/ -type f -name 'com.adobe.*' -delete
+    if [ $# -eq 0 ]
+    then
+        # if no parameters, kill Adobe processes
+        sudo pkill '[Aa]dobe|AGM|CCLib|Core Sync|Creative Cloud|CCX'
+        sudo pkill 'Core Sync Helper|Creative Cloud Helper'
+        sudo find /Library/LaunchAgents/ -type f -name 'com.adobe.*' -delete
+        sudo find /Library/LaunchDaemons/ -type f -name 'com.adobe.*' -delete
+    else
+        # if parameters, remove Adobe tags from supplied file
+        fiveChar=$(openssl rand -hex 20 | head -c 5)
+        nineChar=$(openssl rand -hex 20 | head -c 9)
+        fivePattern="s/Adobe/${fiveChar}/g"
+        ninePattern="s/Photoshop/${nineChar}/g"
+        sed -i "${fivePattern}" "$1"
+        sed -i "${ninePattern}" "$1"
+    fi
 }
 
 
