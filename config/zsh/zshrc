@@ -1,8 +1,6 @@
 
 #zmodload zsh/zprof
 
-#export PATH=/usr/local/bin /usr/bin /bin /usr/sbin /sbin ~/Library/Python/3.7/bin /opt/X11/bin /usr/local/opt/curl/bin
-#export PATH=~/Library/Python/3.7/bin:$PATH
 export EDITOR=vim
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 export HISTSIZE=4000
@@ -35,8 +33,8 @@ zinit light mafredri/zsh-async
 zinit light chrissicool/zsh-256color
 
 #zinit light zsh-users/zsh-syntax-highlighting
-zinit light zdharma/fast-syntax-highlighting
-zinit light zdharma/history-search-multi-word
+zinit light zdharma-continuum/fast-syntax-highlighting
+zinit light zdharma-continuum/history-search-multi-word
 
 zinit ice wait lucid atload'_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
@@ -124,3 +122,4 @@ setopt SHARE_HISTORY
 setopt NO_BEEP
 
 source $ZSH/alias
+source $ZSH/zshenv

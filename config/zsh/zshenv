@@ -19,8 +19,17 @@ export MANWIDTH=999
 export WEECHAT_HOME="$XDG_CONFIG_HOME/weechat"
 setopt HIST_IGNORE_SPACE
 
+# Python
+export VIRTUALENVWRAPPER_PYTHON='/opt/local/bin/python3.10'
+export VIRTUALENVWRAPPER_VIRTUALENV='/opt/local/bin/virtualenv-3.10'
+export VIRTUALENVWRAPPER_VIRTUALENV_CLONE='/opt/local/bin/virtualenv-clone-3.10'
+source /opt/local/bin/virtualenvwrapper.sh-3.10
+
 # -U: keep unique, discard duplicates
 typeset -U PATH path
+path=("/opt/local/bin" "$path[@]")
+path=("/opt/local/sbin" "$path[@]")
+path=("/opt/local/libexec/gnubin/" "$path[@]")
 path=("$HOME/.local/bin" "$path[@]")
 path=("$HOME/bin" "$path[@]")
 path=("/usr/local/sbin" "$path[@]")
