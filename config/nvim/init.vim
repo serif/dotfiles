@@ -19,7 +19,8 @@ set ignorecase              "Case insensitive search
 set inccommand=nosplit      "Live preview for :%s/search/replace
 set incsearch               "Begin searching immediately
 set lazyredraw              "Redraw only when needed
-set list listchars=tab:»·,trail:· "Display tabs and trailing spaces
+set listchars=tab:»·,trail:· "Display of tabs and trailing spaces
+set list                    "Enable display tabs and trailing spaces
 set mouse=a                 "Enable all mouse actions
 set noerrorbells            "Silence error bells
 set scrolloff=5             "Line offset for cursor when scrolling
@@ -33,7 +34,7 @@ set expandtab               "All tabs are spaces
 set whichwrap=<,>,h,l       "Wrap cursor on arrows and h,l
 set wildmenu                "Visual command autocomplete
 set wildignore=*.swp,*.bak,*.pyc,*.class,tags
-set wrap linebreak nolist   "Soft wrap without adding lf
+set wrap linebreak          "Soft wrap without adding permanent lf
 "Set vim path, used in: Plug, undo
 if has('nvim')
   let vimpath = '$HOME/.config/nvim'
@@ -122,7 +123,7 @@ call plug#begin(vimpath . '/plug')
 "Plug 'vim-airline/vim-airline'          " Airline
 "Plug 'vim-airline/vim-airline-themes'   " Airline themes
 Plug 'itchyny/lightline.vim'            " Lightline
-Plug 'wfxr/minimap.vim'                 " Minimap
+Plug 'wfxr/minimap.vim'                 " Minimap [sudo port install code-minimap]
 Plug 'tpope/vim-commentary'             " (un)Comment lines
 Plug 'machakann/vim-highlightedyank'    " Highlighted Yank
 Plug 'tpope/vim-fugitive'               " Git stuff
@@ -151,6 +152,7 @@ if has('nvim')
   Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} "py syntax
+  " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 else
   Plug 'Shougo/denite.nvim'       "Denite
   Plug 'roxma/nvim-yarp'          "Denite
@@ -179,7 +181,7 @@ let g:airline#extensions#tabline#enabled = 1
 " === Lightline === "
 " former scheme: 'seoul256' }
 let g:lightline = {
-  \   'colorscheme': 'darculaOriginal',
+  \   'colorscheme': 'darcula',
   \   'active': {
   \     'left':[ [ 'mode' ],
   \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
@@ -212,9 +214,13 @@ set guioptions-=e  " Don't use GUI tabline
 " === Misc === "
 
 " Minimap
-let g:minimap_width	= 3
+let g:minimap_width = 5
 let g:minimap_auto_start = 0
 nnoremap <C-\> :MinimapToggle<cr>
+
+" TagBar
+let g:tagbar_width = 30
+" let g:tagbar_position = 'left'
 
 " Plug 'tpope/vim-commentary'
 noremap <leader>/ :Commentary<cr>
@@ -229,6 +235,11 @@ let g:semshi#error_sign = v:false
 let g:semshi#update_delay_factor = 0.0005
 let g:rustfmt_autosave = 1 "autorun :RustFmt on save
 let g:rainbow_active = 1 "Or 0 to :RainbowToggle later
+" Colors: http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
+let g:rainbow_conf = {
+\	'guifgs': ['seagreen3', 'coral', 'turquoise4', 'tan1'],
+\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta']
+\}
 " Markdown: Inline/fenced code block syntax
 let g:markdown_fenced_languages = [
   \'bash=sh',
@@ -364,27 +375,53 @@ if (has("termguicolors"))
   set termguicolors
 endif
 syntax enable
-set background=dark
+" set background=light
 "colorscheme gruvbox
-"let g:airline_theme='gruvbox'
 "let g:gruvbox_italic=1
-colorscheme darcula
+"Leave darcula first for the lightline theme
 "colorscheme noctu
-"colorscheme base16-default-dark
+" colorscheme base16-atelier-estuary-light
 "Base-16
 "https://browntreelabs.com/base-16-shell-and-why-its-so-awsome/
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
 endif
-"Color overrides
+
+"Color overrides # lighttheme darktheme lightdark darklight
 "[xterm-256color reference](https://jonasjacek.github.io/colors)
-let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi Normal           guibg=grey11 ctermbg=234
-autocmd VimEnter,Colorscheme * :hi ColorColumn      guibg=grey7  ctermbg=233
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=grey15 ctermbg=235
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=grey15 ctermbg=235
-autocmd VimEnter,Colorscheme * :hi Comment          gui=italic   cterm=italic
+" SET_TO_1_FOR_DARK_OR_0_FOR_LIGHT:
+if 1
+  " colorscheme base16-atelier-estuary
+  colorscheme darcula
+  " colorscheme base16-atelier-estuary
+  " let g:lightline = {'colorscheme': 'darculaOriginal'}
+  let g:lightline = {'colorscheme': 'darcula'}
+  let g:indent_guides_auto_colors = 0
+  autocmd VimEnter,Colorscheme * :hi Keyword        ctermfg=172 guifg=#CC7832
+  autocmd VimEnter,Colorscheme * :hi Normal           guifg=#929181 ctermfg=7
+  autocmd VimEnter,Colorscheme * :hi Normal           guibg=grey11  ctermbg=234
+  autocmd VimEnter,Colorscheme * :hi ColorColumn      guibg=grey9   ctermbg=233
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=grey12  ctermbg=235
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=grey12  ctermbg=235
+else
+  colorscheme base16-gruvbox-light-medium
+  " colorscheme base16-github
+  let g:lightline = {'colorscheme': 'selenized_light'}
+  let g:indent_guides_auto_colors = 1
+  autocmd VimEnter,Colorscheme * :hi Keyword gui=italic cterm=italic ctermfg=1 guifg=#ed6a43
+  autocmd VimEnter,Colorscheme * :hi semshiParameter  ctermfg=1 guifg=#ed6a43
+  autocmd VimEnter,Colorscheme * :hi semshiGlobal   ctermfg=159 guifg=turquoise4
+  autocmd VimEnter,Colorscheme * :hi Error            ctermbg=10 guibg=#ebdbb2
+  autocmd VimEnter,Colorscheme * :hi Comment gui=italic cterm=italic ctermfg=6 guifg=#427b58
+  autocmd VimEnter,Colorscheme * :hi Normal           ctermfg=7  guifg=#504945
+  autocmd VimEnter,Colorscheme * :hi Normal           ctermbg=0  guibg=#fbf1c7
+  autocmd VimEnter,Colorscheme * :hi ColorColumn      ctermbg=10 guibg=#ebdbb2
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=10 guibg=#ebdbb2  
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=10 guibg=#ebdbb2
+endif
+
+autocmd VimEnter,Colorscheme * :hi Comment          gui=italic    cterm=italic
 "python syntax https://github.com/numirias/semshi
 "Soften semshi py colors:
 function! SemshiColors()
