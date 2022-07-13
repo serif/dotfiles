@@ -10,6 +10,7 @@ config/zsh/.zinit/*
 config/zsh/zinit/*
 config/zsh/.zcompdump
 config/zsh/.zcompcache/*
+config/zsh/cache
 
 ### Vim ###
 # Swap
@@ -43,8 +44,15 @@ config/weechat/sec.conf
 
 ### tmux ###
 config/tmux/plugins/*
+config/tmux/cache
+config/tmux/.cache
 
 # Reference
 # https://www.gitignore.io
 config/tmux/dsave.dat
 config/weechat/sec.conf
+
+# Misc
+temp.*
+tmp.*
+
