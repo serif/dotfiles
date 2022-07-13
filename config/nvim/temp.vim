@@ -141,7 +141,7 @@ Plug 'chriskempson/base16-vim'          " Base-16 colorscheme
 Plug 'jeffkreeftmeijer/vim-dim'         " Dim colorscheme
 Plug 'YorickPeterse/vim-paper'          " Paper colorscheme
 Plug 'noahfrederick/vim-noctu'          " Noctu colorscheme
-Plug 'easymotion/vim-easymotion'        " Mapped to <space><movement>
+" Plug 'easymotion/vim-easymotion'        " Mapped to <space><movement>
 Plug 'majutsushi/tagbar'                " Visualize ctags
 Plug 'nathanaelkane/vim-indent-guides'  " Alternating light/dark indents
 Plug 'chrisbra/Colorizer'               " Show hex code color

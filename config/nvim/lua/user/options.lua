@@ -8,7 +8,7 @@ local options = {
     incsearch = true,         -- Begin searching immediately
     listchars = "tab:»·,trail:·", -- Display of tabs and trailing spaces
     list = true,              -- Enable display tabs and trailing spaces
-    number = false,           -- Show numbered lines
+    number = true,            -- Show numbered lines
     relativenumber = false,   -- Set relative numbered lines
     numberwidth = 4,          -- Set number column width to 2 {default 4}
     pumheight = 10,           -- Pop up menu height
@@ -33,7 +33,7 @@ local options = {
     softtabstop = 4,          -- Visual spaces for actual tab characters in file
     tabstop = 4,              -- Insert 4 spaces for a tab
   -- Behavior
-    backup = false,           -- No backup file
+    backup = false,           -- No backup before write
     clipboard = "unnamedplus",-- Use system clipboard
     completeopt = { "menuone", "noselect" }, -- for cmp
     conceallevel = 0,         -- So that `` is visible in markdown files
