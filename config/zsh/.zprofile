@@ -12,3 +12,8 @@ path=("$HOME/bin" "$path[@]")
 path=("/usr/local/sbin" "$path[@]")
 path=("/usr/local/opt/ruby/bin" "$path[@]")
 export PATH
+
+# MacPorts Installer addition on 2022-06-08_at_14:56:37: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
