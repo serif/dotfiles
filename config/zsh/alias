@@ -29,7 +29,7 @@ zref() {
 command -v gls &>/dev/null && ls_cmd='gls' || ls_cmd='ls'
 command -v gmv &>/dev/null && mv_cmd='gmv' || mv_cmd='mv'
 command -v gcp &>/dev/null && cp_cmd='gcp' || cp_cmd='cp'
-command -v gsed &>/dev/null && cp_cmd='gsed' || sed_cmd='sed'
+command -v gsed &>/dev/null && sed_cmd='gsed' || sed_cmd='sed'
 command -v ggrep &>/dev/null && grep_cmd='ggrep' || grep_cmd='grep'
 command -v gegrep &>/dev/null && egrep_cmd='gegrep' || egrep_cmd='egrep'
 command -v gmkdir &>/dev/null && mkdir_cmd='gmkdir' || mkdir_cmd='mkdir'
@@ -38,16 +38,10 @@ command -v gmkdir &>/dev/null && mkdir_cmd='gmkdir' || mkdir_cmd='mkdir'
 alias ls="$ls_cmd --color --group-directories-first -Xh"
 alias la="$ls_cmd --color --group-directories-first -XhA"
 
-# common typo fix
-alias s="$ls_cmd --color --group-directories-first -Xh"
+command -v gsed &>/dev/null && alias sed='gsed'
+command -v gcp &>/dev/null && alias cp='gcp'
+command -v gdate &>/dev/null && alias date='gdate'
 
-if which gsed &> /dev/null; then
-    alias sed='gsed'
-fi
-
-if which gcp &> /dev/null; then
-    alias cp='gcp'
-fi
 
 # make mv prompt before overwriting existing file
 alias mv="mv -i"
