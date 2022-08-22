@@ -1,17 +1,32 @@
--- vim.cmd [[
--- try
-  -- colorscheme darcula
--- catch /^Vim\%((\a\+)\)\=:E185/
-  -- colorscheme default
-  -- set background=dark
--- endtry
--- ]]
+require "user.options"
+require "user.keymaps"
+require "user.plugins"
+require "user.colorscheme"
+require "user.cmp"
+require "user.lsp"
+require "user.lastposition"
+require "user.telescope"
+require "user.treesitter"
+
+
+-- Above should be same as init.lua
+-- This is invoked by Cool-Retro-Term only,
+-- by setting terminal to custom command:
+-- /opt/local/bin/zsh -is eval 'alias n="nvim -u ~/.config/nvim/init-crt.lua"'
+-- Which is then executed by adding the following to ~/.config/zsh/alias:
+-- if [[ $1 == eval ]]
+-- then
+--    "$@"
+-- set --
+-- fi
+
 
 -- Darcula bg = 2B2B2B, mine = 2A2B2C
 -- extra blue for a colorscheme that lacks blue
 vim.api.nvim_command([[
   augroup ChangeBackgroudColor
-    autocmd colorscheme * :hi normal guibg=#2A2B2C
+    autocmd colorscheme * :hi normal guibg=#000000
+    autocmd colorscheme * :hi ColorColumn guibg=#040506
     autocmd colorscheme * :hi TabLine guifg=#888888
     autocmd colorscheme * :hi TabLineSel guifg=#bbbbbb guibg=#444444
     autocmd colorscheme * :hi LineNr guibg=#313335 guifg=#4B4D4F
@@ -54,12 +69,12 @@ require('onedark').setup  {
     pea = "#87b04C",            -- method
     red = "#9876AA",            -- JetBrains Purple
     dark_tan = "#808080",       -- type
-    ui_main_bg = "#4D5153",
-    -- ui_main_bg = "#000000",
+    -- ui_main_bg = "#4D5153",
+    ui_main_bg = "#000000",     -- CRT tabline
     ui_main_fg = "#C7C7C7",
     ui_dark_fg = "#AAAAAA",
     ui_tabsel_bg = "#616566",
-    ui_gutter_bg = "#353739",
+    ui_gutter_bg = "#0A0B0C",   -- CRT statusline
     ui_gutter_fg = "#67696D",
   },
   -- Override highlight groups
@@ -106,3 +121,7 @@ require('onedark').load()
   -- ... your lualine config
   -- }
 -- }
+
+vim.api.nvim_command([[
+:hi ColorColumn guibg=#040506
+]])

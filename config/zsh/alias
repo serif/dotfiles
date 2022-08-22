@@ -140,6 +140,7 @@ cckill() {
         # if no parameters, kill Adobe processes
         sudo pkill '[Aa]dobe|AGM|CCLib|Core Sync|Creative Cloud|CCX'
         sudo pkill 'Core Sync Helper|Creative Cloud Helper'
+        sudo find ~/Library/LaunchAgents/ -type f -name 'com.adobe.*' -delete
         sudo find /Library/LaunchAgents/ -type f -name 'com.adobe.*' -delete
         sudo find /Library/LaunchDaemons/ -type f -name 'com.adobe.*' -delete
     else
@@ -152,6 +153,15 @@ cckill() {
         sed -i "${ninePattern}" "$1"
     fi
 }
+
+# eval arbitrary command on launch
+# custom command in terminal:
+# zsh -is eval 'your shell command here'
+if [[ $1 == eval ]]
+then
+    "$@"
+set --
+fi
 
 
 # scratch area
