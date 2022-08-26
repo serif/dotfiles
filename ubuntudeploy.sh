@@ -1,18 +1,8 @@
 #!/bin/bash
 
-# deploy
-# temp/alpha version
+sudo apt install zsh neovim ripgrep python3 python3-pip
+pip3 install --user pynvim --upgrade msgpack
 
-# brew install python3 node
-# ripgrep
-# https://github.com/BurntSushi/ripgrep
-# sudo dnf install ripgrep
-# sudo apt install ripgrep
-# pkg install ripgrep
-# brew install ripgrep
-# pip3 install --user pynvim --upgrade msgpack
-# npm install -g neovim
-# brew install ctags
 
 # ================================== zsh ===================================== #
 
@@ -20,22 +10,26 @@ echo 'export XDG_CONFIG_HOME="$HOME/.config"' > $HOME/.zshenv
 echo 'export ZDOTDIR="$XDG_CONFIG_HOME/zsh"' >> $HOME/.zshenv
 echo 'source $ZDOTDIR/zshenv' >> $HOME/.zshenv
 
+mv $HOME/.zshenv $HOME/.zshenvold
 ln -s "$(pwd)/home/zshenv" $HOME/.zshenv
-# echo '. ~/.config/zsh/zshenv' > ~/.zshenv
-ln -s "$(pwd)/config/zsh" ~/.config/
-git clone https://github.com/zdharma-continuum/zinit.git ~/.config/zsh/zinit/bin
-zsh -c "source $(pwd)/config/zsh/zinit/bin/zinit.zsh && zinit update"
+mkdir $HOME/.config
+ln -s "$(pwd)/config/zsh" $HOME/.config/
+
+git clone https://github.com/zdharma-continuum/zinit.git $HOME/.config/zsh/zinit/bin
+zsh -c "source $HOME/.config/zsh/zinit/bin/zinit.zsh && zinit update"
+
 # zsh set as default shell
 if ! grep -Fxq "$(which zsh)" /etc/shells
 then
     echo "Adding $(which zsh) to /etc/shells"
     echo "$(which zsh)" | sudo tee -a '/etc/shells'
 fi
-chsh -s "$(which zsh)"
+sudo chsh -s "$(which zsh)"
 
 # ================================== bash ==================================== #
 
-ln -s "$(pwd)/home/bashrc" $(HOME)/.bashrc
+mv $HOME/.bashrc $HOME/.bashrcold
+ln -s "$(pwd)/home/bashrc" $HOME/.bashrc
 
 # ================================= neovim =================================== #
 
@@ -64,14 +58,6 @@ pip3 install --user pyls-mypy
 nvim +PlugInstall +UpdateRemotePlugins +qall
 
 
-# ================================ ideavim =================================== #
-
-ln -s "$(pwd)/config/ideavim" ~/.config/
-
-# ================================ weechat =================================== #
-
-ln -s "$(pwd)/config/weechat" ~/.config/
-
 # ================================= tmux ===================================== #
 
 ln -s "$(pwd)/config/tmux" ~/.config/
@@ -79,16 +65,7 @@ ln -s "$(pwd)/config/tmux" ~/.config/
 
 # ================================== etc ===================================== #
 
-# python extras
-#pip3 install bpython
 
 # bin/scripts
 ln -s "$(pwd)/bin" "$HOME/"
-
-# Idea Vim key repeat in MacOS
-defaults write com.jetbrains.intellij.ce ApplePressAndHoldEnabled -bool false
-
-# TODO: make pbcopy/pbpaste like MacOS using xclip
-# echo "test" | tr -d '\n' | xclip -sel clip
-# this trims all \n ^^^^^... should trim only final \n
 
