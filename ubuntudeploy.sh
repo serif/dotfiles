@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo add-apt-repository ppa:neovim-ppa/stable
+sudo apt update
 sudo apt install zsh neovim ripgrep python3 python3-pip
 pip3 install --user pynvim --upgrade msgpack
 
