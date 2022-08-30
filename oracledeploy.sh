@@ -14,8 +14,8 @@ sudo systemctl enable --now snapd.socket
 sudo ln -s /var/lib/snapd/snap /snap
 ### was necessary last time, dunno
 sudo dnf reinstall snapd
-export PATH=$PATH:/snap/bin
-echo 'export PATH=$PATH:/snap/bin' >> .bashrc
+export PATH=/snap/bin:$PATH
+echo 'export PATH=/snap/bin:$PATH' >> .bashrc
 
 # neovim snap
 sudo snap install --edge nvim --classic

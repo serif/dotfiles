@@ -31,6 +31,7 @@ source /opt/local/bin/virtualenvwrapper.sh-3.10
 
 # -U: keep unique, discard duplicates
 typeset -U PATH path
+path=("/snap/bin" "$path[@]")
 path=("/opt/local/bin" "$path[@]")
 path=("/opt/local/sbin" "$path[@]")
 path=("/opt/local/libexec/gnubin/" "$path[@]")
