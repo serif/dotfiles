@@ -2,19 +2,35 @@
 
 # ================================ prerec ==================================== #
 
-# sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+# Fedora EPEL
+sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+sudo dnf update
 
-sudo dnf makecache
-sudo dnf upgrade
+## snap
+sudo dnf install snapd
+### was MAYBE necessary last time, dunno
+sudo systemctl enable --now snapd.socket
+### enable classic snaps
+sudo ln -s /var/lib/snapd/snap /snap
+### was necessary last time, dunno
+sudo dnf reinstall snapd
+export PATH=$PATH:/snap/bin
+echo 'export PATH=$PATH:/snap/bin' >> .bashrc
 
-sudo dnf install zsh neovim python3 python3-pip python3-neovim
+# neovim snap
+sudo snap install --edge nvim --classic
+sudo snap install ripgrep --classic
+
+# misc
+sudo dnf install zsh python3-pip python3-neovim tmux
 
 # sudo dnf install ripgrep
-sudo dnf install rust cargo
-cargo install ripgrep
-sudo cp $HOME/.cargo/bin/rg /usr/local/bin/
+# now unnecessary thanks to snap
+# sudo dnf install rust cargo
+# cargo install ripgrep
+# sudo cp $HOME/.cargo/bin/rg /usr/local/bin/
 
-# pip3 install --user pynvim --upgrade msgpack
+# pip3 install pynvim --upgrade msgpack
 
 
 # ================================== zsh ===================================== #
@@ -47,7 +63,7 @@ ln -s "$(pwd)/home/bashrc" $HOME/.bashrc
 # ================================= neovim =================================== #
 
 ln -s "$(pwd)/config/nvim" ~/.config/
-pip3 install --user neovim pynvim
+# pip3 install --user neovim pynvim
 
 # Python autocomplete and linting
 # https://github.com/palantir/python-language-server
