@@ -22,7 +22,7 @@ sudo snap install --edge nvim --classic
 sudo snap install ripgrep --classic
 
 # misc
-sudo dnf install zsh python3-pip python3-neovim tmux
+sudo dnf install zsh python3-pip python3-neovim tmux clang
 
 # sudo dnf install ripgrep
 # now unnecessary thanks to snap
