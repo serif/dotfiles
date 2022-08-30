@@ -2,19 +2,17 @@
 
 # ================================ prerec ==================================== #
 
-sudo tee /etc/yum.repos.d/ol8-epel.repo<<EOF
-[ol8_developer_EPEL]
-name= Oracle Linux \$releasever EPEL (\$basearch)
-baseurl=https://yum.oracle.com/repo/OracleLinux/OL8/developer/EPEL/\$basearch/
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
-gpgcheck=1
-enabled=1
-EOF
+# sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 
 sudo dnf makecache
 sudo dnf upgrade
 
-sudo dnf install zsh neovim ripgrep python3 python3-pip python3-neovim
+sudo dnf install zsh neovim python3 python3-pip python3-neovim
+
+# sudo dnf install ripgrep
+sudo dnf install rust cargo
+cargo install ripgrep
+sudo cp $HOME/.cargo/bin/rg /usr/local/bin/
 
 # pip3 install --user pynvim --upgrade msgpack
 
