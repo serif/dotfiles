@@ -7,6 +7,8 @@ export ZDOTDIR="$HOME/.config/zsh"
 export ADOTDIR="$HOME/.config/zsh/plugins"
 export HISTFILE="$HOME/.config/zsh/histfile"
 CDPATH=".:$XDG_CONFIG_HOME"
+LC_CTYPE=en_US.UTF-8
+LC_ALL=en_US.UTF-8
 
 # neovim all the things
 export EDITOR=nvim
