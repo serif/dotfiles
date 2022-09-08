@@ -22,6 +22,7 @@ export MANWIDTH=999
 #export GUILE_LOAD_COMPILED_PATH="/usr/local/lib/guile/3.0/site-ccache"
 export WEECHAT_HOME="$XDG_CONFIG_HOME/weechat"
 setopt HIST_IGNORE_SPACE
+unsetopt AUTOCD
 
 # Python
 if [[ -f /opt/local/bin/python3.10 ]]; then

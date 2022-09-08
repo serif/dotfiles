@@ -1,5 +1,6 @@
 
 ### zsh ###
+config/zsh/completions
 config/zsh/histfile
 config/zsh/snippets/*
 config/zsh/zinit/bin
