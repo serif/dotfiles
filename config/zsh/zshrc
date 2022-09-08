@@ -149,3 +149,8 @@ setopt NO_BEEP
 
 source $ZSH/alias
 source $ZSH/zshenv
+
+if [[ -n $SSH_CONNECTION ]] ; then
+    neofetch
+fi
+
