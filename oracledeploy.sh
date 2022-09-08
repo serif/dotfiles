@@ -4,7 +4,13 @@
 
 # Fedora EPEL
 sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm
 sudo dnf update
+
+# ripgrep
+sudo yum-config-manager --add-repo https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
+sudo dnf install ripgrep
+
 
 ## snap
 sudo dnf install snapd

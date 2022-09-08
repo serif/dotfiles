@@ -3,17 +3,18 @@
 
 export EDITOR=nvim
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
-export HISTSIZE=4000
-export SAVEHIST=4000
-setopt HIST_EXPIRE_DUPS_FIRST    # Expire dup event first when trimming hist
-setopt HIST_FIND_NO_DUPS         # Do not display previously found event
-setopt HIST_IGNORE_ALL_DUPS      # Delete old event if new is dup
-setopt HIST_IGNORE_DUPS          # Do not record consecutive dup events
-setopt HIST_IGNORE_SPACE         # Do not record event starting with a space
-setopt HIST_SAVE_NO_DUPS         # Do not write dup event to hist file
+export HISTSIZE=10000
+export SAVEHIST=10000
+setopt HIST_EXPIRE_DUPS_FIRST  # Expire dup event first when trimming hist
+setopt HIST_FIND_NO_DUPS       # Do not display previously found event
+setopt HIST_IGNORE_ALL_DUPS    # Delete old event if new is dup
+setopt HIST_IGNORE_DUPS        # Do not record consecutive dup events
+setopt HIST_IGNORE_SPACE       # Do not record event starting with a space
+setopt HIST_SAVE_NO_DUPS       # Do not write dup event to hist file
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY
+export HISTFILE=~/.config/zsh/histfile
 unset LSCOLORS
 export CLICOLOR=1
 export CLICOLOR_FORCE=1
@@ -134,9 +135,6 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
-HISTFILE=~/.config/zsh/histfile
-HISTSIZE=1000
-SAVEHIST=1000
 setopt appendhistory autocd extendedglob nomatch
 unsetopt beep
 bindkey -e

@@ -24,10 +24,12 @@ export WEECHAT_HOME="$XDG_CONFIG_HOME/weechat"
 setopt HIST_IGNORE_SPACE
 
 # Python
-export VIRTUALENVWRAPPER_PYTHON='/opt/local/bin/python3.10'
-export VIRTUALENVWRAPPER_VIRTUALENV='/opt/local/bin/virtualenv-3.10'
-export VIRTUALENVWRAPPER_VIRTUALENV_CLONE='/opt/local/bin/virtualenv-clone-3.10'
-source /opt/local/bin/virtualenvwrapper.sh-3.10
+if [[ -f /opt/local/bin/python3.10 ]]; then
+    export VIRTUALENVWRAPPER_PYTHON='/opt/local/bin/python3.10'
+    export VIRTUALENVWRAPPER_VIRTUALENV='/opt/local/bin/virtualenv-3.10'
+    export VIRTUALENVWRAPPER_VIRTUALENV_CLONE='/opt/local/bin/virtualenv-clone-3.10'
+    source /opt/local/bin/virtualenvwrapper.sh-3.10
+fi
 
 # -U: keep unique, discard duplicates
 typeset -U PATH path
