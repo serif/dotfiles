@@ -152,9 +152,9 @@ source $ZSH/zshenv
 
 if [[ -n $SSH_CONNECTION ]]
 then
-    if ! command -v neofetch &> /dev/null
+    if command -v neofetch &> /dev/null
     then
-        if ! command -v lolcat &> /dev/null
+        if command -v lolcat &> /dev/null
         then
             neofetch | lolcat -S 10 -F 0.05
         fi
