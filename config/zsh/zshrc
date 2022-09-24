@@ -150,7 +150,16 @@ setopt NO_BEEP
 source $ZSH/alias
 source $ZSH/zshenv
 
-if [[ -n $SSH_CONNECTION ]] ; then
-    neofetch
+if [[ -n $SSH_CONNECTION ]]
+then
+    if ! command -v neofetch &> /dev/null
+    then
+        if ! command -v lolcat &> /dev/null
+        then
+            neofetch | lolcat -S 10 -F 0.05
+        fi
+    else
+        neofetch
+    fi
 fi
 
