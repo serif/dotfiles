@@ -154,6 +154,17 @@ cckill() {
     fi
 }
 
+woof() {
+    echo '       __
+  (___()``;
+  /,    /`
+  \\\\`--\\\\ ' | lolcat -F 0.4
+}
+if command -v lolcat &> /dev/null
+then
+    alias ls="ls --color --group-directories-first -Xh ; woof"
+fi
+
 # eval arbitrary command on launch
 # custom command in terminal:
 # zsh -is eval 'your shell command here'
