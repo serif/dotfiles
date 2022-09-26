@@ -158,10 +158,12 @@ woof() {
     echo '       __
   (___()``;
   /,    /`
-  \\\\`--\\\\ ' | lolcat -F 0.4
+  \\\\`--\\\\ '
 }
 if command -v lolcat &> /dev/null
 then
+    alias ls="ls --color --group-directories-first -Xh ; woof | lolcat -F 0.4"
+else
     alias ls="ls --color --group-directories-first -Xh ; woof"
 fi
 
