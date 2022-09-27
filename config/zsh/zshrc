@@ -156,7 +156,8 @@ then
     then
         if command -v lolcat &> /dev/null
         then
-            neofetch | lolcat -S 20 -F 0.04
+            neofetch | lolcat -S 42 -F 0.03
+            # neofetch | lolcat -S 20 -F 0.04
         else
             neofetch
         fi
