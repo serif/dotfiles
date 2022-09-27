@@ -155,14 +155,14 @@ cckill() {
 }
 
 woof() {
-    pup = '       __
+    pup = "       __
   (___()``;
   /,    /`
-  \\\\`--\\\\ \n'
+  \\\\`--\\\\ \n"
 
     if command -v lolcat &> /dev/null
     then
-        echo $pup | lolcat -F 0.4"
+        echo $pup | lolcat -F 0.4
     else
         echo $pup
     fi
