@@ -155,17 +155,23 @@ cckill() {
 }
 
 woof() {
-    echo '       __
+    pup = '       __
   (___()``;
   /,    /`
-  \\\\`--\\\\ '
+  \\\\`--\\\\ \n'
+
+    if command -v lolcat &> /dev/null
+    then
+        echo $pup | lolcat -F 0.4"
+    else
+        echo $pup
+    fi
 }
-if command -v lolcat &> /dev/null
-then
-    alias ls="ls --color --group-directories-first -Xh ; woof | lolcat -F 0.4"
-else
-    alias ls="ls --color --group-directories-first -Xh ; woof"
-fi
+
+ls() {
+    command ls --color --group-directories-first -Xh "$@"
+    woof
+}
 
 # eval arbitrary command on launch
 # custom command in terminal:
