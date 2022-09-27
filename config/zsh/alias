@@ -155,10 +155,10 @@ cckill() {
 }
 
 woof() {
-    pup = "       __
+    pup='       __
   (___()``;
   /,    /`
-  \\\\`--\\\\ \n"
+  \\\\`--\\\\ \n'
 
     if command -v lolcat &> /dev/null
     then
@@ -168,6 +168,7 @@ woof() {
     fi
 }
 
+unalias ls
 ls() {
     command ls --color --group-directories-first -Xh "$@"
     woof
