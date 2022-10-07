@@ -179,8 +179,8 @@ woof() {
 # }
 
 cd() {
-    command cd "$@"
-    command ls --color --group-directories-first -Xh
+    builtin cd "$@"
+    ls --color --group-directories-first -Xh
 }
 
 # eval arbitrary command on launch
