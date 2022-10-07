@@ -1,4 +1,5 @@
 # alias file for zsh
+# vim: set ft=bash:
 
 # ———————————————————————————————————————————————————————————————————————————— #
 #                                 REFRESH ZSH                                  #
@@ -168,10 +169,18 @@ woof() {
     fi
 }
 
-unalias ls
-ls() {
-    command ls --color --group-directories-first -Xh "$@"
-    woof
+# unalias ls
+# ls() {
+#     command ls --color --group-directories-first -Xh "$@"
+#     # 1 in 6 chance to woof
+#     if [[ $(($RANDOM % 6 &> /dev/null)) == 1 ]]; then
+#         woof
+#     fi
+# }
+
+cd() {
+    command cd "$@"
+    command ls --color --group-directories-first -Xh
 }
 
 # eval arbitrary command on launch
