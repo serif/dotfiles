@@ -101,12 +101,18 @@ return packer.startup(function(use)
   use "nvim-telescope/telescope.nvim"
 
   -- Treesitter - intelligent syntax highlighting and code parsing
+  -- use {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   run = ":TSUpdate",
+  -- }
+  -- use "nvim-treesitter/playground"
+  -- use "JoosepAlviste/nvim-ts-context-commentstring"
+
+  -- Semshi python syntax highlighting and functions
   use {
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
+    "wookayin/semshi",
+    run = ":UpdateRemotePlugins"
   }
-  use "nvim-treesitter/playground"
-  use "JoosepAlviste/nvim-ts-context-commentstring"
 
   -- Git
   use "lewis6991/gitsigns.nvim"
