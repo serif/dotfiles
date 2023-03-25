@@ -57,3 +57,4 @@ config/weechat/sec.conf
 temp.*
 tmp.*
 .mindeploy.sh.kate-swp
+config/nvim/plugin/packer_compiled.lua
