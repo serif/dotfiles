@@ -57,6 +57,9 @@ alias egrep="$egrep_cmd --color"
 alias mkdir="$mkdir_cmd -vp"
 #command -v gsed &>/dev/null && alias sed='gsed'
 
+# pbcopy for linux
+if ! command -v pbcopy &>/dev/null ; then alias pbcopy="xclip -i -sel c" ; fi
+
 
 # ———————————————————————————————————————————————————————————————————————————— #
 #                                     GIT                                      #
