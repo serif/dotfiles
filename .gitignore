@@ -56,3 +56,4 @@ config/weechat/sec.conf
 # Misc
 temp.*
 tmp.*
+.mindeploy.sh.kate-swp
