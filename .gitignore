@@ -56,3 +56,5 @@ config/weechat/sec.conf
 # Misc
 temp.*
 tmp.*
+*.kate-swp
+packer_compiled.lua
