@@ -1,0 +1,94 @@
+    [    1.954987] EXT4-fs (sda1): Invalid checksum for backup superblock 32768
+    [    1.956962] EXT4-fs error (device sda1) in ext4_update_backup_sb:174: Filesystem failed CRC
+    [    1.957997] Aborting journal on device sda1-8.
+    [    1.960574] EXT4-fs (sda1): Remounting filesystem read-only
+    [    1.961855] EXT4-fs error (device sda1) in ext4_update_backup_sb:174: Journal has aborted
+
+    ❯ systemctl status systemd-fsck-root.service
+    ○ systemd-fsck-root.service - File System Check on Root Device
+        Loaded: loaded (/lib/systemd/system/systemd-fsck-root.service; enabled-runtime; preset: enabled)
+        Active: inactive (dead)
+    Condition: start condition failed at Fri 2022-10-21 17:09:20 EDT; 26min ago
+                └─ ConditionPathExists=!/run/initramfs/fsck-root was not met
+        Docs: man:systemd-fsck-root.service(8)
+
+    ❯ sudo fsck -f /dev/sda1
+    fsck from util-linux 2.38.1
+    e2fsck 1.46.6-rc1 (12-Sep-2022)
+    Pass 1: Checking inodes, blocks, and sizes
+    Pass 2: Checking directory structure
+    Pass 3: Checking directory connectivity
+    Pass 4: Checking reference counts
+    Pass 5: Checking group summary information
+    /dev/sda1: 387700/3268608 files (0.2% non-contiguous), 5818320/13074427 blocks
+
+    ❯ mount | grep sda1
+    /dev/sda1 on / type ext4 (ro,relatime,discard,errors=remount-ro)
+    /dev/sda15 on /boot/efi type vfat (rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro)
+
+    ❯ dmesg | grep root
+    [    0.000000] Kernel command line: BOOT_IMAGE=/boot/vmlinuz-6.0.0-1-cloud-arm64 root=UUID=68e68afe-0667-4e65-8eed-8c99be3e2025 ro console=ttyS0,115200 quiet
+    [    0.153140] pci_bus 0000:00: root bus resource [mem 0x10000000-0x3efeffff window]
+    [    0.153141] pci_bus 0000:00: root bus resource [io  0x0000-0xffff window]
+    [    0.153143] pci_bus 0000:00: root bus resource [mem 0x8000000000-0xffffffffff window]
+    [    0.153144] pci_bus 0000:00: root bus resource [bus 00-ff]
+    [    0.346836] Trying to unpack rootfs image as initramfs...
+    [    1.837431] systemd[1]: File System Check on Root Device was skipped because of a failed condition check (ConditionPathExists=!/run/initramfs/fsck-root).
+
+
+    ❯ systemctl status systemd-modules-load.service
+    ● systemd-modules-load.service - Load Kernel Modules
+        Loaded: loaded (/lib/systemd/system/systemd-modules-load.service; static)
+        Active: active (exited) since Fri 2022-10-21 17:09:20 EDT; 40min ago
+        Docs: man:systemd-modules-load.service(8)
+                man:modules-load.d(5)
+    Main PID: 304 (code=exited, status=0/SUCCESS)
+            CPU: 5ms
+
+    ❯ e2fsck -b 32768 /dev/sda1
+    e2fsck 1.46.6-rc1 (12-Sep-2022)
+    e2fsck: Bad magic number in super-block while trying to open /dev/sda1
+    
+    The superblock could not be read or does not describe a valid ext2/ext3/ext4
+    filesystem.
+
+
+
+    ❯ cat /etc/fstab
+    # /etc/fstab: static file system information
+    UUID=68e68afe-0667-4e65-8eed-8c99be3e2025 / ext4 rw,discard,errors=remount-ro,x-systemd.growfs 0 1
+    UUID=2F72-3101 /boot/efi vfat defaults 0 0
+
+
+    ❯ blockdev --setrw
+    blockdev: no device specified
+    Try 'blockdev --help' for more information.
+    ❯ blockdev --setrw /dev/sda1
+    ❯ blockdev --setrw /dev/sda
+    ❯ mount /dev/sda -o remount,rw
+    mount: /dev/sda: mount point not mounted or bad option.
+        dmesg(1) may have more information after failed mount system call.
+    ❯ mount /dev/sda1 -o remount,rw
+    mount: /: cannot remount /dev/sda1 read-write, is write-protected.
+        dmesg(1) may have more information after failed mount system call.
+    ❯ touch /forcefsck
+    touch: cannot touch '/forcefsck': Read-only file system
+
+
+
+    ❯ fsck /dev/sda1
+    fsck from util-linux 2.38.1
+    e2fsck 1.46.6-rc1 (12-Sep-2022)
+    /dev/sda1: recovering journal
+    /dev/sda1 contains a file system with errors, check forced.
+    Pass 1: Checking inodes, blocks, and sizes
+    Pass 2: Checking directory structure
+    Pass 3: Checking directory connectivity
+    Pass 4: Checking reference counts
+    Pass 5: Checking group summary information
+    /dev/sda1: 387700/3268608 files (0.2% non-contiguous), 5818320/13074427 blocks
+
+
+    ❯ mount -o rw /dev/sda1
+    mount: /: /dev/sda1 already mounted on /.
+        dmesg(1) may have more information after failed mount system call.
