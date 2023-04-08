@@ -31,8 +31,8 @@ vim.g.maplocalleader = " "
 map("n", "<leader>o", ":Lexplore<CR>")
 
 -- Enter commands without pressing shift
-map("n", ";", ":")
-map("n", ":", ";")
+-- map("n", ";", ":")
+-- map("n", ":", ";")
 
 -- Quickly return to normal_mode
 map("i", ",n", "<Esc>")
