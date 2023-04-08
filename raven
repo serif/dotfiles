@@ -1,0 +1,50 @@
+evdev.xml
+// Raven
+// 2023-04-04 Aiden Himself
+// https://josiahkeeler.github.io/Custom-Keyboard-Layouts-with-XKB/
+// add to evdev.xml
+
+default partial alphanumeric_keys
+xkb_symbols "raven" {
+
+    include "us"
+    name[Group1]= "English (Raven)";
+
+    key <AE09> { [            9,         less,  leftsinglequotemark,  leftdoublequotemark ] };
+    key <AE10> { [            0,      greater, rightsinglequotemark,  rightdoublequotemark ] };
+
+    key <AD01> { [        colon,    semicolon,      odiaeresis,       Odiaeresis ] };
+    key <AD02> { [            l,            L,         lstroke,          Lstroke ] };
+    key <AD03> { [            y,            Y,      udiaeresis,       Udiaeresis ] };
+    key <AD04> { [            w,            W,           aring,            Aring ] };
+    key <AD05> { [            q,            Q,      adiaeresis,       Adiaeresis ] };
+    key <AD06> { [            j,            J,         dstroke,          Dstroke ] };
+    key <AD07> { [            f,            F,          atilde,           Atilde ] };
+    key <AD08> { [            u,            U,          uacute,           Uacute ] };
+    key <AD09> { [            o,            O,          oacute,           Oacute ] };
+    key <AD10> { [            g,            G,  dead_diaeresis,       asciitilde ] };
+
+    key <AC01> { [            i,            I,          iacute,           Iacute ] };
+    key <AC02> { [            r,            R,      dead_grave,       asciitilde ] };
+    key <AC03> { [            s,            S,          ssharp,        0x1001e9e ] };
+    key <AC04> { [            t,            T,      dead_acute, dead_doubleacute ] };
+    key <AC05> { [            k,            K,  dead_abovering,       asciitilde ] };
+    key <AC06> { [            b,            B,     dead_ogonek,       asciitilde ] };
+    key <AC07> { [            n,            N,          ntilde,           Ntilde ] };
+    key <AC08> { [            e,            E,          eacute,           Eacute ] };
+    key <AC09> { [            a,            A,          aacute,           Aacute ] };
+    key <AC10> { [            c,            C, dead_circumflex,       asciitilde ] };
+
+    key <AB01> { [            x,            X,              ae,               AE ] };
+    key <AB02> { [            v,            V,              oe,               OE ] };
+    key <AB03> { [            d,            D,        ccedilla,         Ccedilla ] };
+    key <AB04> { [            m,            M,      dead_caron,       asciitilde ] };
+    key <AB05> { [            z,            Z,      dead_breve,       asciitilde ] };
+    key <AB06> { [            p,            P,          oslash,         Ooblique ] };
+    key <AB07> { [            h,            H,     dead_macron,       asciitilde ] };
+    key <AB08> { [        comma,    parenleft,    dead_cedilla,       asciitilde ] };
+    key <AB09> { [       period,   parenright,   dead_abovedot,       asciitilde ] };
+
+    include "level3(ralt_switch)"
+};
+
