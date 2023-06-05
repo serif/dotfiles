@@ -186,6 +186,12 @@ cd() {
     ls --color --group-directories-first -Xh
 }
 
+mcd() {
+    mkdir -p "$@"
+    builtin cd "$@"
+    ls --color --group-directories-first -Xh
+}
+
 # eval arbitrary command on launch
 # custom command in terminal:
 # zsh -is eval 'your shell command here'
