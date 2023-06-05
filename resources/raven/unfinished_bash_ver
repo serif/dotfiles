@@ -1,0 +1,62 @@
+#!/bin/bash
+#
+# Raven
+# 2023-04-04 Aiden Himself
+# 2023-06-05 script
+# https://josiahkeeler.github.io/Custom-Keyboard-Layouts-with-XKB/
+
+
+# check if root
+if [ "$(id -u)" -ne 0 ]; then
+	echo "This script must be run as root"
+	echo "Running test mode in local folder"
+	# copy test files to local dir
+	\cp /usr/share/X11/xkb/symbols/us test_symbols -v
+	\cp /usr/share/X11/xkb/rules/evdev.xml test_evdev.xml -v
+
+	# test vars for destination files
+	symbols_dest="test_symbols"
+	evdev_dest="test_evdev.xml"
+else
+	# TODO make unsafe
+	exit 1
+	# production vars for destination files
+	# symbols_dest="/usr/share/X11/xkb/symbols/us"
+	# evdev_dest="/usr/share/X11/xkb/rules/evdev.xml"
+fi
+
+
+# fragmnet sources
+symbols_src="symbols_src"
+evdev_src="evdev_src"
+
+
+# Append raven to us symbols file
+if grep -q "raven" "$symbols_file"; then
+    echo "found 'raven' in $symbols_file"
+else
+    cat ./raven_symbols >>test
+    echo "added raven layout to $symbols_file"
+fi
+
+
+# evdev.xml
+if grep -q "raven" "$evdev_dest"; then
+    echo "found"
+else
+    echo "not found"
+fi
+
+# Create a temporary file to store the modified content
+temp_file=$(mktemp)
+
+# Define the regex pattern for matching the desired location
+regex_pattern="<layoutList>.+<layout>.+<configItem>.+<name>us<\/name>.+<variantList>"
+
+# Use sed to perform the insertion
+# TODO no not possible
+# sed "/$regex_pattern/{r $symbols_src
+# n}" "$evdev_dest" > "$temp_file"
+
+# Replace the original file with the modified content
+mv "$temp_file" "$evdev_dest"
