@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-# cannot use env due to distrobox weirdness
-# no !/usr/bin/env python3
+# distrobox weirdness:
+# no sudo for /usr/bin/env python3
 
 
 import re
@@ -26,7 +26,7 @@ if not os.path.exists(evdev_os_file):
     exit()
 
 
-# Test in local folder if not root
+# Generate in local folder if not root
 if not os.geteuid() == 0:
     print('!! This script must be run as root !!')
     print('  Running test mode in local folder')
@@ -52,7 +52,7 @@ if access_error:
     exit()
 
 
-# symbols
+# append raven definition to us symbols
 def symbols_append():
     print(f'Appending raven to {symbols_os_file}')
     # Check if already installed
@@ -70,7 +70,7 @@ def symbols_append():
 symbols_append()
 
 
-# evdev
+# insert raven listing into evdev us section
 def evdev_insert():
     print(f'Inserting raven into {evdev_os_file}')
     # Read files
@@ -100,4 +100,6 @@ def evdev_insert():
 evdev_insert()
 
 
-print('done')
+print('Done')
+print('\nIf not using GUI settings, try:')
+print('setxkbmap -layout us -variant raven')
