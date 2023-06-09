@@ -52,7 +52,7 @@ if access_error:
     exit()
 
 
-# append raven definition to us symbols
+# Append raven definition to us symbols
 def symbols_append():
     print(f'Appending raven to {symbols_os_file}')
     # Check if already installed
@@ -61,16 +61,16 @@ def symbols_append():
         if 'raven' in symbols_os:
             print(f'Raven exists in {symbols_os_file}')
             return
-    # read symbols_src_file
+    # Read symbols_src_file
     with open(symbols_src_file, 'r') as file:
         symbols_src = file.read()
-    # append to symbols_os_file
+    # Append to symbols_os_file
     with open(symbols_os_file, 'a') as file:
         file.write(symbols_src)
 symbols_append()
 
 
-# insert raven listing into evdev us section
+# Insert raven declaration into evdev us section
 def evdev_insert():
     print(f'Inserting raven into {evdev_os_file}')
     # Read files
@@ -83,12 +83,12 @@ def evdev_insert():
             print(f'Raven exists in {evdev_os_file}')
             return
     # Find insert position
-    pattern = r'<layoutList>.+<layout>.+<configItem>.+<name>us<\/name>.+<variantList>'
+    pattern = r'<layout>.+<configItem>.+<name>us<\/name>.+<variantList>'
     match = re.search(pattern, evdev_os, flags=re.DOTALL)
     if match:
         insert_position = match.end()
     else:
-        print("Unable to locate evdev insert location")
+        print('Unable to locate evdev insert location')
         return
     # Insert raven
     new_evdev_os = evdev_os[:insert_position]
