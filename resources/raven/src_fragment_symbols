@@ -1,8 +1,3 @@
-evdev.xml
-// Raven
-// 2023-04-04 Aiden Himself
-// https://josiahkeeler.github.io/Custom-Keyboard-Layouts-with-XKB/
-// add to evdev.xml
 
 default partial alphanumeric_keys
 xkb_symbols "raven" {
@@ -47,4 +42,3 @@ xkb_symbols "raven" {
 
     include "level3(ralt_switch)"
 };
-
