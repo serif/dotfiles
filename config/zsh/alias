@@ -82,10 +82,11 @@ got() {
 
 # python
 alias py="/usr/bin/env python3"
+alias v="vim"
 
 # neovim
 if hash nvim 2>/dev/null; then
-    alias vim="nvim"
+    # alias vim="nvim"
     alias n="nvim"
 fi
 
