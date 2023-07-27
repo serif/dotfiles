@@ -16,9 +16,9 @@
 
 # ================================== zsh ===================================== #
 
-echo 'export XDG_CONFIG_HOME="$HOME/.config"' > $HOME/.zshenv
-echo 'export ZDOTDIR="$XDG_CONFIG_HOME/zsh"' >> $HOME/.zshenv
-echo 'source $ZDOTDIR/zshenv' >> $HOME/.zshenv
+echo 'export XDG_CONFIG_HOME="$HOME/.config"' >$HOME/.zshenv
+echo 'export ZDOTDIR="$XDG_CONFIG_HOME/zsh"' >>$HOME/.zshenv
+echo 'source $ZDOTDIR/zshenv' >>$HOME/.zshenv
 
 ln -s "$(pwd)/home/zshenv" $HOME/.zshenv
 # echo '. ~/.config/zsh/zshenv' > ~/.zshenv
@@ -26,10 +26,9 @@ ln -s "$(pwd)/config/zsh" ~/.config/
 git clone https://github.com/zdharma-continuum/zinit.git ~/.config/zsh/zinit/bin
 zsh -c "source $(pwd)/config/zsh/zinit/bin/zinit.zsh && zinit update"
 # zsh set as default shell
-if ! grep -Fxq "$(which zsh)" /etc/shells
-then
-    echo "Adding $(which zsh) to /etc/shells"
-    echo "$(which zsh)" | sudo tee -a '/etc/shells'
+if ! grep -Fxq "$(which zsh)" /etc/shells; then
+	echo "Adding $(which zsh) to /etc/shells"
+	echo "$(which zsh)" | sudo tee -a '/etc/shells'
 fi
 chsh -s "$(which zsh)"
 
@@ -63,7 +62,6 @@ pip3 install --user pyls-mypy
 
 nvim +PlugInstall +UpdateRemotePlugins +qall
 
-
 # ================================ ideavim =================================== #
 
 ln -s "$(pwd)/config/ideavim" ~/.config/
@@ -76,6 +74,11 @@ ln -s "$(pwd)/config/weechat" ~/.config/
 
 ln -s "$(pwd)/config/tmux" ~/.config/
 #git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+
+# ================================== vim ===================================== #
+
+echo 'source $XDG_CONFIG_HOME/vim/init.vim' >$HOME/.vimrc
+ln -s "$(pwd)/config/vim" $HOME/.config/
 
 # ================================== etc ===================================== #
 
@@ -91,4 +94,3 @@ defaults write com.jetbrains.intellij.ce ApplePressAndHoldEnabled -bool false
 # TODO: make pbcopy/pbpaste like MacOS using xclip
 # echo "test" | tr -d '\n' | xclip -sel clip
 # this trims all \n ^^^^^... should trim only final \n
-
