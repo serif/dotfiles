@@ -34,9 +34,11 @@ tags
 #
 # Persistent undo
 config/nvim/undo/*
+config/vim/undo/*
 [._]*.un~
 # Plugins
 config/nvim/plug/*
+config/vim/plug/*
 
 ### WeeChat ###
 config/weechat/logs/*
