@@ -118,7 +118,8 @@ map <leader>e <Plug>(easymotion-k)
 map <Leader>a <Plug>(easymotion-lineforward)
 
 " below: not remapping, just fixing sequences:
-" fix (i)nner and (t)ill, e.g. (c)hange (i)n (w)ord
+" fix (a)round, (i)nner, and (t)ill, 
+" e.g. (c)hange (i)n (w)ord
 nnoremap ci ci|
 nnoremap di di|
 nnoremap vi vi|
@@ -127,6 +128,10 @@ nnoremap ct ct|
 nnoremap dt dt|
 nnoremap vt vt|
 nnoremap yt yt|
+nnoremap ca ca|
+nnoremap da da|
+nnoremap va va|
+nnoremap ya ya|
 
 
 " sam217pa.github.io/2016/09/02/how-to-build-your-own-spacemacs/
@@ -142,7 +147,7 @@ Plug 'machakann/vim-highlightedyank'    " Highlighted Yank
 Plug 'tpope/vim-fugitive'               " Git stuff
 " Plug 'morhetz/gruvbox'                  " Gruvbox colorscheme
 Plug 'doums/darcula'                    " Darcula colorscheme
-Plug 'chriskempson/base16-vim'          " Base-16 colorscheme
+" Plug 'chriskempson/base16-vim'          " Base-16 colorscheme
 " Plug 'jeffkreeftmeijer/vim-dim'         " Dim colorscheme
 " Plug 'YorickPeterse/vim-paper'          " Paper colorscheme
 " Plug 'noahfrederick/vim-noctu'          " Noctu colorscheme
@@ -160,6 +165,9 @@ Plug 'ryanoasis/vim-devicons'           " Nerd Font icons
 Plug 'tpope/vim-obsession'              " Autosave session (for tmux)
 "Plug 'rust-lang/rust.vim'               " rust support
 "Plug 'udalov/kotlin-vim'                " Kotlin TODO: find coc lang server
+  " Plug 'itchyny/lightline.vim'            " Lightline
+Plug 'vim-airline/vim-airline'          " Airline
+Plug 'vim-airline/vim-airline-themes'   " Airline themes
 if has('nvim')
   "denite tui: pip3 install --user pynvim
   Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -167,10 +175,7 @@ if has('nvim')
   Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} "py syntax
   Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
   " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-  Plug 'itchyny/lightline.vim'            " Lightline
 else
-  Plug 'vim-airline/vim-airline'          " Airline
-  Plug 'vim-airline/vim-airline-themes'   " Airline themes
   Plug 'Shougo/denite.nvim'       "Denite
   Plug 'roxma/nvim-yarp'          "Denite
   Plug 'roxma/vim-hug-neovim-rpc' "Denite
@@ -190,7 +195,7 @@ let g:airline#extensions#whitespace#checks = ['long', 'mixed-indent-file']
 let g:airline_section_x = '%{&filetype}'
 "Display all buffers when there's only one tab open
 let g:airline#extensions#tabline#enabled = 0
-
+let g:airline_section_y = ''
 
 
 
@@ -200,15 +205,17 @@ let g:airline#extensions#tabline#enabled = 0
 let g:lightline = {
   \   'colorscheme': 'darcula',
   \   'active': {
-  \     'left':[ [ 'mode' ],
-  \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
-  \     ]
-  \   },
-  \   'component': {
-  \     'lineinfo': ' %3l:%-2v',
+  \     'left':  [ [ 'mode' ],
+  \                [ 'gitbranch', 'readonly', 'filename', 'modified' ] 
+  \              ],
+  \     'right': [ [ 'lineinfo' ],
+  \                [ 'percent' ],
+  \                [ 'fileformat', 'fileencoding', 'filetype' ]
+  \              ],
   \   },
   \   'component_function': {
   \     'gitbranch': 'fugitive#status',
+  \     'lineinfo': 'LightlineLineInfo',
   \   }
   \ }
 let g:lightline.separator = {
@@ -226,7 +233,7 @@ let g:lightline.tabline = {
 "set showtabline=2  " Show tabline
 set showtabline=0  " Show tabline
 set guioptions-=e  " Don't use GUI tabline
-
+set laststatus=2
 
 " === Misc === "
 
