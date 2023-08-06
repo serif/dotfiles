@@ -1,0 +1,138 @@
+#!/usr/bin/env python3
+
+import sys, os, subprocess, re
+
+
+def main() -> None:
+    # init tool, detect OS
+    tool = Tool()
+
+    # perform action
+    if len(sys.argv) > 1:
+        match sys.argv[1]:
+            case 'i': action = tool.install
+            case 'r': action = tool.remove
+            case 'u': action = tool.update
+            case _: exit('command not recognized')
+        if len(sys.argv) > 2:
+            for pkg in sys.argv[2:]:
+                action(pkg)
+        else:
+            action()
+        exit()
+
+
+class Tool:
+    family: str = ''
+    name: str = ''
+    cmd_install: str = ''
+    cmd_remove: str = ''
+    cmd_update: str = ''
+    cmd_upgrade: str = ''
+    updated: bool = False
+    ro_rw: bool = False
+
+    def __init__(self):
+        if int(sys.version.split('.')[1]) < 10:
+            exit('error: python < 3.10, unable to use match')
+        self.get_os()
+
+    def __del__(self):
+        self.readonly()
+
+    def run(self, cmd: str, echo: bool = True, halt: bool = True) -> str:
+        if echo:
+            print('::❯ ' + cmd)
+            redirect = None
+        else:
+            redirect = subprocess.PIPE
+        cmds = cmd.split()
+        result = subprocess.run(cmds, stdout=redirect)
+        output = ''
+        if not echo:
+            output = result.stdout.decode('utf-8')
+        if result.returncode and halt:
+            self.hr()
+            # self.readonly()
+            exit()
+        return output
+
+    def get_os(self) -> None:
+        # GNU/Linux
+        if os.path.isfile('/etc/os-release'):
+            self.family = 'linux-gnu'
+            result = self.run('cat /etc/os-release', echo=False)
+            lines = result.splitlines()
+            id_line = [line for line in lines if line.startswith('ID=')][0]
+            self.name = id_line.split("=")[1]
+            match self.name:
+                case 'steamos' | 'arch':
+                    self.mgmt = 'pacman'
+                    self.cmd_install = 'pacman -S'
+                    self.cmd_remove = 'pacman -R'
+                    self.cmd_update = 'pacman -Sy'
+                case 'debian' | 'ubuntu' | 'raspbian' | 'kali':
+                    self.mgmt = 'apt'
+                    self.cmd_install = 'apt install'
+                    self.cmd_remove = 'apt remove'
+                case 'fedora' | 'ol' | 'centos':
+                    self.mgmt = 'dnf'
+                    self.cmd_install = 'dnf.cmd_install'
+                    self.cmd_remove = 'dnf.cmd_remove'
+                case 'opensuse':
+                    self.mgmt = 'zypper'
+                    self.cmd_install = 'zypper install'
+                    self.cmd_remove = 'zypper remove'
+                case _:
+                    exit(f'no match for {self.name=}')
+            return
+        # MacOS
+        elif os.path.isdir('/System/Library/CoreServices'):
+            self.family = 'darwin'
+            self.name = 'macos'
+            self.mgmt = 'port'
+            self.cmd_install = 'port install'
+            self.cmd_remove = 'port remove'
+            return
+        else:
+            exit('unable to determine distro')
+
+    def readonly(self, enable: bool = True) -> None:
+        if self.name == 'steamos':
+            cmd = 'sudo steamos-readonly '
+            if enable and self.ro_rw:
+                self.run(cmd + 'enable')
+                self.ro_rw = False
+            elif not enable and not self.ro_rw:
+                self.run(cmd + 'disable')
+                self.ro_rw = True
+
+    def sudo(self, cmd: str) -> None:
+        self.readonly(False)
+        self.hr()
+        self.run(cmd)
+        # self.readonly()
+
+    def install(self, pkg: str) -> None:
+        self.update()
+        cmd = f'sudo {self.cmd_install} {pkg}'
+        self.sudo(cmd)
+
+    def remove(self, pkg: str) -> None:
+        cmd = f'sudo {self.cmd_remove} {pkg}'
+        self.sudo(cmd)
+
+    def update(self) -> None:
+        if not self.updated:
+            cmd = f'sudo {self.cmd_update}'
+            self.sudo(cmd)
+            self.updated = True
+
+    def hr(self) -> None:
+        rule = '─' * os.get_terminal_size()[0]
+        print(rule)
+
+
+if __name__ == '__main__':
+    main()
+

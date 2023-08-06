@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+
+from time import sleep
+
+
+def main() -> None:
+    for i in range(3):
+        sleep(1)
+        print(i+1)
+    x = input('favorite letter: ')
+    print(x, '!!')
+    sleep(1)
+
+
+if __name__ == '__main__':
+    main()
+

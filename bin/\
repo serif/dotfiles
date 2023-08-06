@@ -1,0 +1,94 @@
+#!/usr/bin/env python3
+
+import sys, os, subprocess, re
+
+
+def main() -> None:
+    # init tool, detect OS
+    tool = Tool()
+
+    # install passed argument(s)
+    if len(sys.argv) > 1:
+        for pkg in sys.argv[1:]:
+            tool.install(pkg)
+        exit()
+
+    # doot doot
+    test = tool.run('which irstneac')
+
+
+class Tool:
+    type: str = ''
+    name: str = ''
+    mgmt: str = ''
+
+    def __init__(self):
+        self.get_os()
+
+    def run(self, cmd: str, echo: bool = True, halt: bool = True) -> str:
+        if echo:
+            print(cmd)
+        cmds = cmd.split()
+        result = subprocess.run(cmds, stdout=subprocess.PIPE)
+        output = result.stdout.decode('utf-8')
+        if result.returncode and halt:
+            err = result.stderr.decode('utf-8')
+            exit(f'halting on non-zero error code {result.returncode}\n{err}')
+        return output
+
+    def get_os(self) -> None:
+        # GNU/Linux
+        if os.path.isfile('/etc/os-release'):
+            self.type = 'linux-gnu'
+            result = self.run('cat /etc/os-release', echo=False)
+            lines = result.splitlines()
+            id_line = [line for line in lines if line.startswith('ID=')][0]
+            self.name = id_line.split("=")[1]
+            match self.name:
+                case 'steamos' | 'arch':
+                    self.mgmt = 'pacman'
+                case 'debian' | 'ubuntu' | 'raspbian' | 'kali':
+                    self.mgmt = 'apt'
+                case 'fedora' | 'ol' | 'centos':
+                    self.mgmt = 'dnf'
+                case 'opensuse':
+                    self.mgmt = 'zypper'
+                case _:
+                    exit(f'no match for {self.name=}')
+            return
+        # MacOS
+        elif os.path.isdir('/System/Library/CoreServices'):
+            self.type = 'darwin'
+            self.name = 'macos'
+            self.mgmt = 'port'
+            return
+        else:
+            exit('unable to determine distro')
+
+    def install(self, pkg: str) -> None:
+        match self.mgmt:
+            case 'pacman':
+                self.install_pacman(pkg)
+            case _:
+                exit(f'{self.os=} not recognized')
+
+    # SteamOS, Arch
+    def install_pacman(self, pkg: str) -> None:
+        readonly = self.name == 'steamos'
+        if readonly:
+            self.run('sudo steamos-readonly disable')
+        output = self.run(f'sudo pacman -S {pkg}')
+        self.hr()
+        print(output)
+        self.hr()
+        if readonly:
+            self.run('sudo steamos-readonly enable')
+
+    def hr(self) -> None:
+        rule = '─' * os.get_terminal_size()[0]
+        print(rule)
+
+
+if __name__ == '__main__':
+    main()
+
