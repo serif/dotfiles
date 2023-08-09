@@ -82,21 +82,35 @@ def evdev_insert():
         if 'raven' in evdev_os:
             print(f'Raven exists in {evdev_os_file}')
             return
-    # Find insert position
-    pattern = r'<layout>.+<configItem>.+<name>us<\/name>.+<variantList>'
-    match = re.search(pattern, evdev_os, flags=re.DOTALL)
-    if match:
-        insert_position = match.end()
-    else:
-        print('Unable to locate evdev insert location')
-        return
-    # Insert raven
-    new_evdev_os = evdev_os[:insert_position]
-    new_evdev_os += evdev_src
-    new_evdev_os += evdev_os[insert_position:]
-    # Write os file with changes
+    found_name = False
+    found_varl = False
     with open(evdev_os_file, 'w') as file:
-        file.write(new_evdev_os)
+        for line in evdev_os.splitlines():
+            if not found_name and line.strip() == '<name>us</name>':
+                found_name = True
+                file.write(line + '\n')
+            elif found_name and not found_varl and line.strip() == '<variantList>':
+                found_varl = True
+                file.write(line + '\n')
+                file.write(evdev_src)
+            else:
+                file.write(line + '\n')
+    # Find insert position
+    # pattern = r'<layout>.+<configItem>.+<name>us<\/name>.+<variantList>'
+    # pattern = r'<name>us<\/name>.+<variantList>'
+    # match = re.search(pattern, evdev_os, flags=re.DOTALL)
+    # if match:
+    #     insert_position = match.end()
+    # else:
+    #     print('Unable to locate evdev insert location')
+    #     return
+    # # Insert raven
+    # new_evdev_os = evdev_os[:insert_position]
+    # new_evdev_os += evdev_src
+    # new_evdev_os += evdev_os[insert_position:]
+    # # Write os file with changes
+    # with open(evdev_os_file, 'w') as file:
+    #     file.write(new_evdev_os)
 evdev_insert()
 
 
