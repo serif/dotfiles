@@ -202,6 +202,27 @@ then
 set --
 fi
 
+# create, make executable, and edit a file
+touche() {
+    if [[ $# -lt 1 ]]; then
+        echo "Usage: touche <filename>"
+        return 1
+    fi
+
+    local filename="$1"
+
+    # Echo the shebang into the file
+    echo "#!/usr/bin/env python3" > "$filename"
+
+    # Make the file executable
+    chmod +x "$filename"
+
+    # Open the file with vim
+    vim "$filename"
+}
+
+alias protontricks='flatpak run com.github.Matoking.protontricks'
+alias protontricks-launch='flatpak run --command=protontricks-launch com.github.Matoking.protontricks'
 
 # scratch area
 #
