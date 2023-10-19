@@ -1,4 +1,4 @@
-source ~/.config/nvim/init.vim
+source ~/.config/vim/init.vim
 
 " IdeaVim specific
 " https://github.com/JetBrains/ideavim/blob/master/doc/emulated-plugins.md
@@ -17,3 +17,4 @@ set surround
 
 " install vim-easymotion and AceJump
 set easymotion
+
