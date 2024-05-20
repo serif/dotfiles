@@ -13,8 +13,8 @@ import xml.etree.ElementTree as ET
 def main():
     f = Files()
     f.readonly('disable')
-    safe_write(add_symbols, f)
-    safe_write(add_evdev, f)
+    f.safe_write(add_symbols)
+    f.safe_write(add_evdev)
     f.readonly('enable')
     switch_layout()
 
@@ -39,24 +39,24 @@ class Files:
     def readonly(self, mode):
         if not mode == 'disable':
             mode = 'enable'
-        cmd = f'sudo steamos-readonly {mode}'
         if not self.is_root or not shutil.which('steamos-readonly'):
             return
+        cmd = f'sudo steamos-readonly {mode}'
         res = subprocess.run(cmd.split(), check=True)
         status = '🚫' if res.returncode else '✅'
         lock = '🔓' if mode == 'disable' else '🔒'
         print(status, lock, cmd)
 
+    def safe_write(self, function):
+        try:
+            function(self)
+            return 0
+        except FileNotFoundError as e:
+            print(f'🚫 File not found: {e.filename}')
+        except PermissionError as e:
+            print(f'🚫 Permission denied: {e.filename}')
+        return 1
 
-def safe_write(function, files):
-    try:
-        function(files)
-        return 0
-    except FileNotFoundError as e:
-        print(f'🚫 File not found: {e.filename}')
-    except PermissionError as e:
-        print(f'🚫 Permission denied: {e.filename}')
-    return 1
 
 def raven_in(fname):
     with open(fname, 'r') as file:
