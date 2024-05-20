@@ -71,20 +71,22 @@ def add_symbols(f):
         file.write(symbols_src)
         print(f'✅ Raven added to {f.symbols_os}')
 
-def indent(elem, level=0):
-    i = "\n" + level * "  "
+def indent_xml(elem, level=0):
+    indent = '\n' + '  '*level
+    # Element has no tail
+    if elem.tail is None or not elem.tail.strip():
+        elem.tail = indent
+    # Element has children
     if len(elem):
-        if not elem.text or not elem.text.strip():
-            elem.text = i + "  "
-        if not elem.tail or not elem.tail.strip():
-            elem.tail = i
+        # Element has no text
+        if elem.text is None or not elem.text.strip():
+            elem.text = indent + '  '
+        # Recursively indent children
         for elem in elem:
-            indent(elem, level + 1)
-        if not elem.tail or not elem.tail.strip():
-            elem.tail = i
-    else:
-        if level and (not elem.tail or not elem.tail.strip()):
-            elem.tail = i
+            indent_xml(elem, level + 1)
+        # Element has no tail after children
+        if elem.tail is None or not elem.tail.strip():
+            elem.tail = indent
 
 def add_evdev(f):
     if raven_in(f.evdev_os):
@@ -123,7 +125,8 @@ def add_evdev(f):
     config_item.append(desc)
     new_variant.append(config_item)
     variant_list.append(new_variant)
-    indent(variant_list, level=2)
+    # indent_xml(variant_list, level=2)
+    indent_xml(root)
 
     # Write modified XML tree back to file
     with open(f.evdev_os, 'wb') as file:
