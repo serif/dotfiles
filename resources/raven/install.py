@@ -72,20 +72,21 @@ def add_symbols(f):
         print(f'✅ Raven added to {f.symbols_os}')
 
 def indent_xml(elem, level=0):
+    no = lambda e: e is None or not e.strip()
     indent = '\n' + '  '*level
     # Element has no tail
-    if elem.tail is None or not elem.tail.strip():
+    if no(elem.tail):
         elem.tail = indent
     # Element has children
     if len(elem):
         # Element has no text
-        if elem.text is None or not elem.text.strip():
+        if no(elem.text):
             elem.text = indent + '  '
         # Recursively indent children
         for elem in elem:
             indent_xml(elem, level + 1)
         # Element has no tail after children
-        if elem.tail is None or not elem.tail.strip():
+        if no(elem.tail):
             elem.tail = indent
 
 def add_evdev(f):
