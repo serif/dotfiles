@@ -197,7 +197,30 @@ let g:airline_section_x = '%{&filetype}'
 let g:airline#extensions#tabline#enabled = 0
 let g:airline_section_y = ''
 
-
+" Emoji mode labels
+let g:airline_section_a = airline#section#create_left(['mode'])
+" Dict to map modes to emoji
+let g:airline_mode_map = {
+      \ 'n': '(ᴗ_ ᴗ。)',
+      \ 'nt': '(ᴗ_ ᴗ。)',
+      \ 'i': '(•̀ - •́ )',
+      \ 'R': '( •̯́ ₃ •̯̀)',
+      \ 'v': '(⊙ _ ⊙ )',
+      \ 'V': '(⊙ _ ⊙ )',
+      \ '␖': '(⊙ _ ⊙ )',
+      \ 'no': 'Σ(°△°ꪱꪱꪱ)',
+      \ 't': '(⌐■_■)',
+      \ '!': 'Σ(°△°ꪱꪱꪱ)',
+      \ 'c': 'Σ(°△°ꪱꪱꪱ)',
+      \ 's': 'SUB'
+      \}
+" Function to map the current mode to emoji
+function! AirlineMode()
+  let l:mode = mode()
+  return get(g:airline_mode_map, l:mode, l:mode)
+endfunction
+" Use the function to display the mode
+let g:airline_mode = airline#section#create(['AirlineMode'])
 
 
 " === Lightline === "
