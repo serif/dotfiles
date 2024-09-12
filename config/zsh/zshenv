@@ -15,7 +15,11 @@ export EDITOR=nvim
 export GIT_EDITOR=nvim
 export VISUAL=nvim
 export DIFFPROG="nvim -d"
-export MANPAGER='nvim +Man!'
+# export MANPAGER='nvim +Man!'
+export MANPAGER="/bin/sh -c \"unset PAGER;col -b -x | \
+    vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
+    -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
+    -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
 export MANWIDTH=999
 
 #export GUILE_LOAD_PATH="/usr/local/share/guile/site/3.0"
