@@ -5,6 +5,7 @@
 # sudo apt install zsh neovim ripgrep python3 python3-pip
 # pip3 install --user pynvim --upgrade msgpack
 
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # ================================== zsh ===================================== #
 
@@ -40,10 +41,20 @@ then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+# ================================= tmux ===================================== #
+
+ln -s "$(pwd)/config/tmux" ~/.config/
+
+# ================================= vim ====================================== #
+
+ln -s "$(pwd)/config/vim" ~/.config/
+echo 'source $XDG_CONFIG_HOME/vim/init.vim' >>$HOME/.vimrc
+vim +'PlugInstall --sync' +qa
+
 # ================================= neovim =================================== #
 
-ln -s "$(pwd)/config/nvim" ~/.config/
-pip3 install --user neovim pynvim
+# ln -s "$(pwd)/config/nvim" ~/.config/
+# pip3 install --user neovim pynvim
 
 # Python autocomplete and linting
 # https://github.com/palantir/python-language-server
@@ -64,7 +75,7 @@ pip3 install --user neovim pynvim
 # py type checking
 # pip3 install --user pyls-mypy
 
-nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+# nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 # ================================= tmux ===================================== #
 
