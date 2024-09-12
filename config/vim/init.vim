@@ -35,6 +35,7 @@ set wildmenu                "Visual command autocomplete
 set wildignore=*.swp,*.bak,*.pyc,*.class,tags
 set wrap linebreak          "Soft wrap without adding permanent lf
 "Set vim path, used in: Plug, undo
+let $PAGER=''               "Don'l load man features in normal use
 if has('nvim')
   let vimpath = '$XDG_CONFIG_HOME/nvim'
   set inccommand=nosplit      "Live preview for :%s/search/replace
@@ -208,10 +209,10 @@ let g:airline_mode_map = {
       \ 'v': '(⊙ _ ⊙ )',
       \ 'V': '(⊙ _ ⊙ )',
       \ '␖': '(⊙ _ ⊙ )',
-      \ 'no': 'Σ(°△°ꪱꪱꪱ)',
+      \ 'no': 'Σ(°△°Σ )',
       \ 't': '(⌐■_■)',
-      \ '!': 'Σ(°△°ꪱꪱꪱ)',
-      \ 'c': 'Σ(°△°ꪱꪱꪱ)',
+      \ '!': 'Σ(°△° Σ )',
+      \ 'c': 'Σ(°△°Σ )',
       \ 's': 'SUB'
       \}
 " Function to map the current mode to emoji
