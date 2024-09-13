@@ -1,4 +1,8 @@
 #!/bin/bash
+# Installs keyd and Raven layout on SteamOS
+
+# Script exit on error
+set -euxo pipefail
 
 # Unlock
 sudo steamos-readonly disable

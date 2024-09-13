@@ -1,4 +1,8 @@
 #!/bin/bash
+# Installs keyd and Raven layout on Bazzite
+
+# Script exit on error
+set -euxo pipefail
 
 # Deploy config
 sudo ln -s "$(pwd)/etc/keyd" "/etc/"
