@@ -1,0 +1,14 @@
+
+Raven
+
+: L Y W Q  J  F U O G [ ]
+ I R S T  K B  N E A C '
+  X V D M  Z  P H , .
+
+Optimized for rolls
+Minimized same-finger-bigrams
+Descended from Colemak-DH and Canary
+
+Designed for ergonomic //// left-hand
+angle on standard staggered keyboards
+
