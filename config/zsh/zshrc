@@ -1,7 +1,6 @@
 
 #zmodload zsh/zprof
 
-export EDITOR=nvim
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 export HISTSIZE=10000
 export SAVEHIST=10000

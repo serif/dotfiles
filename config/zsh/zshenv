@@ -11,10 +11,11 @@ LC_CTYPE=en_US.UTF-8
 LC_ALL=en_US.UTF-8
 
 # neovim all the things
-export EDITOR=nvim
-export GIT_EDITOR=nvim
-export VISUAL=nvim
-export DIFFPROG="nvim -d"
+export EDITOR=vim
+export SUDO_EDITOR=vim
+export GIT_EDITOR=vim
+export VISUAL=vim
+export DIFFPROG="vim -d"
 # export MANPAGER='nvim +Man!'
 export MANPAGER="/bin/sh -c \"unset PAGER;col -b -x | \
     vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
