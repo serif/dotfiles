@@ -6,6 +6,7 @@
 # pip3 install --user pynvim --upgrade msgpack
 
 export XDG_CONFIG_HOME="$HOME/.config"
+mkdir $XDG_CONFIG_HOME
 
 # ================================== zsh ===================================== #
 
@@ -13,9 +14,6 @@ echo 'export XDG_CONFIG_HOME="$HOME/.config"' > $HOME/.zshenv
 echo 'export ZDOTDIR="$XDG_CONFIG_HOME/zsh"' >> $HOME/.zshenv
 echo 'source $ZDOTDIR/zshenv' >> $HOME/.zshenv
 
-mv $HOME/.zshenv $HOME/.zshenvold
-ln -s "$(pwd)/home/zshenv" $HOME/.zshenv
-mkdir $HOME/.config
 ln -s "$(pwd)/config/zsh" $HOME/.config/
 
 git clone https://github.com/zdharma-continuum/zinit.git $HOME/.config/zsh/zinit/bin
@@ -33,6 +31,10 @@ zsh -c "source $HOME/.config/zsh/zinit/bin/zinit.zsh && zinit update"
 
 mv $HOME/.bashrc $HOME/.bashrcold
 ln -s "$(pwd)/home/bashrc" $HOME/.bashrc
+
+# ================================= wezterm ================================== #
+
+ln -s "$(pwd)/config/wezterm" $HOME/.config/
 
 # ================================== python ==================================== #
 python -m ensurepip --upgrade
