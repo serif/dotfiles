@@ -58,7 +58,8 @@ alias mkdir="$mkdir_cmd -vp"
 #command -v gsed &>/dev/null && alias sed='gsed'
 
 # pbcopy for linux
-if ! command -v pbcopy &>/dev/null ; then alias pbcopy="xclip -i -sel c" ; fi
+command -v xclip &>/dev/null && alias pbcopy="xclip -i -sel c"
+command -v wl-copy &>/dev/null && alias pbcopy="wl-copy -n"
 
 
 # ———————————————————————————————————————————————————————————————————————————— #
@@ -85,10 +86,7 @@ alias py="/usr/bin/env python3"
 alias v="vim"
 
 # neovim
-if hash nvim 2>/dev/null; then
-    # alias vim="nvim"
-    alias n="nvim"
-fi
+command -v nvim &>/dev/null && alias n="nvim"
 
 # thefuck
 # eval $(thefuck --alias fuck)
