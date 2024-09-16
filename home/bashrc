@@ -24,5 +24,6 @@ LtPurple='\[\033[1;35m\]'
  NoColor='\[\033[0m\]'
 
 # Bash Prompt
-export PS1="\n${Blue}\w    ${DkGray}\u@\h \n${Yellow}❯ ${NoColor}"
+export PS1="\n${Blue}\w    ${DkGray}\u@\h \n${db_env}${Yellow}❯ ${NoColor}"
+# export PS1="\n${Blue}\w    ${DkGray}\u@\h \n${dbenv}${Yellow} ${NoColor}"
 
