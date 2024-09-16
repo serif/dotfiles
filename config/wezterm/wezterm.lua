@@ -29,5 +29,9 @@ config.color_scheme = 'Srcery (Gogh)'
 -- config.color_scheme = 'BirdsOfParadise'
 -- config.color_scheme = 'Aurthur'
 
+config.font_size = 11
+config.line_height = 0.85
+config.cell_width = 0.90
+
 -- and finally, return the configuration to wezterm
 return config
