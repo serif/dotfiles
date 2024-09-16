@@ -97,6 +97,9 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
+# Enable working directory in tab titles
+precmd () {print -Pn "\e]0;%~\a"}
+
 # LS_COLORS
 # Set di(rectory) to ANSI 4 (blue) and ex(ecutable) to ANSI 9 (bright-red)
 # http://linux-sxs.org/housekeeping/lscolors.html
