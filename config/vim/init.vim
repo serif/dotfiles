@@ -1,16 +1,13 @@
+" " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " "
+" GLOBAL
 
-" ============================================================================ "
-" ===                          GLOBAL OPTIONS                              === "
-" ============================================================================ "
-
-set autoindent              "Enable autoindent for new lines
+set autoindent              "Auto indent for new lines
 set smartindent             "Smart indent using language syntax
 set smarttab                "Smart indent and delete at bol
 set autoread                "Autoload file changes
 set backspace=indent,eol,start "Bksp over indent, eol, start of insert
-set clipboard=unnamedplus   "Use system clipboard
 set colorcolumn=81          "Visual soft margin
-set cursorline             "Highlight current line
+set cursorline              "Highlight current line
 set formatoptions+=r        "Add comment leaders to new comment lines
 set formatoptions+=j        "Delete comment leaders when joining lines
 set hidden                  "Don't close hidden buffers
@@ -38,7 +35,7 @@ set wrap linebreak          "Soft wrap without adding permanent lf
 let $PAGER=''               "Don'l load man features in normal use
 if has('nvim')
   let vimpath = '$XDG_CONFIG_HOME/nvim'
-  set inccommand=nosplit      "Live preview for :%s/search/replace
+  set inccommand=nosplit    "Live preview for :%s/search/replace
 else
   let vimpath = '$XDG_CONFIG_HOME/vim'
 endif
@@ -54,9 +51,57 @@ if has('persistent_undo')
   set undoreload=128
 endif
 
-" ============================================================================ "
-" ===                                MAPS                                  === "
-" ============================================================================ "
+
+
+" " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " "
+" CLIPBOARD
+
+if has('clipboard')
+  set clipboard=unnamedplus
+  " Clipboard configuration for specific tools
+  if executable('wl-copy')
+    let g:clipboard = {
+          \   'name': 'wl-copy',
+          \   'copy': {
+          \      '+': 'wl-copy -n',
+          \      '*': 'wl-copy -n',
+          \    },
+          \   'paste': {
+          \      '+': 'wl-paste',
+          \      '*': 'wl-paste',
+          \    },
+          \   'cache_enabled': 0,
+          \ }
+  elseif executable('xclip')
+    let g:clipboard = {
+          \   'name': 'xclip',
+          \   'copy': {
+          \      '+': 'xclip -i -sel c',
+          \      '*': 'xclip -i -sel p',
+          \    },
+          \   'paste': {
+          \      '+': 'xclip -o -sel c',
+          \      '*': 'xclip -o -sel p',
+          \    },
+          \   'cache_enabled': 0,
+          \ }
+  endif
+endif
+
+if !has('clipboard')
+  if executable('wl-copy')
+    xnoremap <leader>y :call system('wl-copy -n', @")<CR>
+    nnoremap <leader>p :let @+=substitute(system('wl-paste'), '\n', '', 'g')<CR>p
+  elseif executable('xclip')
+    xnoremap <leader>y :call system('xclip -i -sel c', @")<CR>
+    nnoremap <leader>p :let @+=substitute(system('xclip -o -sel c'), '\n', '', 'g')<CR>p
+  endif
+endif
+
+
+
+" " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " "
+" MAPS
 
 "Command with ; rather than shift+;
 " noremap ; :
@@ -135,11 +180,11 @@ nnoremap va va|
 nnoremap ya ya|
 
 
-" sam217pa.github.io/2016/09/02/how-to-build-your-own-spacemacs/
 
-" ============================================================================ "
-" ===                               PLUGINS                                === "
-" ============================================================================ "
+" " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " "
+" PLUGINS
+
+" sam217pa.github.io/2016/09/02/how-to-build-your-own-spacemacs/
 
 call plug#begin(vimpath . '/plug')
 " Plug 'wfxr/minimap.vim'                 " Minimap [sudo port install code-minimap]
@@ -184,9 +229,9 @@ endif             "When adding new plugs run :PlugInstall
 call plug#end()   "When adding deoplete in (old)vim run :UpdateRemotePlugins
 
 
-" ============================================================================ "
-" ===                           PLUGIN SETUP                               === "
-" ============================================================================ "
+
+" " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " "
+" PLUGIN SETUP
 
 " === Airline === "
 let g:airline_powerline_fonts = 1
@@ -415,9 +460,9 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 " Enable extensions
 "let g:airline_extensions = ['coc']
 
-" ============================================================================ "
-" ===                                COLOR                                 === "
-" ============================================================================ "
+
+" " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " "
+" COLOR
 
 if (has("termguicolors"))
   set termguicolors
@@ -501,9 +546,9 @@ hi! link CocWarningHighlight CodeWarning
 hi! link CocInfoHighlight CodeInfo
 hi! link CocHintHighlight CodeHint
 
-" ============================================================================ "
-" ===                              FUNCTIONS                               === "
-" ============================================================================ "
+
+" " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " "
+" FUNCTIONS
 
 function! SetTabsTwoExpand()
   set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
