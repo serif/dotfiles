@@ -32,6 +32,10 @@ zsh -c "source $HOME/.config/zsh/zinit/bin/zinit.zsh && zinit update"
 mv $HOME/.bashrc $HOME/.bashrcold
 ln -s "$(pwd)/home/bashrc" $HOME/.bashrc
 
+# ================================== kanata
+
+ln -s "$(pwd)/home/kanata" $HOME/.bashrc
+
 # ================================= wezterm ================================== #
 
 ln -s "$(pwd)/config/wezterm" $HOME/.config/
