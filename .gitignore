@@ -66,3 +66,4 @@ resources/raven/test_evdev
 resources/raven/test_symbols
 resources/raven/ignore
 resources/raven/ignore/*
+fonts/.uuid
