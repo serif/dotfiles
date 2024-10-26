@@ -140,7 +140,6 @@ compinit
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
 setopt appendhistory autocd extendedglob nomatch
-unsetopt beep
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
@@ -149,6 +148,7 @@ setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 
 ## never ever beep ever
+unsetopt beep
 setopt NO_BEEP
 
 source $ZSH/alias
