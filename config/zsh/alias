@@ -36,8 +36,8 @@ command -v gegrep &>/dev/null && egrep_cmd='gegrep' || egrep_cmd='egrep'
 command -v gmkdir &>/dev/null && mkdir_cmd='gmkdir' || mkdir_cmd='mkdir'
 
 # not bsd compatible
-alias ls="$ls_cmd --color --group-directories-first -Xh"
-alias la="$ls_cmd --color --group-directories-first -XhA"
+alias ls="$ls_cmd --color --group-directories-first -Xxh --width=80"
+alias la="$ls_cmd --color --group-directories-first -XxhA --width=80"
 
 command -v gsed &>/dev/null && alias sed='gsed'
 command -v gcp &>/dev/null && alias cp='gcp'
@@ -182,7 +182,7 @@ woof() {
 
 cd() {
     builtin cd "$@"
-    ls --color --group-directories-first -Xh
+    ls
 }
 
 mcd() {
