@@ -1,0 +1,85 @@
+[ids]
+
+0001:0001:a38e6885
+
+[main]
+
+capslock = overload(control, esc)
+
+# Win-layout keyboards: swap meta and alt
+meta = layer(alt)
+leftalt = layer(meta)
+rightalt = altgr
+
+q = :
+w = l
+e = y
+r = w
+t = q
+y = j
+u = f
+i = u
+o = o
+p = g
+
+a = i
+s = r
+d = s
+f = t
+g = k
+h = b
+j = n
+k = e
+l = a
+; = c
+
+z = x
+x = v
+c = d
+v = m
+b = z
+n = p
+m = h
+
+[shift]
+
+q = ;
+, = (
+. = )
+9 = <
+0 = >
+
+[meta]
+
+tab = A-tab
+
+# Copy [;]->[c]
+; = C-insert
+# Paste: [x]->[v]
+z = S-insert
+# Cut [z]->[x]
+z = S-delete
+# Select All [l]->[a]
+l = macro(C-end C-S-home)
+# Find [u]->[f]
+u = C-f
+
+# Tab switching
+] = C-pagedown
+[ = C-pageup
+
+# PgDn [j]->[n]
+# PgUp [k]->[e]
+j = pagedown
+k = pageup
+
+# Krunner
+space = A-space
+
+[meta+shift]
+# Reopen closed tab [f]->[t]
+f = C-S-t
+
+[altgr]
+# [f]->[t] thorn
+f = macro(C-S-u 00fe enter)
