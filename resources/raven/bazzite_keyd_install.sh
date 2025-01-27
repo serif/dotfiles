@@ -1,9 +1,6 @@
 #!/bin/bash
 # Installs keyd and Raven layout on Bazzite
 
-# Script exit on error
-set -euxo pipefail
-
 # Deploy config
 sudo ln -s "$(pwd)/etc/keyd" "/etc/"
 
@@ -23,6 +20,7 @@ sudo rpm-ostree install keyd
 echo System must restart to layer new package
 echo TODO:
 echo sudo reboot now
+echo sudo systemctl enable keyd
 echo sudo systemctl restart keyd
 
 # Reminder: after config change:
