@@ -117,12 +117,13 @@ noremap j gj
 noremap k gk
 nnoremap \ :TagbarToggle<CR>
 "return to [n]ormal
-inoremap ,n <Esc> 
-vnoremap ,n <Esc> 
+inoremap ,n <Esc>
+vnoremap ,n <Esc>
 "[o]ut to normal
-inoremap <C-o> <Esc> 
+inoremap <C-o> <Esc>
 nnoremap <C-s> :w<CR>
 nnoremap <C-c> :q<CR>
+nnoremap ,m :%s/\r//g<CR>
 
 
 " === EasyMotion ===
@@ -189,8 +190,10 @@ nnoremap ya ya|
 call plug#begin(vimpath . '/plug')
 " Plug 'wfxr/minimap.vim'                 " Minimap [sudo port install code-minimap]
 Plug 'tpope/vim-commentary'             " (un)Comment lines
-Plug 'machakann/vim-highlightedyank'    " Highlighted Yank
 Plug 'tpope/vim-fugitive'               " Git stuff
+" Plug 'tpope/vim-markdown'               " Markdown tricks
+Plug 'plasticboy/vim-markdown'          " Markdown syntax
+Plug 'machakann/vim-highlightedyank'    " Highlighted Yank
 " Plug 'morhetz/gruvbox'                  " Gruvbox colorscheme
 Plug 'doums/darcula'                    " Darcula colorscheme
 " Plug 'chriskempson/base16-vim'          " Base-16 colorscheme
@@ -202,7 +205,7 @@ Plug 'majutsushi/tagbar'                " Visualize ctags
 Plug 'nathanaelkane/vim-indent-guides'  " Alternating light/dark indents
 Plug 'chrisbra/Colorizer'               " Show hex code color
 Plug 'luochen1990/rainbow'              " Rainbow highlight brackets
-Plug 'sheerun/vim-polyglot'             " Multi-langsyntax and indent
+" Plug 'sheerun/vim-polyglot'             " Multi-langsyntax and indent
 Plug 'mhinz/vim-startify'               " Start screen with recent files
 Plug 'ryanoasis/vim-devicons'           " Nerd Font icons
 " Plug 'rhysd/vim-grammarous'             " English :GrammarousCheck
@@ -571,7 +574,7 @@ augroup user
   autocmd FileType css    call SetTabsTwoExpand()
   autocmd FileType json syntax match Comment +\/\/.\+$+
   autocmd VimEnter,BufRead,BufNewFile *.kt set filetype=kotlin "Add type
-  autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+  " autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 augroup END
 "Return to last edit position when opening files
 augroup rememberLastPos
