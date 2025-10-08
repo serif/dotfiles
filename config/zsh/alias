@@ -58,9 +58,13 @@ alias mkdir="$mkdir_cmd -vp"
 #command -v gsed &>/dev/null && alias sed='gsed'
 
 # pbcopy for linux
-command -v xclip &>/dev/null && alias pbcopy="xclip -i -sel c"
-command -v wl-copy &>/dev/null && alias pbcopy="wl-copy -n"
-
+# command -v xclip &>/dev/null && alias pbcopy="xclip -i -sel c"
+# command -v wl-copy &>/dev/null && alias pbcopy="wl-copy -n"
+if command -v wl-copy &>/dev/null; then
+    alias pbcopy="wl-copy -n"
+elif command -v xclip &>/dev/null; then
+    alias pbcopy="xclip -i -sel c"
+fi
 
 # ———————————————————————————————————————————————————————————————————————————— #
 #                                     GIT                                      #
@@ -217,6 +221,22 @@ touche() {
 
     # Open the file with vim
     vim "$filename"
+}
+
+# cowsay and copy
+# temp duplicate of pbcopy for demonstration with cs()
+if command -v wl-copy &>/dev/null; then
+    alias pbcopy="wl-copy -n"
+elif command -v xclip &>/dev/null; then
+    alias pbcopy="xclip -i -sel c"
+fi
+cs() {
+    local text="$*"
+    local output=$(cowsay "$text")
+    echo "$output"
+    # Prepend zero-width space for Teams
+    local ZWSP=$'\u200B'
+    echo "$output" | sed "s/^/$ZWSP/" | pbcopy
 }
 
 alias protontricks='flatpak run com.github.Matoking.protontricks'
