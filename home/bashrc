@@ -1,3 +1,8 @@
+# Launch zsh if interactive and not already in zsh
+if [ -t 1 ] && [ -n "$PS1" ] && [ -z "$ZSH_VERSION" ]; then
+    exec zsh
+fi
+
 # Import zsh config, ignoring errors
 source $HOME/.config/zsh/zshenv &> /dev/null
 source $HOME/.config/zsh/alias &> /dev/null
