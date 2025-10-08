@@ -1,2 +1,4 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
-require("config.lazy")
+-- neovim config
+require("bootstrap")    -- Lazy.nvim plugin manager
+require("core.keymaps") -- Keymaps
+require("polish")       -- Late loads
