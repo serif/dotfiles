@@ -8,12 +8,12 @@ local opts = { noremap = true, silent = true }
 
 -- Motions
 --   normal
-map("n", "<C-b>", "h", opts)      -- move Left
+map("n", "B", "h", opts)          -- move Left
 map("n", "n", "gj", opts)         -- move Down
 map("n", "e", "gk", opts)         -- move Up
 map("n", "a", "l", opts)          -- move Right
 --   visual
-map("v", "b", "h", opts)          -- move Left
+map("v", "B", "h", opts)          -- move Left
 map("v", "n", "gj", opts)         -- move Down
 map("v", "e", "gk", opts)         -- move Up
 map("v", "a", "l", opts)          -- move Right
