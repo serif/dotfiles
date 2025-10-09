@@ -33,6 +33,8 @@ map("v", ",n", "<Esc>", opts) -- visual > normal
 
 -- Leap
 map({ "n", "x", "o" }, "s", "<Plug>(leap)")
+map("n", "S", "<Plug>(leap-from-window)")
 
 -- Misc
 map("n", ",m", ":%s/\r//g<CR>", opts) -- Remove ^M line ends from Windows text
+map("n", "?", ":nohlsearch<CR>")
