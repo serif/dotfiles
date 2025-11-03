@@ -17,7 +17,7 @@ map("v", "B", "h", opts)          -- move Left
 map("v", "n", "gj", opts)         -- move Down
 map("v", "e", "gk", opts)         -- move Up
 map("v", "a", "l", opts)          -- move Right
-
+--   raven layout
 map("n", "t", "i", opts)          -- (t)ype
 map("n", "T", "I", opts)          -- (T)ype at bol
 map("n", "E", "e", opts)          -- end of word
@@ -36,5 +36,8 @@ map({ "n", "x", "o" }, "s", "<Plug>(leap)")
 map("n", "S", "<Plug>(leap-from-window)")
 
 -- Misc
-map("n", ",m", ":%s/\r//g<CR>", opts) -- Remove ^M line ends from Windows text
+--   clean ^M (windows \r carriage return)
+map("n", ",m", function()
+  vim.cmd("silent! :%s/\r//g")
+end, opts) -- Remove ^M line ends from Windows text
 map("n", "?", ":nohlsearch<CR>")
