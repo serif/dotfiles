@@ -41,12 +41,14 @@ config/nvim/plug/*
 config/vim/plug/*
 
 ### WeeChat ###
-config/weechat/logs/*
+config/weechat/logs/
 config/weechat/weechat.log
 config/weechat/sec.conf
+config/weechat/python/autoload/*
+/config/weechat/python/autoload
 
 ### tmux ###
-config/tmux/plugins/*
+config/tmux/plugins/
 config/tmux/cache
 config/tmux/.cache
 

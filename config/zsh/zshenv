@@ -37,6 +37,21 @@ if [[ -f /opt/local/bin/python3.10 ]]; then
     source /opt/local/bin/virtualenvwrapper.sh-3.10
 fi
 
+# Homebrew GNU coreutils — prepend if present (macOS Homebrew, Apple Silicon + Intel)
+for _gnu_dir in \
+    /opt/homebrew/opt/coreutils/libexec/gnubin \
+    /opt/homebrew/opt/gnu-sed/libexec/gnubin \
+    /opt/homebrew/opt/grep/libexec/gnubin \
+    /opt/homebrew/opt/findutils/libexec/gnubin \
+    /usr/local/opt/coreutils/libexec/gnubin \
+    /usr/local/opt/gnu-sed/libexec/gnubin \
+    /usr/local/opt/grep/libexec/gnubin \
+    /usr/local/opt/findutils/libexec/gnubin
+do
+    [[ -d "$_gnu_dir" ]] && path=("$_gnu_dir" "$path[@]")
+done
+unset _gnu_dir
+
 # -U: keep unique, discard duplicates
 typeset -U PATH path
 path=("/snap/bin" "$path[@]")
@@ -48,4 +63,5 @@ path=("$HOME/bin" "$path[@]")
 path=("/usr/local/sbin" "$path[@]")
 path=("/usr/local/opt/ruby/bin" "$path[@]")
 path=("$HOME/Library/Python/3.11/bin" "$path[@]")
+
 export PATH

@@ -1,96 +1,242 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# deploy.sh — unified dotfiles installer
+# Works on: macOS (Homebrew), Ubuntu/Debian (apt), Fedora/RHEL (dnf)
+set -euo pipefail
 
-# deploy
-# temp/alpha version
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CONFIG_DIR="$HOME/.config"
 
-# brew install python3 node
-# ripgrep
-# https://github.com/BurntSushi/ripgrep
-# sudo dnf install ripgrep
-# sudo apt install ripgrep
-# pkg install ripgrep
-# brew install ripgrep
-# pip3 install --user pynvim --upgrade msgpack
-# npm install -g neovim
-# brew install ctags
+# ─── Helpers ────────────────────────────────────────────────────────────────
 
-# ================================== zsh ===================================== #
+info() { printf '\033[0;34m  → %s\033[0m\n' "$*"; }
+success() { printf '\033[0;32m  ✓ %s\033[0m\n' "$*"; }
+warn() { printf '\033[0;33m  ! %s\033[0m\n' "$*"; }
+die() {
+	printf '\033[0;31m  ✗ %s\033[0m\n' "$*" >&2
+	exit 1
+}
 
-echo 'export XDG_CONFIG_HOME="$HOME/.config"' >$HOME/.zshenv
-echo 'export ZDOTDIR="$XDG_CONFIG_HOME/zsh"' >>$HOME/.zshenv
-echo 'source $ZDOTDIR/zshenv' >>$HOME/.zshenv
+# Safe symlink: backs up any existing non-symlink file before linking
+symlink() {
+	local src="$1" dst="$2"
+	if [[ ! -e "$src" ]]; then
+		warn "Source missing, skipping: $src"
+		return
+	fi
+	if [[ -L "$dst" ]]; then
+		rm "$dst"
+	elif [[ -e "$dst" ]]; then
+		warn "Backing up existing: $dst → ${dst}.bak"
+		mv "$dst" "${dst}.bak"
+	fi
+	ln -s "$src" "$dst"
+	success "Linked $src → $dst"
+}
 
-ln -s "$(pwd)/home/zshenv" $HOME/.zshenv
-# echo '. ~/.config/zsh/zshenv' > ~/.zshenv
-ln -s "$(pwd)/config/zsh" ~/.config/
-git clone https://github.com/zdharma-continuum/zinit.git ~/.config/zsh/zinit/bin
-zsh -c "source $(pwd)/config/zsh/zinit/bin/zinit.zsh && zinit update"
-# zsh set as default shell
-if ! grep -Fxq "$(which zsh)" /etc/shells; then
-	echo "Adding $(which zsh) to /etc/shells"
-	echo "$(which zsh)" | sudo tee -a '/etc/shells'
-fi
-chsh -s "$(which zsh)"
+command_exists() { command -v "$1" &>/dev/null; }
 
-# ================================== bash ==================================== #
+# ─── Detect OS / Package Manager ────────────────────────────────────────────
 
-ln -s "$(pwd)/home/bashrc" $(HOME)/.bashrc
+detect_os() {
+	if [[ "$(uname)" == "Darwin" ]]; then
+		OS=mac
+	elif [[ -f /etc/os-release ]]; then
+		# shellcheck source=/dev/null
+		source /etc/os-release
+		case "$ID" in
+		ubuntu | debian | linuxmint | pop) OS=apt ;;
+		fedora | rhel | centos | rocky | almalinux) OS=dnf ;;
+		arch | manjaro) OS=pacman ;;
+		*) die "Unsupported distro: $ID" ;;
+		esac
+	else
+		die "Cannot detect OS"
+	fi
+	info "Detected OS: $OS"
+}
 
-# ================================= neovim =================================== #
+# ─── Package Installation ────────────────────────────────────────────────────
 
-ln -s "$(pwd)/config/nvim" ~/.config/
-pip3 install --user neovim pynvim
+install_homebrew() {
+	if command_exists brew; then
+		success "Homebrew already installed"
+		return
+	fi
+	info "Installing Homebrew..."
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Python autocomplete and linting
-# https://github.com/palantir/python-language-server
-pip3 install --user jedi python-language-server
-# py completions and renaming
-pip3 install --user rope
-# py complexity checking
-pip3 install --user mccabe
-# py error checking
-pip3 install --user pyflakes
-# py pep 8 linting
-pip3 install --user pycodestyle
-# py import sorting and formatting
-pip3 install --user pyls-isort
-# py code formatting using Black
-# https://github.com/ambv/black
-pip3 install --user black pyls-black
-# py type checking
-pip3 install --user pyls-mypy
+	# Add brew to PATH for the rest of this script (Apple Silicon vs Intel)
+	if [[ -f /opt/homebrew/bin/brew ]]; then
+		eval "$(/opt/homebrew/bin/brew shellenv)"
+	elif [[ -f /usr/local/bin/brew ]]; then
+		eval "$(/usr/local/bin/brew shellenv)"
+	fi
+	success "Homebrew installed"
+}
 
-nvim +PlugInstall +UpdateRemotePlugins +qall
+pkg_install() {
+	local packages=("$@")
+	case "$OS" in
+	mac)
+		brew install "${packages[@]}"
+		;;
+	apt)
+		sudo apt-get update -qq
+		sudo apt-get install -y "${packages[@]}"
+		;;
+	dnf)
+		sudo dnf install -y "${packages[@]}"
+		;;
+	pacman)
+		sudo pacman -Sy --noconfirm "${packages[@]}"
+		;;
+	esac
+}
 
-# ================================ ideavim =================================== #
+# Map logical package names to distro-specific names
+pkg_name() {
+	local logical="$1"
+	case "$logical:$OS" in
+	neovim:*) echo "neovim" ;;
+	zsh:*) echo "zsh" ;;
+	ripgrep:mac) echo "ripgrep" ;;
+	ripgrep:apt) echo "ripgrep" ;;
+	ripgrep:dnf) echo "ripgrep" ;;
+	ripgrep:pacman) echo "ripgrep" ;;
+	fzf:mac) echo "fzf" ;;
+	fzf:apt) echo "fzf" ;;
+	fzf:dnf) echo "fzf" ;;
+	fzf:pacman) echo "fzf" ;;
+	fd:mac) echo "fd" ;;
+	fd:apt) echo "fd-find" ;;
+	fd:dnf) echo "fd-find" ;;
+	fd:pacman) echo "fd" ;;
+	git:*) echo "git" ;;
+	*) echo "$logical" ;; # fall through unchanged
+	esac
+}
 
-ln -s "$(pwd)/config/ideavim" ~/.config/
+install_packages() {
+	info "Installing packages..."
+	local to_install=()
 
-# ================================ weechat =================================== #
+	for logical in zsh neovim ripgrep fzf fd git; do
+		local pkg
+		pkg="$(pkg_name "$logical")"
+		if ! command_exists "$logical" && ! command_exists "$pkg"; then
+			to_install+=("$pkg")
+		else
+			success "Already installed: $logical"
+		fi
+	done
 
-ln -s "$(pwd)/config/weechat" ~/.config/
+	if [[ ${#to_install[@]} -gt 0 ]]; then
+		pkg_install "${to_install[@]}"
+	fi
 
-# ================================= tmux ===================================== #
+	# macOS extras: GNU coreutils so zsh config can prefer them
+	if [[ "$OS" == "mac" ]]; then
+		info "Installing GNU coreutils for macOS..."
+		local gnu_pkgs=(coreutils gnu-sed grep findutils)
+		local missing_gnu=()
+		for p in "${gnu_pkgs[@]}"; do
+			brew list "$p" &>/dev/null || missing_gnu+=("$p")
+		done
+		[[ ${#missing_gnu[@]} -gt 0 ]] && brew install "${missing_gnu[@]}"
+		success "GNU coreutils ready"
+	fi
+}
 
-ln -s "$(pwd)/config/tmux" ~/.config/
-#git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+# ─── Shell Setup ─────────────────────────────────────────────────────────────
 
-# ================================== vim ===================================== #
+setup_zsh() {
+	info "Setting up zsh..."
 
-echo 'source $XDG_CONFIG_HOME/vim/init.vim' >$HOME/.vimrc
-ln -s "$(pwd)/config/vim" $HOME/.config/
+	local zsh_path
+	zsh_path="$(command -v zsh)"
 
-# ================================== etc ===================================== #
+	# Add to /etc/shells if not present
+	if ! grep -qxF "$zsh_path" /etc/shells; then
+		info "Adding $zsh_path to /etc/shells"
+		echo "$zsh_path" | sudo tee -a /etc/shells >/dev/null
+	fi
 
-# python extras
-#pip3 install bpython
+	# Set as default shell
+	if [[ "$SHELL" != "$zsh_path" ]]; then
+		info "Changing default shell to zsh..."
+		sudo chsh -s "$zsh_path" "$USER"
+		success "Default shell set to $zsh_path"
+	else
+		success "zsh is already the default shell"
+	fi
+}
 
-# bin/scripts
-ln -s "$(pwd)/bin" "$HOME/"
+# ─── Symlinks ────────────────────────────────────────────────────────────────
 
-# Idea Vim key repeat in MacOS
-defaults write com.jetbrains.intellij.ce ApplePressAndHoldEnabled -bool false
+setup_symlinks() {
+	info "Creating symlinks..."
+	mkdir -p "$CONFIG_DIR"
 
-# TODO: make pbcopy/pbpaste like MacOS using xclip
-# echo "test" | tr -d '\n' | xclip -sel clip
-# this trims all \n ^^^^^... should trim only final \n
+	# ~/.zshenv  (bootstraps ZDOTDIR so zsh finds the rest)
+	symlink "$DOTFILES_DIR/home/zshenv" "$HOME/.zshenv"
+
+	# ~/.bashrc
+	symlink "$DOTFILES_DIR/home/bashrc" "$HOME/.bashrc"
+
+	# ~/.config/* — enumerate every subdirectory that exists in config/
+	if [[ -d "$DOTFILES_DIR/config" ]]; then
+		for src in "$DOTFILES_DIR/config"/*/; do
+			local dir
+			dir="$(basename "$src")"
+			symlink "$src" "$CONFIG_DIR/$dir"
+		done
+	fi
+
+	# ~/bin scripts
+	if [[ -d "$DOTFILES_DIR/bin" ]]; then
+		symlink "$DOTFILES_DIR/bin" "$HOME/bin"
+	fi
+}
+
+# ─── Neovim ──────────────────────────────────────────────────────────────────
+
+setup_neovim() {
+	info "Neovim setup (Lazy.nvim will self-bootstrap on first launch)..."
+	# Lazy.nvim auto-installs itself when nvim/lua/config/lazy.lua is present.
+	# Nothing for the deploy script to do beyond symlinking ~/.config/nvim above.
+	success "nvim config symlinked — plugins install on first launch"
+}
+
+# ─── Fonts (Linux only) ──────────────────────────────────────────────────────
+
+install_fonts() {
+	[[ "$OS" == "mac" ]] && return
+	if [[ -d "$DOTFILES_DIR/fonts" ]]; then
+		info "Installing fonts..."
+		sudo cp -n "$DOTFILES_DIR/fonts/"* /usr/share/fonts/ 2>/dev/null || true
+		fc-cache -f -v &>/dev/null
+		success "Fonts installed"
+	fi
+}
+
+# ─── Main ────────────────────────────────────────────────────────────────────
+
+main() {
+	info "Deploying dotfiles from $DOTFILES_DIR"
+
+	detect_os
+
+	[[ "$OS" == "mac" ]] && install_homebrew
+
+	install_packages
+	install_fonts
+	setup_symlinks
+	setup_neovim
+	setup_zsh # last, in case chsh causes an interactive prompt
+
+	echo ""
+	success "Done! Start a new zsh session (or: exec zsh) to apply everything."
+	warn "Neovim plugins will install automatically on first launch."
+}
+
+main "$@"
