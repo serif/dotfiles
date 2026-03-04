@@ -3,12 +3,9 @@
 config/zsh/completions
 config/zsh/histfile
 config/zsh/snippets/*
-config/zsh/zinit/bin
+config/zsh/zinit/
+config/zsh/.zinit/
 config/zsh/zcompdump
-config/zsh/zinit/plugins/*/
-config/zsh/zinit/plugins/_local---zinit/*
-config/zsh/.zinit/*
-config/zsh/zinit/*
 config/zsh/.zcompdump*
 config/zsh/.zcompcache/*
 config/zsh/cache

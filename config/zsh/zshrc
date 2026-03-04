@@ -33,16 +33,16 @@ source "${ZINIT_HOME}/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-declare -A ZINIT
-ZINIT[BIN_DIR]=~/.config/zsh/zinit/bin
-ZINIT[HOME_DIR]=~/.config/zsh/zinit
-ZINIT[PLUGINS_DIR]=~/.config/zsh/zinit/plugins
-ZINIT[COMPLETIONS_DIR]=~/.config/zsh/completions
-ZINIT[SNIPPETS_DIR]=~/.config/zsh/snippets
-ZINIT[ZCOMPDUMP_PATH]=~/.config/zsh/zcompdump
-ZINIT[COMPINIT_OPTS]="-C"               # pass -C to speed up loading
-ZINIT[MUTE_WARNINGS]=1                  # mute unimportant warnings
-ZPFX=~/.config/zsh/zinit/polaris        # tmp for plugs with Makefile
+# declare -A ZINIT
+# ZINIT[BIN_DIR]=~/.config/zsh/zinit/bin
+# ZINIT[HOME_DIR]=~/.config/zsh/zinit
+# ZINIT[PLUGINS_DIR]=~/.config/zsh/zinit/plugins
+# ZINIT[COMPLETIONS_DIR]=~/.config/zsh/completions
+# ZINIT[SNIPPETS_DIR]=~/.config/zsh/snippets
+# ZINIT[ZCOMPDUMP_PATH]=~/.config/zsh/zcompdump
+# ZINIT[COMPINIT_OPTS]="-C"               # pass -C to speed up loading
+# ZINIT[MUTE_WARNINGS]=1                  # mute unimportant warnings
+# ZPFX=~/.config/zsh/zinit/polaris        # tmp for plugs with Makefile
 
 # Plugins
 #
